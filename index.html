@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-es="Patagonia 2026 · Inicio del viaje" data-en="Patagonia 2026 · Trip Hub">Patagonia 2026 · Trip Hub</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link rel="stylesheet" href="style.css">
+  <script src="i18n.js"></script>
+  <style>
+    .section-label{scroll-margin-top:74px;margin-top:8px;}
+    ul.timeline li.c::before{background:var(--blue);}
+    ul.timeline li.w::before{background:var(--teal);}
+    ul.timeline li.h::before{background:var(--olive);}
+    #map{width:100%;height:380px;border-radius:12px;border:1.5px solid var(--gray-300);margin-bottom:28px;z-index:1;}
+    .day-strip{position:relative;display:flex;gap:6px;overflow-x:auto;padding:4px 2px 12px;}
+    .day-chip{flex:0 0 auto;min-width:54px;background:var(--white);border:1.5px solid var(--gray-300);border-radius:10px;padding:7px 5px;cursor:pointer;text-align:center;font-family:var(--sans);}
+    .day-chip.active{border-color:var(--slate);box-shadow:0 2px 10px rgba(0,0,0,.1);}
+    .day-chip .dn{font-family:var(--mono);font-size:10px;color:var(--gray-500);}
+    .day-chip .dd{font-size:13px;font-weight:600;color:var(--slate);}
+    .day-chip .dot{width:7px;height:7px;border-radius:50%;margin:4px auto 0;}
+    .day-detail{background:var(--white);border:1.5px solid var(--gray-300);border-radius:14px;padding:16px 18px;}
+    .dd-phase{font-family:var(--mono);font-size:11px;font-weight:600;text-transform:uppercase;color:var(--white);padding:3px 9px;border-radius:6px;display:inline-block;}
+    .dd-day{font-family:var(--mono);font-size:12px;color:var(--gray-500);margin-top:8px;}
+    .dd-loc{font-family:var(--serif);font-size:24px;color:var(--slate);line-height:1.2;}
+    .dd-move{background:var(--gray-150);border-radius:8px;padding:8px 12px;font-size:13.5px;margin:10px 0;}
+    .dd-acts,.dd-tk{list-style:none;display:flex;flex-direction:column;gap:5px;font-size:14px;}
+    .dd-tk{margin-top:10px;font-size:13px;}
+    .dd-tk a{color:var(--olive);}
+    .tk-miss{color:#8A3B1E;font-weight:600;}
+    .day-detail .note{margin:12px 0 0;}
+    .dd-nav{display:flex;justify-content:space-between;margin:12px 0 36px;}
+    .dd-nav button{font:13px var(--sans);border:1.5px solid var(--gray-300);background:var(--white);border-radius:8px;padding:7px 14px;cursor:pointer;color:var(--gray-700);}
+    .dd-nav button:disabled{opacity:.35;cursor:default;}
+    .chips.long .chip{white-space:normal;border-radius:9px;padding:4px 10px;}
+    td .chip{margin-top:4px;}
+    a.tile{text-decoration:none;color:inherit;}
+    a.tile:hover{border-color:var(--clay);}
+  </style>
+</head>
+<body>
+  <nav class="topnav"><div class="inner">
+    <span class="brand">🏔️ Patagonia 2026</span>
+    <a href="index.html" class="active"><span lang="es">Inicio</span><span lang="en">Hub</span></a>
+    <a href="calendar.html"><span lang="es">Calendario</span><span lang="en">Calendar</span></a>
+    <a href="wtrek.html"><span lang="es">Circuito W</span><span lang="en">W Trek</span></a>
+    <a href="huemul.html">Huemul</a>
+    <a href="buenos-aires.html">Buenos Aires</a>
+    <a href="logistics.html"><span lang="es">Logística</span><span lang="en">Logistics</span></a>
+    <a href="gear.html"><span lang="es">Equipo</span><span lang="en">Gear</span></a>
+    <a href="packing.html"><span lang="es">Equipaje</span><span lang="en">Packing</span></a>
+    <a href="material.html"><span lang="es">Material</span><span lang="en">Kit check</span></a>
+    <a href="todo.html"><span lang="es">Pendientes</span><span lang="en">To-do</span></a>
+    <a href="costes.html"><span lang="es">Costes</span><span lang="en">Costs</span></a>
+    <a href="dinos.html"><span lang="es">Dinosaurios</span><span lang="en">Dinosaurs</span></a>
+    <a href="ver.html"><span lang="es">Para ver</span><span lang="en">Watch</span></a>
+    <a href="leer.html"><span lang="es">Para leer</span><span lang="en">Read</span></a>
+  </div></nav>
+  <div class="page">
+    <div class="eyebrow"><span lang="es">Argentina y Chile · 2 amigos</span><span lang="en">Argentina &amp; Chile · 2 friends</span></div>
+    <h1><span lang="es">Patagonia 2026, dos trekkings</span><span lang="en">Patagonia 2026, two treks</span></h1>
+
+    <div class="facts">
+      <div class="fact"><div class="i">✈️</div><div class="v"><span lang="es">25 nov</span><span lang="en">Nov 25</span></div><div class="k"><span lang="es">salida</span><span lang="en">departure</span></div></div>
+      <div class="fact"><div class="i">🏠</div><div class="v"><span lang="es">20 dic</span><span lang="en">Dec 20</span></div><div class="k"><span lang="es">en casa</span><span lang="en">home</span></div></div>
+      <div class="fact"><div class="i">🌙</div><div class="v">24</div><div class="k"><span lang="es">noches · 25 días</span><span lang="en">nights · 25 days</span></div></div>
+      <div class="fact"><div class="i">🥾</div><div class="v">W + Huemul</div><div class="k"><span lang="es">2 · por libre</span><span lang="en">2 · self-guided</span></div></div>
+      <div class="fact"><div class="i">💶</div><div class="v">~€3.5–3.8K</div><div class="k"><a href="costes.html"><span lang="es">por persona</span><span lang="en">per person</span></a></div></div>
+    </div>
+
+    <div class="note go">✅ <span lang="es"><b>Todo reservado:</b> vuelos, 24 noches, campings del W, entradas y buses. Lo que falta: <a href="#status">Estado</a> · <a href="todo.html">Pendientes</a>.</span><span lang="en"><b>All booked:</b> flights, 24 nights, W camps, park passes and buses. Still open: <a href="#status">Status</a> · <a href="todo.html">To-do</a>.</span></div>
+
+    <nav class="toc">
+      <span class="lbl"><span lang="es">ir a</span><span lang="en">jump to</span></span>
+      <a href="#phases"><span lang="es">Ruta</span><span lang="en">Route</span></a>
+      <a href="#map-label"><span lang="es">Mapa</span><span lang="en">Map</span></a>
+      <a href="#days"><span lang="es">Día a día</span><span lang="en">Day by day</span></a>
+      <a href="#status"><span lang="es">Estado</span><span lang="en">Status</span></a>
+      <a href="#pages"><span lang="es">Páginas</span><span lang="en">Pages</span></a>
+    </nav>
+
+    <div class="section-label" id="phases"><span lang="es">La ruta</span><span lang="en">The route</span></div>
+    <ul class="timeline">
+      <li><span class="t"><span lang="es">25 nov</span><span lang="en">Nov 25</span></span>✈️ IB0105 MAD 08:45 → EZE 17:25 · <b>Buenos Aires</b></li>
+      <li class="c"><span class="t"><span lang="es">28 nov</span><span lang="en">Nov 28</span></span>✈️ JA3213 EZE 16:30 → FTE 19:46 · <b>El Calafate</b></li>
+      <li class="c"><span class="t"><span lang="es">29 nov</span><span lang="en">Nov 29</span></span>🧗 Big Ice · 07:00</li>
+      <li class="w"><span class="t"><span lang="es">30 nov</span><span lang="en">Nov 30</span></span>🚌 Marga 08:00 → <b>Puerto Natales</b></li>
+      <li class="w"><span class="t"><span lang="es">2–6 dic</span><span lang="en">Dec 2–6</span></span>🥾 <b>W</b> · Torres del Paine</li>
+      <li class="h"><span class="t"><span lang="es">8 dic</span><span lang="en">Dec 8</span></span>🚌 Bus Sur 07:30 + Chaltén Travel 15:00 → <b>El Chaltén</b></li>
+      <li class="h"><span class="t"><span lang="es">10–13 dic</span><span lang="en">Dec 10–13</span></span>🥾 <b>Huemul</b> · <span lang="es">colchón</span><span lang="en">buffer</span> 14–15</li>
+      <li class="c"><span class="t"><span lang="es">16 dic</span><span lang="en">Dec 16</span></span>🚌 Chaltén Travel 11:30 → <b>El Calafate</b></li>
+      <li><span class="t"><span lang="es">17 dic</span><span lang="en">Dec 17</span></span>✈️ JA3212 FTE 08:27 → EZE 11:27 · <b>Buenos Aires</b></li>
+      <li><span class="t"><span lang="es">19 dic</span><span lang="en">Dec 19</span></span>✈️ IB0108 EZE 22:45 → MAD 14:30 (+1)</li>
+    </ul>
+
+    <div class="section-label" id="map-label"><span lang="es">Mapa</span><span lang="en">Map</span></div>
+    <div id="map"></div>
+
+    <div class="section-label" id="days"><span lang="es">Día a día: toca un día</span><span lang="en">Day by day: tap a day</span></div>
+    <div class="day-strip" id="dayStrip"></div>
+    <div class="day-detail" id="dayDetail"></div>
+    <div class="dd-nav">
+      <button id="prevDay"><span lang="es">← Anterior</span><span lang="en">← Previous</span></button>
+      <button id="nextDay"><span lang="es">Siguiente →</span><span lang="en">Next →</span></button>
+    </div>
+
+    <div class="section-label" id="status"><span lang="es">Estado</span><span lang="en">Status</span></div>
+    <table>
+      <tr><td><b>Iberia</b><br><span class="chip ok">✅ •••</span></td><td><span lang="es">€2.233,02 los dos · 23 kg facturados + 10 kg cabina c/u</span><span lang="en">€2,233.02 for two · 23 kg checked + 10 kg cabin each</span></td></tr>
+      <tr><td><b>JetSMART</b><br><span class="chip ok">✅ ••• · •••</span></td><td><span lang="es">Trip.com, €438,16 los dos · 23 kg facturados + 10 kg bajo el asiento c/u, sin cabina</span><span lang="en">Trip.com, €438.16 for two · 23 kg checked + 10 kg under-seat each, no cabin bag</span></td></tr>
+      <tr><td><b><span lang="es">Alojamiento</span><span lang="en">Lodging</span></b><br><span class="chip ok">✅ 24</span></td><td><span lang="es">17 noches de hostel + 4 campings del W + 3 libres en el Huemul · ~€684 los dos, cancelación gratis</span><span lang="en">17 hostel nights + 4 W camps + 3 wild Huemul nights · ~€684 for two, free cancellation</span></td></tr>
+      <tr><td><b><span lang="es">Campings W</span><span lang="en">W camps</span></b><br><span class="chip ok">✅</span></td><td><span lang="es">2–6 dic · $539 pagados los dos</span><span lang="en">Dec 2–6 · $539 paid for two</span></td></tr>
+      <tr><td><b><span lang="es">Transporte W</span><span lang="en">W transport</span></b><br><span class="chip ok">✅ •••</span></td><td><span lang="es">Bus 07:00 2 dic · catamarán 17:00 6 dic · Bus Sur 17:40 directo, asientos 11–12 · $149 pagados, $42 devueltos (bus 14:30 cancelado)</span><span lang="en">Bus 07:00 Dec 2 · catamaran 17:00 Dec 6 · Bus Sur 17:40 direct, seats 11–12 · $149 paid, $42 refunded (14:30 bus cancelled)</span></td></tr>
+      <tr><td><b>Torres del Paine</b><br><span class="chip ok">✅</span></td><td><span lang="es">Entrada 2 dic · CLP 97.000 los dos · retención de €89,93 devuelta</span><span lang="en">Entry Dec 2 · CLP 97,000 for two · €89.93 hold reversed</span></td></tr>
+      <tr><td><b>FlexiPass x3</b><br><span class="chip ok">✅ •••</span></td><td><span lang="es">Los Glaciares: 29 nov, 9 dic, 10 dic · €116,18 los dos</span><span lang="en">Los Glaciares: Nov 29, Dec 9, Dec 10 · €116.18 for two</span></td></tr>
+      <tr><td><b>Plus Ultra</b><br><span class="chip warn">⏳ <span lang="es">cancelado</span><span lang="en">cancelled</span></span></td><td><span lang="es">Reembolso €1.696,99 aprobado el 8 oct (Rumbo, expediente •••). Sin cobrar: reclamación AESA ••• presentada el 18 nov (solo el reembolso). Los €536,03 extra, más adelante</span><span lang="en">€1,696.99 refund approved Oct 8 (Rumbo, expediente •••). Not received: AESA claim ••• filed Nov 18 (refund only). The extra €536.03 later</span></td></tr>
+    </table>
+
+    <div class="chips long">
+      <span class="chip warn" id="tkchip"></span>
+      <span class="chip warn">🛒 <span lang="es">Comprar: eSIM AR/CL, pantalón de lluvia, merino de dormir, gafas Julbo</span><span lang="en">Buy: AR/CL eSIMs, rain pants, merino sleep set, Julbo sunglasses</span></span>
+      <span class="chip warn">🪢 <span lang="es">Tirolesas: kit de Alberto ✓; faltan 15 m de cordino (Decathlon)</span><span lang="en">Tyroleans: Alberto's kit ✓; 15 m cord still to buy (Decathlon)</span></span>
+      <span class="chip warn">🛡️ <span lang="es">Seguro: Revolut Metal cubre a los dos; falta el certificado de Laura</span><span lang="en">Insurance: Revolut Metal covers both; Laura's certificate to download</span></span>
+      <span class="chip warn">🚕 <span lang="es">Reservar traslados: FTE → Calafate Hostel (28 nov), hotel → FTE 06:15 (17 dic)</span><span lang="en">Book transfers: FTE → Calafate Hostel (Nov 28), hotel → FTE 06:15 (Dec 17)</span></span>
+      <span class="chip warn">❓ <span lang="es">APN: ¿reserva o tasa en los campings del Huemul? ¿Una entrada FlexiPass vale para los 4 días?</span><span lang="en">APN: Huemul camp booking or fee? Does one FlexiPass entry cover all 4 days?</span></span>
+      <span class="chip warn">🧳 <span lang="es">Confirmar consigna: Turpial 2–6 dic, Lo de Trivi 10–13 dic</span><span lang="en">Confirm bag storage: Turpial Dec 2–6, Lo de Trivi Dec 10–13</span></span>
+    </div>
+
+    <div class="section-label" id="pages" style="margin-top:36px"><span lang="es">Páginas</span><span lang="en">Pages</span></div>
+    <div class="tiles">
+      <a class="tile" href="calendar.html"><div class="i">📅</div><div><b><span lang="es">Calendario</span><span lang="en">Calendar</span></b></div></a>
+      <a class="tile" href="wtrek.html"><div class="i">⛺</div><div><b><span lang="es">Circuito W</span><span lang="en">W Trek</span></b><p><span lang="es">reservado 2–6 dic</span><span lang="en">booked Dec 2–6</span></p></div></a>
+      <a class="tile" href="huemul.html"><div class="i">🏔️</div><div><b>Huemul</b><p><span lang="es">por libre, 10–13 dic</span><span lang="en">self-guided, Dec 10–13</span></p></div></a>
+      <a class="tile" href="buenos-aires.html"><div class="i">🌆</div><div><b>Buenos Aires</b><p><span lang="es">25–28 nov · 17–19 dic</span><span lang="en">Nov 25–28 · Dec 17–19</span></p></div></a>
+      <a class="tile" href="logistics.html"><div class="i">🚌</div><div><b><span lang="es">Logística</span><span lang="en">Logistics</span></b></div></a>
+      <a class="tile" href="gear.html"><div class="i">🎒</div><div><b><span lang="es">Equipo</span><span lang="en">Gear</span></b></div></a>
+      <a class="tile" href="packing.html"><div class="i">🪶</div><div><b><span lang="es">Equipaje</span><span lang="en">Packing</span></b><p>11–12 kg W · 14.5–15 kg Huemul</p></div></a>
+      <a class="tile" href="material.html"><div class="i">🧰</div><div><b><span lang="es">Material</span><span lang="en">Kit check</span></b></div></a>
+      <a class="tile" href="todo.html"><div class="i">✅</div><div><b><span lang="es">Pendientes</span><span lang="en">To-do</span></b></div></a>
+      <a class="tile" href="costes.html"><div class="i">💸</div><div><b><span lang="es">Costes</span><span lang="en">Costs</span></b></div></a>
+      <a class="tile" href="dinos.html"><div class="i">🦕</div><div><b><span lang="es">Dinosaurios</span><span lang="en">Dinosaurs</span></b></div></a>
+      <a class="tile" href="ver.html"><div class="i">🎬</div><div><b><span lang="es">Para ver</span><span lang="en">Watch</span></b></div></a>
+      <a class="tile" href="leer.html"><div class="i">📚</div><div><b><span lang="es">Para leer</span><span lang="en">Read</span></b><p><span lang="es">descargad antes del 25</span><span lang="en">download before the 25th</span></p></div></a>
+    </div>
+
+    <footer>Patagonia 2026 · <a href="../adventure-plan.md"><span lang="es">por qué este plan</span><span lang="en">why this plan</span></a> · <a href="../itinerary-1B-final.md"><span lang="es">plan completo</span><span lang="en">full plan</span></a> · <a href="../research-sources.md"><span lang="es">fuentes</span><span lang="en">sources</span></a></footer>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="tickets.js"></script>
+  <script>
+  // Every visible string is a pair of lang spans; style.css hides the inactive one.
+  function T(es,en){return '<span lang="es">'+es+'</span><span lang="en">'+en+'</span>';}
+
+  var PH = {
+    ba:{name:"Buenos Aires",c:"#D97757"},
+    cal:{name:T("El Calafate · Glaciares","El Calafate · Glaciers"),c:"#4A7FB5"},
+    cht:{name:"El Chaltén + Huemul",c:"#788C5D"},
+    tdp:{name:T("Torres del Paine · Circuito W","Torres del Paine · W Trek"),c:"#2F8E83"}
+  };
+  var BA=[-34.6037,-58.3816], CAL=[-50.3402,-72.2648], NAT=[-51.7304,-72.4977], CHT=[-49.3315,-72.8862];
+  var ARC="Play Hostel Arcos ✅", TUR="Hostal Turpial ✅", TRI="Lo de Trivi ✅";
+
+  // One entry per trip day (25). note.t is a .note modifier: "" warning, "info", "go".
+  var DAYS = [
+    {n:0,date:"Wed Nov 25",ph:"ba",loc:"Buenos Aires",ll:BA,move:{i:"✈️",t:"Iberia IB0105 MAD T4S 08:45 → EZE 17:25 · •••"},sleep:ARC,acts:[["🚕",T("EZE → Palermo en Uber o Cabify, ~1 h","EZE → Palermo by Uber or Cabify, ~1 h")]]},
+    {n:1,date:"Thu Nov 26",ph:"ba",loc:"Buenos Aires",ll:BA,move:null,sleep:ARC,acts:[["🥩",T("Palermo, Recoleta, primer asado","Palermo, Recoleta, first asado")],["📱",T("SIM o eSIM de Claro","Claro SIM or eSIM")]]},
+    {n:2,date:"Fri Nov 27",ph:"ba",loc:"Buenos Aires",ll:BA,move:null,sleep:ARC,acts:[["🖨️",T("Imprimid vouchers del W, billetes, QR del parque y el catamarán (sale ~26 nov)","Print W vouchers, tickets, park QR and the catamaran ticket (out ~Nov 26)")]]},
+    {n:3,date:"Sat Nov 28",ph:"cal",loc:"El Calafate",ll:CAL,move:{i:"✈️",t:"JetSMART JA3213 · EZE 16:30 → FTE 19:46 · •••"},sleep:"Calafate Hostel ✅",acts:[["🧳",T("Salid a Ezeiza ~13:30. EZE, no AEP","Leave for Ezeiza ~13:30. EZE, not AEP")],["🚕",T("FTE → pueblo 20 min; traslado sin reservar","FTE → town 20 min; transfer not booked")]],note:{t:"info",x:T("Si JetSMART cancela: llamad a Hielo y Aventura (+54 2966 492205) para mover Big Ice.","If JetSMART cancels: call Hielo y Aventura (+54 2966 492205) to move Big Ice.")}},
+    {n:4,date:"Sun Nov 29",ph:"cal",loc:T("Glaciar Perito Moreno","Perito Moreno Glacier"),ll:[-50.4957,-73.1377],move:{i:"🚐",t:T("Recogida 07:00 en Calafate Hostel, 1,5 h","Pickup 07:00 at Calafate Hostel, 1.5 h")},sleep:"Calafate Hostel ✅",acts:[["🧗",T("Big Ice: 3,5 h con crampones","Big Ice: 3.5 h in crampons")],["🥪",T("Comida y bebida para el día; formulario médico cada uno","Food and drink for the day; medical form each")]],note:{t:"go",x:T("Reserva ••• · FlexiPass 1/3 (•••), PDF sin conexión.","Reserva ••• · FlexiPass 1/3 (•••), PDF offline.")}},
+    {n:5,date:"Mon Nov 30",ph:"tdp",loc:"Puerto Natales (Chile)",ll:NAT,move:{i:"🚌",t:T("Marga 08:00 Calafate → Natales ~14:00, asientos 19–20","Marga 08:00 Calafate → Natales ~14:00, seats 19–20")},sleep:TUR,acts:[["🛂",T("Frontera Cerro Castillo: nada de comida fresca (SAG)","Cerro Castillo border: no fresh food (SAG)")],["🪪",T("Guardad la tarjeta PDI: ahorra el 19% de IVA y hace falta para salir el 8 dic","Keep the PDI card: saves the 19% IVA, needed to exit on Dec 8")]]},
+    {n:6,date:"Tue Dec 1",ph:"tdp",loc:T("Puerto Natales, preparación","Puerto Natales, prep day"),ll:NAT,move:null,sleep:TUR,acts:[["🎒",T("Charla de Erratic Rock 15:00. Comida para 5 días y gas","Erratic Rock seminar 15:00. Buy 5 days of food and gas")],["💵",T("Pesos chilenos: el shuttle es en efectivo","Chilean pesos: the shuttle is cash")]]},
+    {n:7,date:"Wed Dec 2",ph:"tdp",loc:T("W día 1: Base Torres","W day 1: Base Torres"),ll:[-50.9423,-72.9870],move:{i:"🚌",t:T("Bus 07:00 a Laguna Amarga, shuttle a Central (~$4 efectivo), Base Torres 19 km i/v","07:00 bus to Laguna Amarga, shuttle to Central (~$4 cash), Base Torres 19 km return")},sleep:T("Camping Central ✅ ($50 pp)","Camp Central ✅ ($50 pp)"),acts:[["⏱️",T("Último control antes de ~13:00; el mirador cierra ~16:00","Last checkpoint by ~13:00; mirador closes ~16:00")],["⛺",T("Check-in del camping desde 14:30","Camp check-in from 14:30")]],note:{t:"go",x:T("Con mal tiempo: Base Torres mañana al amanecer.","Bad weather: Base Torres at dawn tomorrow.")}},
+    {n:8,date:"Thu Dec 3",ph:"tdp",loc:T("W día 2: Francés","W day 2: Francés"),ll:[-50.9800,-73.0150],move:{i:"🥾",t:T("Central → Francés junto al lago, 13–16 km","Central → Francés along the lake, 13–16 km")},sleep:T("Camping Francés ✅ ($120 pp)","Camp Francés ✅ ($120 pp)"),acts:[["🛌",T("Semiequipado: tienda y esterilla incluidas","Semi-equipped: tent and mat provided")]]},
+    {n:9,date:"Fri Dec 4",ph:"tdp",loc:T("W día 3: Valle del Francés","W day 3: Valle del Francés"),ll:[-50.9950,-73.0400],move:{i:"🥾",t:T("Valle del Francés y a Paine Grande, 20 km","Valle del Francés, then Paine Grande, 20 km")},sleep:T("Camping Paine Grande ✅ ($13 pp)","Camp Paine Grande ✅ ($13 pp)"),acts:[["🎒",T("Mochila grande en Italiano para subir al valle","Big pack stays at Italiano for the valley")]]},
+    {n:10,date:"Sat Dec 5",ph:"tdp",loc:T("W día 4: Glaciar Grey","W day 4: Glaciar Grey"),ll:[-50.9900,-73.1900],move:{i:"🥾",t:"Paine Grande → Grey, 11 km"},sleep:T("Camping Grey ✅ ($11 pp)","Camp Grey ✅ ($11 pp)"),acts:[["🍳",T("Desayuno en el refugio Paine Grande, pagado ($34 pp)","Refugio breakfast at Paine Grande, paid ($34 pp)")],["🌉",T("Puentes colgantes mañana; hoy si la previsión es mala","Suspension bridges tomorrow; today if the forecast is bad")]],note:{t:"info",x:T("Mañana el desayuno en Grey es vuestro: guardad gas.","Tomorrow you cook breakfast at Grey: keep gas.")}},
+    {n:11,date:"Sun Dec 6",ph:"tdp",loc:T("W día 5: salida","W day 5: exit"),ll:[-51.0500,-73.0800],move:{i:"⛴️",t:T("Puentes con mochila de día (vuelta 10:30), 11 km a Paine Grande (~14:30). Catamarán 17:00, Pudeto, bus 17:40, Natales 20:30","Bridges on daypacks (back 10:30), 11 km to Paine Grande (~14:30). Catamaran 17:00, Pudeto, bus 17:40, Natales 20:30")},sleep:TUR,acts:[["⚓",T("Muelle a las 16:45: el billete es solo para las 17:00","Pier by 16:45: the ticket is for the 17:00 only")],["🏃",T("Pudeto: 10 min de enlace al bus, sin entretenerse","Pudeto: 10-min connection to the bus, no wandering")]],note:{x:T("Si perdéis el bus: hay otros a las 19:15, 19:30 y 19:35.","Missed it? Buses at 19:15, 19:30 and 19:35.")}},
+    {n:12,date:"Mon Dec 7",ph:"tdp",loc:T("Puerto Natales, descanso","Puerto Natales, recovery"),ll:NAT,move:null,sleep:TUR,acts:[["🧺",T("Descanso y colada","Rest and laundry")],["🎒",T("Equipaje para el Huemul; secad la tienda","Repack for Huemul; dry the tent")]]},
+    {n:13,date:"Tue Dec 8",ph:"cht",loc:"El Chaltén",ll:CHT,move:{i:"🚌",t:T("Bus Sur 07:30 Natales → Calafate ~13:05 (estad a las 06:45). Chaltén Travel 15:00 → Chaltén 17:40 (plan B: Marga 16:30)","Bus Sur 07:30 Natales → Calafate ~13:05 (be there 06:45). Chaltén Travel 15:00 → Chaltén 17:40 (fallback: Marga 16:30)")},sleep:TRI,acts:[["⛽",T("Cartucho de gas, hoy o mañana","Gas canister, today or tomorrow")]],note:{x:T("Decidido: Huemul 10–13 dic, colchón 14–15 dic.","Decided: Huemul Dec 10–13, buffer Dec 14–15.")}},
+    {n:14,date:"Wed Dec 9",ph:"cht",loc:"El Chaltén",ll:CHT,move:null,sleep:TRI,acts:[["🥾",T("Laguna de los Tres, 20–25 km, salida al amanecer","Laguna de los Tres, 20–25 km, sunrise start")],["📋",T("Antes de ~14:00: permiso del Huemul (los dos nombres) y charla en el Centro de Visitantes. Preguntad por nieve","By ~14:00: Huemul permit (both names) and ranger briefing at the Centro de Visitantes. Ask about snow")],["🌬️",T("Ventana en Windguru; pesos argentinos para el pueblo y el taxi","Weather window on Windguru; Argentine pesos for town and the taxi")]],note:{t:"info",x:T("FlexiPass 2/3 (•••) en el móvil: zona norte solo online, sin efectivo.","FlexiPass 2/3 (•••) on your phone: north zone online only, no cash.")}},
+    {n:15,date:"Thu Dec 10",ph:"cht",loc:"Huemul: Laguna Toro",ll:[-49.3700,-73.0000],move:{i:"🥾",t:T("Huemul día 1: centro de visitantes → Laguna Toro, ~16 km","Huemul day 1: visitor center → Laguna Toro, ~16 km")},sleep:T("Camping 1 · Laguna Toro","Camp 1 · Laguna Toro"),acts:[["🧭",T("Turberas: seguid los hitos junto al cauce","Peat bogs: follow the cairns near the riverbed")],["💧",T("Hay vacas: filtrad el agua","Cows graze here: filter the water")]],note:{t:"go",x:T("FlexiPass 3/3. Pasos por la mañana; mapas sin conexión y de papel.","FlexiPass 3/3. Passes in the morning; offline and paper maps.")}},
+    {n:16,date:"Fri Dec 11",ph:"cht",loc:"Huemul: Paso del Viento",ll:[-49.4200,-73.0700],move:{i:"🥾",t:T("Día 2: tirolesa n.º 1 (Río Túnel) y Paso del Viento (~1.430 m), ~11 km","Day 2: Tyrolean #1 (Río Túnel), then Paso del Viento (~1,430 m), ~11 km")},sleep:T("Camping 2 · Paso del Viento","Camp 2 · Paso del Viento"),acts:[],note:{t:"info",x:T("Rachas de 100–160 km/h: cruzad solo con ventana clara. Camping expuesto: montad bajo.","Gusts of 100–160 km/h: cross only in a clear window. Exposed camp: pitch low.")}},
+    {n:17,date:"Sat Dec 12",ph:"cht",loc:"Huemul: Bahía de los Témpanos",ll:[-49.5000,-73.0000],move:{i:"🥾",t:T("Día 3: campo de hielo, Paso Huemul, Lago Viedma, ~14 km","Day 3: ice field, Paso Huemul, Lago Viedma, ~14 km")},sleep:T("Camping 3 · Bahía de los Témpanos","Camp 3 · Bahía de los Témpanos"),acts:[["⬇️",T("Bajada empinada por pedrera suelta: bastones y despacio","Steep loose-scree descent: poles, go slow")]]},
+    {n:18,date:"Sun Dec 13",ph:"cht",loc:"El Chaltén",ll:CHT,move:{i:"🥾",t:T("Día 4: tirolesa n.º 2, Bahía Túnel y al pueblo, ~25 km (~17 con taxi desde Estancia La Quinta)","Day 4: Tyrolean #2, Bahía Túnel, then town, ~25 km (~17 with a taxi from Estancia La Quinta)")},sleep:TRI,acts:[["📧",T("Check-out por email a APN (icepnlgzn@apn.gob.ar) en menos de 48 h","Check out by email to APN (icepnlgzn@apn.gob.ar) within 48 h")]],note:{x:T("Organizad la salida antes: el barco no es fiable. Taxi de La Quinta sin reservar.","Arrange the exit beforehand: the boat is unreliable. La Quinta taxi not booked.")}},
+    {n:19,date:"Mon Dec 14",ph:"cht",loc:"El Chaltén",ll:CHT,move:null,sleep:TRI,acts:[["😌",T("Día colchón por si el Huemul se retrasa","Buffer day for a Huemul weather delay")]]},
+    {n:20,date:"Tue Dec 15",ph:"cht",loc:"El Chaltén",ll:CHT,move:null,sleep:TRI,acts:[["🥾",T("Si está despejado: Paso del Cuadrado, 28–30 km, +1.500 m, 11–14 h. Salid a las 05:00","If clear: Paso del Cuadrado, 28–30 km, +1,500 m, 11–14 h. Leave by 05:00")],["📷",T("Si no: Laguna Torre, Pliegue Tumbado o descanso","Otherwise: Laguna Torre, Pliegue Tumbado or rest")]],note:{t:"info",x:T("Solo si el Huemul acabó a tiempo. Sin marcas arriba: track GPS y microspikes. Otra entrada a la zona norte (online).","Only if Huemul finished on time. Unmarked up high: GPS track and microspikes. Another north-zone pass (online).")}},
+    {n:21,date:"Wed Dec 16",ph:"cal",loc:"El Calafate",ll:CAL,move:{i:"🚌",t:T("Chaltén Travel 11:30 → El Calafate 14:10, asientos 59–60","Chaltén Travel 11:30 → El Calafate 14:10, seats 59–60")},sleep:"Hostel Buenos Aires ✅",acts:[["🍖",T("Rehacer el equipaje; cordero patagónico","Repack; Patagonian lamb dinner")]]},
+    {n:22,date:"Thu Dec 17",ph:"ba",loc:"Buenos Aires",ll:BA,move:{i:"✈️",t:"JetSMART JA3212 · FTE 08:27 → EZE 11:27 · •••"},sleep:ARC,acts:[["🚕",T("Salid del hotel ~06:15; traslado sin reservar","Leave the hotel ~06:15; transfer not booked")],["💃",T("Tango: La Catedral o El Beso","Tango: La Catedral or El Beso")]]},
+    {n:23,date:"Fri Dec 18",ph:"ba",loc:"Buenos Aires",ll:BA,move:null,sleep:ARC,acts:[["🛍️",T("San Telmo, cementerio de la Recoleta","San Telmo, Recoleta cemetery")],["🥩",T("Despedida sin reserva: Don Zoilo (Av. Honorio Pueyrredón 1406)","Farewell dinner, walk-in: Don Zoilo (Av. Honorio Pueyrredón 1406)")]]},
+    {n:24,date:"Sat Dec 19",ph:"ba",loc:T("Vuelta a casa","Fly home"),ll:[-34.8150,-58.5348],move:{i:"✈️",t:T("Iberia IB0108 EZE 22:45 → MAD 14:30 (20 dic) · •••","Iberia IB0108 EZE 22:45 → MAD 14:30 (Dec 20) · •••")},sleep:T("en el avión","on the plane"),acts:[["🧳",T("Mochilas en el hostel tras el check-out","Leave bags at the hostel after check-out")],["🚕",T("Salid de Palermo ~19:00 hacia Ezeiza (1 h 30)","Leave Palermo ~19:00 for Ezeiza (1 h 30)")]]}
+  ];
+
+  // Spanish day labels are derived from the day number; d.date stays the English source.
+  var ES_WD=['dom','lun','mar','mié','jue','vie','sáb'], ES_MO={10:'nov',11:'dic'};
+  function esDate(d,withWeekday){
+    var dt=new Date(Date.UTC(2026,10,25+d.n));
+    return (withWeekday?ES_WD[dt.getUTCDay()]+' ':'')+dt.getUTCDate()+' '+ES_MO[dt.getUTCMonth()];
+  }
+
+  var strip=document.getElementById('dayStrip'), detail=document.getElementById('dayDetail');
+  var cur=0, map, markers=[];
+
+  function buildStrip(){
+    DAYS.forEach(function(d,i){
+      var b=document.createElement('button');
+      b.className='day-chip';
+      b.innerHTML='<div class="dn">'+T('DÍA '+d.n,'DAY '+d.n)+'</div><div class="dd">'+T(esDate(d,false),d.date.split(' ').slice(1).join(' '))+'</div><div class="dot" style="background:'+PH[d.ph].c+'"></div>';
+      b.onclick=function(){select(i);};
+      b.id='chip'+i;
+      strip.appendChild(b);
+    });
+  }
+
+  // quiet: skip scrolling the strip into view, so opening the page does not jump down to it.
+  function select(i,quiet){
+    cur=i; var d=DAYS[i];
+    document.querySelectorAll('.day-chip').forEach(function(c){c.classList.remove('active');});
+    var chip=document.getElementById('chip'+i); chip.classList.add('active');
+    if(!quiet) chip.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+    else strip.scrollLeft=chip.offsetLeft-strip.clientWidth/2+chip.offsetWidth/2;
+
+    var acts=d.acts.map(function(a){return '<li>'+a[0]+' '+a[1]+'</li>';}).join('');
+    var move=d.move?'<div class="dd-move">'+d.move.i+' '+d.move.t+'</div>':'';
+    // Day n=1 is Nov 26, so the ISO date is a fixed offset from it.
+    var iso=new Date(Date.UTC(2026,10,25+d.n)).toISOString().slice(0,10);
+    var tk=(TICKETS[iso]||[]).map(function(t){return '<li>'+ticketHtml(t)+'</li>';}).join('');
+    var note=d.note?'<div class="note '+(d.note.t||'')+'">'+d.note.x+'</div>':'';
+    detail.innerHTML=
+      '<span class="dd-phase" style="background:'+PH[d.ph].c+'">'+PH[d.ph].name+'</span>'+
+      '<div class="dd-day">'+T('DÍA '+d.n+' · '+esDate(d,true),'DAY '+d.n+' · '+d.date)+'</div>'+
+      '<div class="dd-loc">'+d.loc+'</div>'+
+      '<div class="chips"><span class="chip">🛏️ '+d.sleep+'</span></div>'+
+      move+
+      '<ul class="dd-acts">'+acts+'</ul>'+
+      (tk?'<ul class="dd-tk">'+tk+'</ul>':'')+
+      note;
+
+    document.getElementById('prevDay').disabled=(i===0);
+    document.getElementById('nextDay').disabled=(i===DAYS.length-1);
+    // Markers are per stop, not per day: open the popup only when the day sits on that stop.
+    if(map && d.ll){ map.flyTo(d.ll,d.ph==='ba'?5:7,{duration:.8});
+      markers.forEach(function(m){ if(m.ll===d.ll) m.openPopup(); }); }
+  }
+
+  document.getElementById('prevDay').onclick=function(){if(cur>0)select(cur-1);};
+  document.getElementById('nextDay').onclick=function(){if(cur<DAYS.length-1)select(cur+1);};
+
+  document.addEventListener('DOMContentLoaded',function(){
+    var nMiss=[].concat.apply([],Object.values(TICKETS)).filter(function(t){return !t[1];}).length;
+    document.getElementById('tkchip').innerHTML='⚠️ '+T(nMiss+' billetes sin guardar: <a href="calendar.html">Calendario</a>',nMiss+' tickets not saved: <a href="calendar.html">Calendar</a>');
+    map=L.map('map',{scrollWheelZoom:false}).setView([-48,-70],4);
+    // CARTO basemaps now need an API key; the standard OSM tiles do not.
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',maxZoom:19}).addTo(map);
+
+    // route line, travel order
+    var route=[BA,CAL,NAT,CAL,CHT,CAL,[-34.6037,-58.2]];
+    for(var k=0;k<route.length-1;k++){
+      L.polyline([route[k],route[k+1]],{color:"#87867F",weight:2,dashArray:"7 6",opacity:.55}).addTo(map);
+    }
+
+    // one marker per unique stop
+    var stops=[
+      {ll:BA,n:"Buenos Aires",s:T("3 noches al llegar, 2 al final","3 nights on arrival, 2 at the end"),c:PH.ba.c},
+      {ll:CAL,n:"El Calafate",s:T("Big Ice, 3 noches","Big Ice, 3 nights"),c:PH.cal.c},
+      {ll:NAT,n:"Puerto Natales",s:T("Base del W, 4 noches","W Trek base, 4 nights"),c:PH.tdp.c},
+      {ll:[-50.9900,-73.0500],n:T("Torres del Paine, Circuito W","Torres del Paine, W Trek"),s:T("2–6 dic, reservado","Dec 2–6, booked"),c:PH.tdp.c},
+      {ll:CHT,n:"El Chaltén",s:T("Excursiones y Huemul, 8 noches","Day hikes and Huemul, 8 nights"),c:PH.cht.c},
+      {ll:[-49.42,-73.07],n:T("Circuito Huemul","Huemul Circuit"),s:T("4 días por libre","4 days, self-guided"),c:PH.cht.c}
+    ];
+    stops.forEach(function(s){
+      var icon=L.divIcon({className:'',html:'<div style="width:18px;height:18px;border-radius:50%;background:'+s.c+';border:3px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.3)"></div>',iconSize:[18,18],iconAnchor:[9,9]});
+      var m=L.marker(s.ll,{icon:icon}).addTo(map).bindPopup('<div style="font-family:system-ui;min-width:150px"><strong style="font-size:14px">'+s.n+'</strong><br><span style="color:#87867F;font-size:12px">'+s.s+'</span></div>');
+      m.ll=s.ll; markers.push(m);
+    });
+
+    buildStrip();
+    // During the trip, open on today's day; before or after it, on day 0.
+    var now=new Date(), k0=Math.round((Date.UTC(now.getFullYear(),now.getMonth(),now.getDate())-Date.UTC(2026,10,25))/864e5);
+    select(k0>=0&&k0<DAYS.length?k0:0,true);
+  });
+  </script>
+</body>
+</html>

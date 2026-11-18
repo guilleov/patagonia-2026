@@ -1,0 +1,26 @@
+// Saved tickets by travel date, shared by the Hub and the Calendar.
+// [label, path under tickets/] — a null path means booked but the ticket is not saved yet.
+// Labels are HTML (paired lang="es"/lang="en" spans), so callers must not escape them.
+function TK(es,en){ return '<span lang="es">'+es+'</span><span lang="en">'+en+'</span>'; }
+var TICKETS = {
+  "2026-11-25": [[TK("Billete electrónico Iberia, Guillermo (•••)","Iberia e-ticket, Guillermo (•••)"), "2026-11-25_iberia_ib0105-ib0108_•••_eticket-•••_guillermo.pdf"], [TK("Billete electrónico Iberia, Laura (•••)","Iberia e-ticket, Laura (•••)"), "2026-11-25_iberia_ib0105-ib0108_•••_eticket-•••_laura.pdf"], [TK("Reserva cancelada de Plus Ultra (guárdala para la reclamación)","Cancelled Plus Ultra booking (keep for the claim)"), "2026-11-25_plus-ultra_pu501-pu502_•••_rumbo-•••-•••_receipt.pdf"], [TK("Certificado del seguro, Guillermo (Revolut Metal / XCover)","Insurance certificate, Guillermo (Revolut Metal / XCover)"), "2026-11-25_insurance_revolut-metal-xcover_policy-•••_guillermo.pdf"], [TK("Certificado del seguro, Laura (su propio Revolut Metal)","Insurance certificate, Laura (her own Revolut Metal)"), null]],
+  "2026-11-28": [[TK("Itinerario JetSMART JA3213, localizador •••","JetSMART JA3213 itinerary, locator •••"), "2026-11-28_jetsmart_ja3213-ja3212_•••-•••_itinerary-es-en.pdf"], [TK("Recibo de Trip.com, €438.16 para dos","Trip.com receipt, €438.16 for two"), "2026-11-28_jetsmart_ja3213-ja3212_trip-com-•••_receipt.pdf"]],
+  "2026-11-29": [[TK("Bono Big Ice, reserva •••","Big Ice voucher, reserva •••"), "2026-11-29_hielo-y-aventura_big-ice_0700-pickup-calafate-hostel_•••.pdf"], [TK("Flexipass de Los Glaciares","Los Glaciares Flexipass"), "2026-11-29_apn_los-glaciares-flexipass_•••.pdf"]],
+  "2026-11-30": [[TK("Marga, Guillermo","Marga, Guillermo"), "2026-11-30_marga_calafate-natales_0800_2413567_seat-20_guillermo.pdf"], [TK("Marga, Laura","Marga, Laura"), "2026-11-30_marga_calafate-natales_0800_2413568_seat-19_laura.pdf"], [TK("Respuesta del SAG sobre la comida liofilizada (enséñala en Cerro Castillo)","SAG reply on the freeze-dried meals (show at Cerro Castillo)"), "reference_sag-reply-•••_freeze-dried-meals.pdf"]],
+  "2026-12-02": [[TK("Bonos de los campings del W, las 4 noches (•••)","W camp vouchers, all 4 nights (•••)"), "2026-12-02_torreshike_w-camps-central-frances-painegrande-grey_•••.pdf"], [TK("Bus Sur 07:00, Guillermo","Bus Sur 07:00, Guillermo"), "2026-12-02_bus-sur_natales-laguna-amarga_0700_•••_seat-28_guillermo.pdf"], [TK("Bus Sur 07:00, Laura","Bus Sur 07:00, Laura"), "2026-12-02_bus-sur_natales-laguna-amarga_0700_•••_seat-29_laura.pdf"], [TK("QR de la entrada al parque TdP","TdP park pass QR"), "2026-12-02_conaf_torres-del-paine-park-pass_•••.pdf"], [TK("Itinerario de Booking Patagonia (no es un billete)","Booking Patagonia itinerary (not a ticket)"), "2026-12-02_booking-patagonia_itinerary-not-a-ticket_•••.pdf"]],
+  "2026-12-06": [[TK("Catamarán 17:00, •••: confirmado, el billete de embarque solo se emite ~10 días antes (hacia el ~26 nov), enviado por email a willwarcry99","Catamaran 17:00, •••: confirmed, boarding ticket only released ~10 days before (by ~Nov 26), emailed to willwarcry99"), null], [TK("Bus Sur 17:40","Bus Sur 17:40"), "2026-12-06_bus-sur_pudeto-natales_1740_seats-11-12.pdf"]],
+  "2026-12-08": [[TK("Bus Sur 07:30","Bus Sur 07:30"), "2026-12-08_bus-sur_natales-calafate_0730_12go-•••_seats-49-50.pdf"], [TK("Chaltén Travel, Guillermo","Chaltén Travel, Guillermo"), "2026-12-08_chalten-travel_calafate-chalten_1500_AIV-69408_seat-50_guillermo.pdf"], [TK("Chaltén Travel, Laura","Chaltén Travel, Laura"), "2026-12-08_chalten-travel_calafate-chalten_1500_AIV-69409_seat-51_laura.pdf"]],
+  "2026-12-16": [[TK("Chaltén Travel, Guillermo","Chaltén Travel, Guillermo"), "2026-12-16_chalten-travel_chalten-calafate_1130_VO1-12937_seat-59_guillermo.pdf"], [TK("Chaltén Travel, Laura","Chaltén Travel, Laura"), "2026-12-16_chalten-travel_chalten-calafate_1130_VO1-12938_seat-60_laura.pdf"]],
+  "2026-12-19": [[TK("Billete electrónico Iberia, Guillermo (IB0108)","Iberia e-ticket, Guillermo (IB0108)"), "2026-11-25_iberia_ib0105-ib0108_•••_eticket-•••_guillermo.pdf"], [TK("Billete electrónico Iberia, Laura (IB0108)","Iberia e-ticket, Laura (IB0108)"), "2026-11-25_iberia_ib0105-ib0108_•••_eticket-•••_laura.pdf"]],
+  "2026-12-17": [[TK("Itinerario JetSMART JA3212, localizador •••","JetSMART JA3212 itinerary, locator •••"), "2026-11-28_jetsmart_ja3213-ja3212_•••-•••_itinerary-es-en.pdf"]]
+};
+// Hostel confirmations, by check-in date. Not entry requirements, but the addresses and refs
+// are needed offline, and Argentine immigration can ask where you are staying.
+[["2026-11-25","Play Hostel Arcos"],["2026-11-28","Calafate Hostel"],["2026-11-30","Hostal Turpial"],
+ ["2026-12-06","Hostal Turpial"],["2026-12-08","Lo de Trivi"],["2026-12-13","Lo de Trivi"],
+ ["2026-12-16","Hostel Buenos Aires (Calafate)"],["2026-12-17","Play Hostel Arcos"]].forEach(function(h){
+  (TICKETS[h[0]] = TICKETS[h[0]] || []).push([TK("Confirmación del alojamiento, "+h[1],"Accommodation confirmation, "+h[1]), null]);
+});
+function ticketHtml(t){
+  return t[1] ? '<a>📄 '+t[0]+'</a>' : '<span class="tk-miss">⚠️ '+t[0]+': '+TK('sin guardar','not saved')+'</span>';
+}

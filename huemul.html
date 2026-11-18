@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-es="Circuito Huemul · Ficha del trekking" data-en="Huemul Circuit · Trek Brief">Huemul Circuit · Trek Brief</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <script src="i18n.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="gpx/tracks.js"></script>
+  <script src="gpxview.js"></script>
+  <style>.timeline p,.sub{font-size:13px;color:var(--gray-500);margin:2px 0 14px}.timeline p{margin:2px 0 0}.timeline .chips{margin:4px 0 0}</style>
+</head>
+<body>
+  <nav class="topnav"><div class="inner">
+    <span class="brand">🏔️ Patagonia 2026</span>
+    <a href="index.html"><span lang="es">Inicio</span><span lang="en">Hub</span></a>
+    <a href="calendar.html"><span lang="es">Calendario</span><span lang="en">Calendar</span></a>
+    <a href="wtrek.html"><span lang="es">Circuito W</span><span lang="en">W Trek</span></a>
+    <a href="huemul.html" class="active">Huemul</a>
+    <a href="buenos-aires.html">Buenos Aires</a>
+    <a href="logistics.html"><span lang="es">Logística</span><span lang="en">Logistics</span></a>
+    <a href="gear.html"><span lang="es">Equipo</span><span lang="en">Gear</span></a>
+    <a href="packing.html"><span lang="es">Equipaje</span><span lang="en">Packing</span></a>
+    <a href="material.html"><span lang="es">Material</span><span lang="en">Kit check</span></a>
+    <a href="todo.html"><span lang="es">Pendientes</span><span lang="en">To-do</span></a>
+    <a href="costes.html"><span lang="es">Costes</span><span lang="en">Costs</span></a>
+    <a href="dinos.html"><span lang="es">Dinosaurios</span><span lang="en">Dinosaurs</span></a>
+    <a href="ver.html"><span lang="es">Para ver</span><span lang="en">Watch</span></a>
+    <a href="leer.html"><span lang="es">Para leer</span><span lang="en">Read</span></a>
+  </div></nav>
+  <div class="page">
+    <a class="back" href="index.html"><span lang="es">← Inicio del viaje</span><span lang="en">← Trip hub</span></a>
+    <div class="toolbar"><button class="btn" onclick="window.print()"><span lang="es">🖨️ Imprimir / Guardar PDF</span><span lang="en">🖨️ Print / Save PDF</span></button></div>
+    <div class="eyebrow"><span lang="es">El Chaltén · por libre · 2 personas</span><span lang="en">El Chaltén · self-guided · 2 people</span></div>
+    <h1 lang="es">Circuito Huemul</h1><h1 lang="en">Huemul Circuit</h1>
+
+    <div class="facts">
+      <div class="fact"><div class="i">🥾</div><div class="v">~67 km</div><div class="k"><span lang="es">antihorario</span><span lang="en">counterclockwise</span></div></div>
+      <div class="fact"><div class="i">⛺</div><div class="v">4 / 3</div><div class="k"><span lang="es">días / noches</span><span lang="en">days / nights</span></div></div>
+      <div class="fact"><div class="i">⛰️</div><div class="v">~1,430 m</div><div class="k"><span lang="es">punto más alto</span><span lang="en">high point</span></div></div>
+      <div class="fact"><div class="i">📅</div><div class="v"><span lang="es">10–13 dic</span><span lang="en">Dec 10–13</span></div><div class="k"><span lang="es">+2 días colchón</span><span lang="en">+2 buffer days</span></div></div>
+    </div>
+
+    <nav class="toc">
+      <span class="lbl"><span lang="es">en esta página</span><span lang="en">on this page</span></span>
+      <a href="#stages"><span lang="es">Etapas</span><span lang="en">Stages</span></a>
+      <a href="#map"><span lang="es">Mapa y GPX</span><span lang="en">Map &amp; GPX</span></a>
+      <a href="#tyrolean"><span lang="es">Tirolinas</span><span lang="en">Tyroleans</span></a>
+      <a href="#camps"><span lang="es">Campings</span><span lang="en">Camps</span></a>
+      <a href="#weight"><span lang="es">Peso</span><span lang="en">Weight</span></a>
+      <a href="#gear"><span lang="es">Equipo</span><span lang="en">Gear</span></a>
+      <a href="#permit"><span lang="es">Permiso</span><span lang="en">Permit</span></a>
+      <a href="#weather"><span lang="es">Meteo</span><span lang="en">Weather</span></a>
+      <a href="#exit"><span lang="es">Salida y rescate</span><span lang="en">Exit &amp; rescue</span></a>
+      <a href="#planb">Plan B</a>
+      <a href="#cost"><span lang="es">Coste</span><span lang="en">Cost</span></a>
+    </nav>
+
+    <div class="verdict">
+      <span lang="es"><b>¿Viable? Sí.</b> El peligro son las condiciones, no la técnica.</span><span lang="en"><b>Viable? Yes.</b> The danger is conditions, not technique.</span>
+      <div class="grid3">
+        <div><span lang="es"><b>① Viento</b><br>Rachas de más de 100 km/h: no se cruza</span><span lang="en"><b>① Wind</b><br>Gusts over 100 km/h: do not cross</span></div>
+        <div><span lang="es"><b>② Orientación</b><br>Sendero poco marcado. Mapa offline y de papel</span><span lang="en"><b>② Route finding</b><br>Faint trail. Offline and paper map</span></div>
+        <div><span lang="es"><b>③ Pedrera del D3</b><br>Suelta. Bastones y despacio: más lesiones</span><span lang="en"><b>③ Day-3 scree</b><br>Loose. Poles, go slow: top injury spot</span></div>
+      </div>
+    </div>
+
+    <h2 id="stages"><span lang="es">🗺️ Etapas</span><span lang="en">🗺️ Stages</span></h2>
+    <ul class="timeline">
+      <li><span class="t">D1</span><b>El Chaltén → ⛺ Laguna Toro</b>
+        <div class="chips"><span class="chip">~16 km</span><span class="chip">+750 m</span></div>
+        <p lang="es">Turberas: seguid los hitos junto al cauce</p><p lang="en">Peat bogs: follow the cairns by the riverbed</p></li>
+      <li><span class="t">D2</span><b>Río Túnel → ⛺ Paso del Viento</b>
+        <div class="chips"><span class="chip">~11 km</span><span class="chip">+800 m</span><span class="chip info"><span lang="es">tirolina 1</span><span lang="en">tyrolean 1</span></span><span class="chip warn"><span lang="es">sí/no por viento</span><span lang="en">wind go/no-go</span></span></div>
+        <p lang="es">Paso a ~1,430 m, el punto más alto</p><p lang="en">Pass at ~1,430 m, the high point</p></li>
+      <li><span class="t">D3</span><b>Paso Huemul → ⛺ Bahía de los Témpanos</b>
+        <div class="chips"><span class="chip">~14 km</span><span class="chip">−1300 m</span><span class="chip warn"><span lang="es">pedrera</span><span lang="en">scree</span></span></div>
+        <p lang="es">Por el Campo de Hielo. Bajada larga y suelta: bastones</p><p lang="en">Along the Ice Field. Long loose descent: poles</p></li>
+      <li><span class="t">D4</span><b>Bahía Túnel → 🏠 El Chaltén</b>
+        <div class="chips"><span class="chip">~25 km</span><span class="chip info"><span lang="es">tirolina 2</span><span lang="en">tyrolean 2</span></span></div>
+        <p lang="es">Tirolina más fácil. Incluye ~8 km de pista. Tramo central seco</p><p lang="en">Easier tyrolean. Includes ~8 km of road. Dry middle section</p></li>
+    </ul>
+
+    <h2 id="map"><span lang="es">🧭 Mapa y GPX</span><span lang="en">🧭 Map &amp; GPX</span></h2>
+    <div class="gpxview" data-groups="huemul,planb"></div>
+    <div class="chips"><span class="chip info">📱 Gaia / OsmAnd / Organic Maps</span><span class="chip"><span lang="es">mapa offline desde casa</span><span lang="en">offline map from home</span></span><span class="chip"><span lang="es">cada día al Suunto</span><span lang="en">each day to the Suunto</span></span><span class="chip">Zagier &amp; Urruty + <span lang="es">brújula</span><span lang="en">compass</span></span></div>
+    <p class="sub"><span lang="es">Línea sobre OSM, no huella grabada: contrastadla con Wikiloc reciente y el guardaparques. Sin Paso del Cuadrado (no hay sendero).</span><span lang="en">Drawn on OSM, not recorded: check it against a recent Wikiloc track and the ranger. No Paso del Cuadrado (no trail).</span></p>
+
+    <h3 id="chalten"><span lang="es">🏘️ Excursiones desde el pueblo, a pie</span><span lang="en">🏘️ Day hikes on foot from town</span></h3>
+    <div class="tiles">
+      <div class="tile"><div class="i">🏔️</div><div><b>Laguna de los Tres</b><p><span lang="es">9 dic</span><span lang="en">Dec 9</span></p></div></div>
+      <div class="tile"><div class="i">⛅</div><div><b>Laguna Torre · Pliegue Tumbado</b><p><span lang="es">14–15 dic. Pliegue si está despejado</span><span lang="en">Dec 14–15. Pliegue if clear</span></p></div></div>
+      <div class="tile"><div class="i">💨</div><div><b>Chorrillo del Salto · Cóndores y Águilas</b><p><span lang="es">Descanso o viento</span><span lang="en">Rest or windy day</span></p></div></div>
+    </div>
+    <div class="gpxview" data-groups="chalten"></div>
+
+    <h2 id="tyrolean"><span lang="es">🪢 Tirolinas</span><span lang="en">🪢 Tyroleans</span></h2>
+    <p class="sub"><span lang="es">Ríos sin vadear: cable de acero fijo, arnés y polea. Un solo kit para los dos.</span><span lang="en">No wading: fixed steel cable, harness and pulley. One kit for both.</span></p>
+    <ul class="timeline">
+      <li><span class="t">1</span><span lang="es">Cruza el primero, mochila colgada del mosquetón de acero por asa y hombrera, nunca a la espalda</span><span lang="en">First crosses, pack clipped to the steel carabiner by haul loop and strap, never on the back</span></li>
+      <li><span class="t">2</span><span lang="es">Deja el kit en el cable, atado al cordino</span><span lang="en">Leaves the kit on the cable, tied to the cord</span></li>
+      <li><span class="t">3</span><span lang="es">El segundo lo recupera tirando y cruza</span><span lang="en">Second pulls it back and crosses</span></li>
+    </ul>
+    <div class="chips"><span class="chip ok"><span lang="es">siempre asegurados + respaldo</span><span lang="en">always clipped + backup</span></span><span class="chip warn"><span lang="es">D2: salid pronto</span><span lang="en">D2: start early</span></span><span class="chip"><span lang="es">colas 1–3 h en temporada alta</span><span lang="en">1–3 h queues in peak season</span></span><span class="chip info"><span lang="es">sin crampones ni piolet</span><span lang="en">no crampons or axe</span></span></div>
+
+    <h2 id="camps"><span lang="es">⛺ Campings</span><span lang="en">⛺ Camps</span></h2>
+    <div class="chips"><span class="chip ok"><span lang="es">gratis, sin reserva</span><span lang="en">free, no booking</span></span><span class="chip warn"><span lang="es">sin comida ni cobertura</span><span lang="en">no food or signal</span></span><span class="chip warn"><span lang="es">fuego nunca</span><span lang="en">no fires</span></span><span class="chip info"><span lang="es">tratad el agua</span><span lang="en">treat water</span></span><span class="chip"><span lang="es">bajad la basura</span><span lang="en">pack out trash</span></span></div>
+    <div class="tiles">
+      <div class="tile"><div class="i">🐄</div><div><b>Laguna Toro</b><p><span lang="es">20 parcelas, protegido. Letrina. Vacas: filtrad</span><span lang="en">20 sites, sheltered. Latrine. Cows: filter</span></p></div></div>
+      <div class="tile"><div class="i">💨</div><div><b>Paso del Viento</b><p><span lang="es">10 parcelas, muy expuesto: piquetas a fondo, montad bajo. Sin baño</span><span lang="en">10 sites, very exposed: stake hard, pitch low. No toilet</span></p></div></div>
+      <div class="tile"><div class="i">🧊</div><div><b>Bahía de los Témpanos</b><p><span lang="es">Pocas parcelas: llegad pronto. Sin baño</span><span lang="en">Few sites: arrive early. No toilet</span></p></div></div>
+    </div>
+    <p class="sub"><span lang="es">Los refugios son para cocinar y el viento: tienda todas las noches.</span><span lang="en">Refuges are for cooking and wind: tent every night.</span></p>
+
+    <h2 id="weight"><span lang="es">🪶 Peso por persona</span><span lang="en">🪶 Weight per person</span></h2>
+    <div class="facts">
+      <div class="fact"><div class="i">🎒</div><div class="v">14.5–15 kg</div><div class="k"><span lang="es">cargada</span><span lang="en">loaded</span></div></div>
+      <div class="fact"><div class="i">⚖️</div><div class="v">9.3 kg</div><div class="k"><span lang="es">peso base</span><span lang="en">base weight</span></div></div>
+      <div class="fact"><div class="i">🍲</div><div class="v">−2.5 kg</div><div class="k"><span lang="es">al ir comiendo</span><span lang="en">as you eat</span></div></div>
+    </div>
+    <div class="chips"><span class="chip">🎒 1.7</span><span class="chip">⛺ ½ 1.1</span><span class="chip">🛌 2.0</span><span class="chip">🔥 ½ 0.35</span><span class="chip">🪢 ½ 0.7</span><span class="chip">👕 1.5</span><span class="chip">🧭 1.0</span><span class="chip">🔋 0.9</span><span class="chip info">📷 1.6–2.2</span><span class="chip info">🍲 2.4</span><span class="chip info">💧 1.2</span></div>
+    <p class="sub"><span lang="es">Compartid todo lo compartible. Comida 600–700 g/día, agua 1–1.5 L. Quien vaya más fuerte lleva tienda y cocina; la de Laura, la más ligera. Cámara: 2 objetivos repartidos, trípode y 3.º en el pueblo. <a href="packing.html">Recortes</a></span><span lang="en">Share all you can. Food 600–700 g/day, water 1–1.5 L. The stronger hiker carries tent and cook kit; Laura's pack is the lightest. Camera: 2 lenses split, tripod and third lens stay in town. <a href="packing.html">Cut list</a></span></p>
+
+    <h2 id="gear"><span lang="es">🎒 Equipo</span><span lang="en">🎒 Gear</span></h2>
+    <div class="cols">
+      <div class="card">
+        <h3><span lang="es">Compartido</span><span lang="en">Shared</span></h3>
+        <ul>
+          <li lang="es">De Alberto ✓: arnés, polea Petzl Tandem Speed, mosquetón de acero, 20 m de cordino</li><li lang="en">Alberto's ✓: harness, Petzl Tandem Speed pulley, steel carabiner, 20 m cord</li>
+          <li lang="es">+ mosquetón de aluminio y cinta de 150 cm</li><li lang="en">+ alu carabiner and 150 cm sling</li>
+          <li lang="es"><b>35 m de cordino, obligatorio APN</b>: +15 m Decathlon <span class="pill buy">comprar</span>, mismo grosor, doble pescador</li><li lang="en"><b>35 m cord, APN-mandatory</b>: +15 m Decathlon <span class="pill buy">buy</span>, same diameter, double fisherman's</li>
+          <li lang="es">Tienda 2P propia, repartida</li><li lang="en">Own 2P tent, split</li>
+          <li lang="es">Forclaz Trek 500 + Toaks 750 ml ✓</li><li lang="en">Forclaz Trek 500 + Toaks 750 ml ✓</li>
+          <li lang="es">Gas, $11–16, en El Chaltén o Calafate <span class="pill buy">comprar</span>. No vuela</li><li lang="en">Gas, $11–16, in El Chaltén or Calafate <span class="pill buy">buy</span>. Cannot fly</li>
+          <li lang="es">Mapa plastificado, brújula, filtro, botiquín, palita</li><li lang="en">Laminated map, compass, filter, first aid, trowel</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span lang="es">Cada uno</span><span lang="en">Each</span></h3>
+        <ul>
+          <li lang="es">Saco 0 °C + esterilla Tuye R5.8 ✓ (<a href="packing.html#cold">frío</a>)</li><li lang="en">0 °C bag + Tuye R5.8 mat ✓ (<a href="packing.html#cold">cold</a>)</li>
+          <li lang="es">Vivac de emergencia o manta térmica</li><li lang="en">Emergency bivy or space blanket</li>
+          <li lang="es">Frontal + pila, bastones, guantes ✓</li><li lang="en">Headlamp + battery, poles, gloves ✓</li>
+          <li lang="es">Móvil con mapa offline y GPX</li><li lang="en">Phone with offline map and GPX</li>
+          <li lang="es">Microspikes: alquilar (Viento Oeste, Bajo Zero) a ~$5/día solo si hay nieve; se decide el 9 dic. Nada más se alquila</li><li lang="en">Microspikes: rent (Viento Oeste, Bajo Zero) at ~$5/day only if snow; decide Dec 9. Nothing else is rented</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note info"><span lang="es"><b>Comida:</b> liofilizados desde casa (liofilizado.es): 3 desayunos, 4 cenas, 2 postres; en el pueblo no hay proteína. Precintados y declarados, <b>nada de cerdo</b> por Chile (SAG •••). Reempaquetad en El Chaltén. Más electrolitos y cuchara larga; snacks, mejor en Calafate. <a href="packing.html#food">Plan</a></span><span lang="en"><b>Food:</b> freeze-dried from home (liofilizado.es): 3 breakfasts, 4 dinners, 2 desserts; no protein in town. Sealed and declared, <b>no pork</b> through Chile (SAG •••). Repack in El Chaltén. Plus electrolytes and a long spoon; snacks are cheaper in Calafate. <a href="packing.html#food">Plan</a></span></div>
+
+    <h2 id="permit"><span lang="es">📋 Permiso (gratis, obligatorio)</span><span lang="en">📋 Permit (free, mandatory)</span></h2>
+    <ul class="timeline">
+      <li><span class="t"><span lang="es">9 dic</span><span lang="en">Dec 9</span></span><b><span lang="es">Registro online APN</span><span lang="en">APN online registration</span></b><p lang="es">"Registro de Uso de Montaña", nombres exactos del pasaporte (<a href="logistics.html#travellers">Logística</a>). Enlace: centro de visitantes</p><p lang="en">"Registro de Uso de Montaña", names exactly as on passports (<a href="logistics.html#travellers">Logistics</a>). Link: visitor center</p></li>
+      <li><span class="t"><span lang="es">9 dic</span><span lang="en">Dec 9</span></span><b><span lang="es">Charla del guardaparques</span><span lang="en">Ranger briefing</span></b><p lang="es">Viento y nieve en los pasos. Centro de Informes Ceferino Fonzo</p><p lang="en">Wind and snow on the passes. Centro de Informes Ceferino Fonzo</p></li>
+      <li><span class="t">✓</span><b>FlexiPass •••</b><p lang="es">Pagado, sin devolución, PDF offline. Cubre toda la travesía (<a href="logistics.html#passes">Entradas</a>)</p><p lang="en">Paid, non-refundable, PDF offline. Covers the whole traverse (<a href="logistics.html#passes">Passes</a>)</p></li>
+      <li><span class="t">⚠️</span><b><span lang="es">Seguro en PDF</span><span lang="en">Insurance PDF</span></b><p lang="es">Revolut Metal en los dos móviles (falta Laura). Exigido mín. USD 20,000 con evacuación (Decreto 366/2025); pueden pedirlo (<a href="logistics.html#seguro">Seguro</a>)</p><p lang="en">Revolut Metal on both phones (Laura's missing). Min. USD 20,000 incl. evacuation required (Decreto 366/2025); rangers may ask (<a href="logistics.html#seguro">Insurance</a>)</p></li>
+      <li><span class="t"><span lang="es">Inicio</span><span lang="en">Start</span></span><b>QR</b><p lang="es">Acceso con personal de 07:00 a 20:00; de madrugada, enseñad el QR igual. Llevad el kit y sabed usarlo</p><p lang="en">Portal staffed 07:00–20:00; carry the QR for a pre-dawn start. Carry the kit and know how to use it</p></li>
+      <li><span class="t"><span lang="es">Fin +48 h</span><span lang="en">End +48 h</span></span><b>icepnlgzn@apn.gob.ar</b><p lang="es">Email de vuelta o se lanza una búsqueda. Fecha de fin conservadora</p><p lang="en">Email you are back or a search starts. Conservative finish date</p></li>
+    </ul>
+
+    <h2 id="weather"><span lang="es">🌬️ Meteo</span><span lang="en">🌬️ Weather</span></h2>
+    <div class="chips"><span class="chip info">💨 &lt;50 km/h</span><span class="chip info"><span lang="es">despejado, sin lluvia</span><span lang="en">clear, no precipitation</span></span><span class="chip warn"><span lang="es">pasos por la mañana</span><span lang="en">passes in the morning</span></span><span class="chip ok"><span lang="es">2 días colchón</span><span lang="en">2 buffer days</span></span></div>
+    <p class="sub"><span lang="es">Windguru "Paso del Viento" a diario. Puede quedar nieve arriba. No forcéis un mal día.</span><span lang="en">Windguru "Paso del Viento" daily. Snow may linger up high. Do not force a bad day.</span></p>
+
+    <h2 id="exit"><span lang="es">🚪 Salida y rescate</span><span lang="en">🚪 Exit &amp; rescue</span></h2>
+    <div class="note go"><span lang="es"><b>D4:</b> el barco de Bahía Túnel no es fiable. Salid andando (8 km) o en taxi desde Estancia La Quinta (4 km cuesta arriba), acordado antes.</span><span lang="en"><b>Day 4:</b> the Bahía Túnel boat is unreliable. Walk out (8 km) or taxi from Estancia La Quinta (4 km uphill), arranged beforehand.</span></div>
+    <div class="facts">
+      <div class="fact"><div class="i">📵</div><div class="v"><span lang="es">Sin señal</span><span lang="en">No signal</span></div><div class="k"><span lang="es">ni inReach</span><span lang="en">no inReach</span></div></div>
+      <div class="fact"><div class="i">🚶</div><div class="v">6–24 h</div><div class="k"><span lang="es">rescate a pie, voluntarios</span><span lang="en">volunteer ground rescue</span></div></div>
+      <div class="fact"><div class="i">🚁</div><div class="v">✗</div><div class="k"><span lang="es">helicóptero</span><span lang="en">helicopter</span></div></div>
+    </div>
+    <div class="note"><span lang="es">Contacto de emergencia: itinerario y regla <b>"sin noticias a las X del D4 = llamar a la APN"</b>. Aguantad 24+ h con botiquín, manta y tienda. Si uno se lesiona, el otro baja.</span><span lang="en">Emergency contact: itinerary and the rule <b>"no news by X on day 4 = call APN"</b>. Hold out 24+ h with first aid, blanket and tent. If one is hurt, the other walks out.</span></div>
+
+    <h2 id="planb"><span lang="es">🅱️ Plan B según la ventana</span><span lang="en">🅱️ Plan B by window</span></h2>
+    <table>
+      <tbody>
+        <tr><td><b>3+ <span lang="es">días</span><span lang="en">days</span></b></td><td><span lang="es">Huemul completo</span><span lang="en">Full Huemul</span></td></tr>
+        <tr><td><b>1–2 <span lang="es">días</span><span lang="en">days</span></b></td><td><span lang="es"><b>Paso del Viento</b> ida y vuelta, 1 noche en Laguna Toro; D2 al paso con mochila ligera (+900 m, 7–8 h) y salida. Mismo permiso, solo tirolina 1</span><span lang="en"><b>Paso del Viento</b> out and back, 1 night at Laguna Toro; D2 daypack to the pass (+900 m, 7–8 h) and out. Same permit, tyrolean 1 only</span></td></tr>
+        <tr><td><b><span lang="es">Valles OK</span><span lang="en">Valleys OK</span></b></td><td><span lang="es"><b>Vuelta al Fitz Roy</b>, 2–3 días: De Agostini, Madre e Hija, Poincenot, amanecer en Laguna de los Tres. <a href="https://amigospnlosglaciares.org/campamentos/">Reserva</a> ~ARS 30,000 pp/noche</span><span lang="en"><b>Fitz Roy Loop</b>, 2–3 days: De Agostini, Madre e Hija, Poincenot, dawn at Laguna de los Tres. <a href="https://amigospnlosglaciares.org/campamentos/">Book</a> ~ARS 30,000 pp/night</span></td></tr>
+        <tr><td><b><span lang="es">Muy malo</span><span lang="en">Bad</span></b></td><td><span lang="es"><b>Glaciar Cagliero</b> guiado desde Lago del Desierto: vía ferrata y crampones, 10 h, reserva en el pueblo. O Piedra del Fraile / Río Eléctrico</span><span lang="en"><b>Cagliero Glacier</b>, guided, from Lago del Desierto: vía ferrata and crampons, 10 h, book in town. Or Piedra del Fraile / Río Eléctrico</span></td></tr>
+        <tr><td><b><span lang="es">Temporal</span><span lang="en">Washout</span></b></td><td><span lang="es">Calafate antes: barco a Estancia Cristina + Upsala</span><span lang="en">Calafate early: Estancia Cristina + Upsala boat</span></td></tr>
+      </tbody>
+    </table>
+    <div class="chips"><span class="chip warn"><span lang="es">glaciar Viedma: ya no hay trekking</span><span lang="en">Viedma ice trek: no longer runs</span></span></div>
+    <p class="sub"><span lang="es"><b>Comodín:</b> ventana sin Huemul: Aguja Guillaumet guiada, 3 días (Couloir Amy o Fonrouge-Comesaña). Presupuesto: Chaltén Mountain Guides o Explore-Share.</span><span lang="en"><b>Wildcard:</b> window but no Huemul: guided Aguja Guillaumet, 3 days (Couloir Amy or Fonrouge-Comesaña). Quote: Chaltén Mountain Guides or Explore-Share.</span></p>
+
+    <h2 id="cost"><span lang="es">💵 Coste por persona: ~$140–160</span><span lang="en">💵 Cost per person: ~$140–160</span></h2>
+    <div class="chips"><span class="chip ok"><span lang="es">campings y permiso gratis (a confirmar)</span><span lang="en">camps and permit free (to confirm)</span></span><span class="chip">FlexiPass ~$21 ✓</span><span class="chip"><span lang="es">cordino + mosquetón</span><span lang="en">cord + carabiner</span> ~$10</span><span class="chip">½ gas ~$8</span><span class="chip"><span lang="es">comida</span><span lang="en">food</span> ~$100–110</span><span class="chip">½ taxi ~$10</span></div>
+
+    <footer><a href="wtrek.html"><span lang="es">Circuito W</span><span lang="en">W Trek</span></a> · <a href="packing.html"><span lang="es">Equipaje</span><span lang="en">Packing</span></a> · <a href="logistics.html"><span lang="es">Logística</span><span lang="en">Logistics</span></a> · <a href="todo.html"><span lang="es">Pendientes</span><span lang="en">To-do</span></a></footer>
+  </div>
+</body>
+</html>

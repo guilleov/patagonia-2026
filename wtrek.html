@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-es="Circuito W · Ficha del trekking (Reservado)" data-en="W Trek · Trek Brief (Booked)">W Trek · Trek Brief (Booked)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <script src="i18n.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="gpx/tracks.js"></script>
+  <script src="gpxview.js"></script>
+</head>
+<body>
+  <nav class="topnav"><div class="inner">
+    <span class="brand">🏔️ Patagonia 2026</span>
+    <a href="index.html"><span lang="es">Inicio</span><span lang="en">Hub</span></a>
+    <a href="calendar.html"><span lang="es">Calendario</span><span lang="en">Calendar</span></a>
+    <a href="wtrek.html" class="active"><span lang="es">Circuito W</span><span lang="en">W Trek</span></a>
+    <a href="huemul.html">Huemul</a>
+    <a href="buenos-aires.html">Buenos Aires</a>
+    <a href="logistics.html"><span lang="es">Logística</span><span lang="en">Logistics</span></a>
+    <a href="gear.html"><span lang="es">Equipo</span><span lang="en">Gear</span></a>
+    <a href="packing.html"><span lang="es">Equipaje</span><span lang="en">Packing</span></a>
+    <a href="material.html"><span lang="es">Material</span><span lang="en">Kit check</span></a>
+    <a href="todo.html"><span lang="es">Pendientes</span><span lang="en">To-do</span></a>
+    <a href="costes.html"><span lang="es">Costes</span><span lang="en">Costs</span></a>
+    <a href="dinos.html"><span lang="es">Dinosaurios</span><span lang="en">Dinosaurs</span></a>
+    <a href="ver.html"><span lang="es">Para ver</span><span lang="en">Watch</span></a>
+    <a href="leer.html"><span lang="es">Para leer</span><span lang="en">Read</span></a>
+  </div></nav>
+  <div class="page">
+    <a class="back" href="index.html"><span lang="es">← Inicio del viaje</span><span lang="en">← Trip hub</span></a>
+    <div class="toolbar"><button class="btn" onclick="window.print()"><span lang="es">🖨️ Imprimir / Guardar PDF</span><span lang="en">🖨️ Print / Save PDF</span></button></div>
+    <div class="eyebrow"><span lang="es">Torres del Paine, Chile · 2–6 dic 2026 · reservado y pagado</span><span lang="en">Torres del Paine, Chile · Dec 2–6, 2026 · booked &amp; paid</span></div>
+    <h1 lang="es">Circuito W</h1><h1 lang="en">W Trek</h1>
+    <p class="subtitle" lang="es">De este a oeste: Base Torres primero, Glaciar Grey al final.</p><p class="subtitle" lang="en">East to west: Base Torres first, Glaciar Grey last.</p>
+
+    <nav class="toc">
+      <span class="lbl"><span lang="es">en esta página</span><span lang="en">on this page</span></span>
+      <a href="#booked"><span lang="es">Reservas</span><span lang="en">Bookings</span></a>
+      <a href="#entry"><span lang="es">Entrada</span><span lang="en">Park entry</span></a>
+      <a href="#days"><span lang="es">Día a día</span><span lang="en">Day by day</span></a>
+      <a href="#map"><span lang="es">Mapa y GPX</span><span lang="en">Map &amp; GPX</span></a>
+      <a href="#transport"><span lang="es">Buses y barco</span><span lang="en">Buses &amp; boat</span></a>
+      <a href="#gear"><span lang="es">Equipo y comida</span><span lang="en">Gear &amp; food</span></a>
+      <a href="#weather"><span lang="es">Tiempo</span><span lang="en">Weather</span></a>
+      <a href="#cost"><span lang="es">Coste</span><span lang="en">Cost</span></a>
+    </nav>
+
+    <div class="facts">
+      <div class="fact"><div class="i">🥾</div><div class="v">85 km</div><div class="k"><span lang="es">ruta del operador</span><span lang="en">operator route</span></div></div>
+      <div class="fact"><div class="i">⛰️</div><div class="v">+2,798 m</div><div class="k"><span lang="es">desnivel</span><span lang="en">climb</span></div></div>
+      <div class="fact"><div class="i">📅</div><div class="v">5 / 4</div><div class="k"><span lang="es">días / noches</span><span lang="en">days / nights</span></div></div>
+      <div class="fact"><div class="i">⛺</div><div class="v">$539</div><div class="k"><span lang="es">campings, los dos</span><span lang="en">camps, for two</span></div></div>
+      <div class="fact"><div class="i">💵</div><div class="v">~$457</div><div class="k">total pp</div></div>
+    </div>
+
+    <h2 id="booked"><span lang="es">🎟️ Reservas</span><span lang="en">🎟️ Bookings</span></h2>
+    <table>
+      <thead><tr><th><span lang="es">Noche</span><span lang="en">Night</span></th><th><span lang="es">Camping</span><span lang="en">Camp</span></th><th><span lang="es">Incluye</span><span lang="en">Included</span></th><th>pp</th><th>2p</th></tr></thead>
+      <tbody>
+        <tr><td><b><span lang="es">2 dic</span><span lang="en">Dec 2</span></b></td><td><b>Central</b></td><td><span lang="es">Tienda propia · duchas calientes, tienda</span><span lang="en">Own tent · hot showers, shop</span></td><td>$50</td><td>$100</td></tr>
+        <tr><td><b><span lang="es">3 dic</span><span lang="en">Dec 3</span></b></td><td><b>Francés</b></td><td><span lang="es"><b>Tienda + esterilla incluidas</b>, solo sacos</span><span lang="en"><b>Tent + mat provided</b>, bags only</span></td><td>$120</td><td>$240</td></tr>
+        <tr><td><b><span lang="es">4 dic</span><span lang="en">Dec 4</span></b></td><td><b>Paine Grande</b></td><td><span lang="es">Tienda propia · refugio con tienda y bar</span><span lang="en">Own tent · refugio with shop and bar</span></td><td>$13</td><td>$26</td></tr>
+        <tr><td><span lang="es">5 dic am</span><span lang="en">Dec 5 am</span></td><td><span lang="es">🍳 Desayuno</span><span lang="en">🍳 Breakfast</span></td><td><span lang="es">En el refugio Paine Grande</span><span lang="en">At Paine Grande refugio</span></td><td>$34</td><td>$68</td></tr>
+        <tr><td><b><span lang="es">5 dic</span><span lang="en">Dec 5</span></b></td><td><b>Grey</b></td><td><span lang="es">Tienda propia · refugio pequeño, tienda</span><span lang="en">Own tent · small refugio, shop</span></td><td>$11</td><td>$22</td></tr>
+        <tr><td colspan="3"><span lang="es">Comisiones torreshike</span><span lang="en">torreshike fees</span></td><td></td><td>$83</td></tr>
+        <tr><td colspan="3"><b><span lang="es">Total pagado</span><span lang="en">Total paid</span></b></td><td><b>$270</b></td><td><b>$539</b></td></tr>
+      </tbody>
+    </table>
+    <div class="cols">
+      <div class="card"><h3>Las Torres · Central + Francés · •••</h3><ul>
+        <li lang="es">Reserva •••, titular Laura de Cos Carrera. <a href="https://torreshike.com">torreshike</a> → My Reservation, DE COS CARRERA</li><li lang="en">Booking •••, in Laura de Cos Carrera's name. <a href="https://torreshike.com">torreshike</a> → My Reservation, DE COS CARRERA</li>
+        <li>Check-in <b>14:30–21:00</b></li>
+        <li lang="es"><a href="https://rcpcicoapi.indeone.app/Home/TP?Ref=•••">Pre-check-in online</a> ~48 h antes; no sustituye el presencial</li><li lang="en"><a href="https://rcpcicoapi.indeone.app/Home/TP?Ref=•••">Online pre-check-in</a> ~48 h before; not a substitute for in person</li>
+        <li lang="es">Enseñad la reserva en el shuttle de Laguna Amarga</li><li lang="en">Show the booking at the Laguna Amarga shuttle</li>
+        <li lang="es">Comidas de Francés: restaurante a ~500 m</li><li lang="en">Francés meals: restaurant ~500 m away</li>
+        <li lang="es">Cambios: info@lastorres.com</li><li lang="en">Changes: info@lastorres.com</li>
+      </ul></div>
+      <div class="card"><h3>Vértice · Paine Grande 6712856 · Grey 6712857</h3><ul>
+        <li lang="es">Check-in <b>13:00</b>, check-out <b>09:30</b>: el 6 dic, desmontad Grey antes de los puentes</li><li lang="en">Check-in <b>13:00</b>, check-out <b>09:30</b>: on Dec 6, strike Grey before the bridges</li>
+        <li lang="es">4 dic: cada uno firma el descargo en recepción</li><li lang="en">Dec 4: each signs the waiver at reception</li>
+        <li lang="es">No llegar = plaza perdida sin reembolso. ¿Un día tarde? ventas@vertice.travel</li><li lang="en">No-show = pitch lost, no refund. A day late? ventas@vertice.travel</li>
+        <li lang="es">Paine Grande: luz 06:00–00:00 · minimarket 07:00–22:00 · desayuno 06:30–09:00</li><li lang="en">Paine Grande: power 06:00–00:00 · minimarket 07:00–22:00 · breakfast 06:30–09:00</li>
+      </ul></div>
+    </div>
+    <div class="note" lang="es"><b>Sin 19% de IVA</b> solo con pasaporte + <b>tarjeta PDI original</b> (en Las Torres, pagando en USD). <b>No hay cajeros en el parque.</b></div>
+    <div class="note" lang="en"><b>No 19% VAT</b> only with passport + <b>original PDI card</b> (at Las Torres, paying in USD). <b>No ATMs in the park.</b></div>
+
+    <h2 id="entry"><span lang="es">🎫 Entrada al parque</span><span lang="en">🎫 Park entry</span></h2>
+    <div class="chips"><span class="chip ok">✓ •••</span><span class="chip">Internacional · Más de 1 día</span><span class="chip info"><span lang="es">2 dic · 08:00</span><span lang="en">Dec 2 · 08:00</span></span><span class="chip">CLP 48.500 pp (~$52)</span><span class="chip"><span lang="es">válida 10 días</span><span lang="en">valid 10 days</span></span><span class="chip warn"><span lang="es">⚠️ sin cambios ni reembolso, intransferible</span><span lang="en">⚠️ no changes, no refund, non-transferable</span></span><span class="chip warn"><span lang="es">no se vende en la puerta</span><span lang="en">no sales at the gate</span></span></div>
+    <div class="tiles">
+      <div class="tile"><div class="i">🖨️</div><div><b><span lang="es">Imprimid</span><span lang="en">Print</span></b><p><span lang="es">Vales de camping (obligatorios), bus y barco. PDF en los dos móviles; bus del 6 dic, basta el móvil</span><span lang="en">Camp vouchers (required), bus and boat. PDFs on both phones; phone is enough for the Dec 6 bus</span></p></div></div>
+      <div class="tile"><div class="i">🛂</div><div><b><span lang="es">QR + pasaporte</span><span lang="en">QR + passport</span></b><p><span lang="es">Un QR nominativo de un uso por persona; llevad el pasaporte que coincide</span><span lang="en">One named single-use QR each; carry the matching passport</span></p><a class="lnk" href="logistics.html#travellers">🔗 <span lang="es">Pasaportes</span><span lang="en">Passports</span></a></div></div>
+      <div class="tile"><div class="i">🪪</div><div><b>Tarjeta PDI</b><p><span lang="es">Frontera 30 nov. Quita el IVA del alojamiento y hace falta para salir de Chile el 8 dic. ¿Perdida? pdichile.cl</span><span lang="en">Border, Nov 30. Waives lodging VAT and needed to leave Chile on Dec 8. Lost? pdichile.cl</span></p></div></div>
+    </div>
+
+    <h2 id="days"><span lang="es">🗺️ Día a día</span><span lang="en">🗺️ Day by day</span></h2>
+    <table>
+      <thead><tr><th><span lang="es">Día</span><span lang="en">Day</span></th><th><span lang="es">Ruta</span><span lang="en">Route</span></th><th>km · h</th><th>↑ m</th><th>🛏️</th></tr></thead>
+      <tbody>
+        <tr><td><b><span lang="es">1 · 2 dic</span><span lang="en">1 · Dec 2</span></b></td><td><span lang="es">Mochilas en Central, subida directa a <b>Base Torres</b></span><span lang="en">Packs at Central, straight up to <b>Base Torres</b></span><br><span class="chip warn"><span lang="es">el más duro</span><span lang="en">hardest</span></span></td><td><span lang="es">19 i/v · 7–9</span><span lang="en">19 RT · 7–9</span></td><td>+961</td><td>Central</td></tr>
+        <tr><td><b><span lang="es">2 · 3 dic</span><span lang="en">2 · Dec 3</span></b></td><td><span lang="es">A <b>Francés</b> por el Lago Nordenskjöld</span><span lang="en">To <b>Francés</b> along Lago Nordenskjöld</span></td><td>13–16 · 4.5–6</td><td>+362</td><td>Francés</td></tr>
+        <tr><td><b><span lang="es">3 · 4 dic</span><span lang="en">3 · Dec 4</span></b></td><td><span lang="es">Mochilas en Italiano, <b>Valle del Francés</b> a Británico, y a Paine Grande</span><span lang="en">Packs at Italiano, <b>Valle del Francés</b> to Británico, on to Paine Grande</span></td><td>20 · 8–10</td><td>+677</td><td>Paine Grande</td></tr>
+        <tr><td><b><span lang="es">4 · 5 dic</span><span lang="en">4 · Dec 5</span></b></td><td><span lang="es">A <b>Grey</b>, tienda pronto. Tarde: plan B de los puentes</span><span lang="en">To <b>Grey</b>, pitch early. Afternoon: bridges fallback</span></td><td>11 · 3.5–4.5</td><td>+541*</td><td>Grey</td></tr>
+        <tr><td><b><span lang="es">5 · 6 dic</span><span lang="en">5 · Dec 6</span></b></td><td><span lang="es"><b>Puentes colgantes</b> sin mochila, a Paine Grande, barco y bus</span><span lang="en"><b>Suspension bridges</b> unladen, to Paine Grande, boat and bus</span></td><td>19–21 · 6–7</td><td>+257*</td><td>Natales</td></tr>
+      </tbody>
+    </table>
+    <p class="lead" lang="es">↑ del operador; *con su Mirador Grey el día 4.</p>
+    <p class="lead" lang="en">↑ per operator; *with their Mirador Grey on day 4.</p>
+    <div class="cols">
+      <div><div class="section-label"><span lang="es">2 dic · entrada</span><span lang="en">Dec 2 · in</span></div><ul class="timeline">
+        <li><span class="t">06:30</span>Terminal Rodoviario, Av. España 1455</li>
+        <li><span class="t">07:00</span>Bus Sur → Laguna Amarga, 09:00</li>
+        <li><span class="t">09:00</span><span lang="es">Shuttle al welcome center, ~$4 en efectivo</span><span lang="en">Shuttle to the welcome center, ~$4 cash</span></li>
+        <li><span class="t">~3 h</span><span lang="es">De Central a Base Torres</span><span lang="en">Central up to Base Torres</span></li>
+        <li><span class="t">~13:00</span><span lang="es">Pasad el último control</span><span lang="en">Past the last checkpoint</span></li>
+        <li><span class="t">14:30</span><span lang="es">Check-in en Central, montad la tienda</span><span lang="en">Central check-in, pitch the tent</span></li>
+      </ul></div>
+      <div><div class="section-label"><span lang="es">6 dic · salida</span><span lang="en">Dec 6 · out</span></div><ul class="timeline">
+        <li><span class="t">09:30</span><span lang="es">Check-out en Grey, puentes con mochila de día</span><span lang="en">Grey check-out, bridges on daypacks</span></li>
+        <li><span class="t">10:30</span><span lang="es">Vuelta, mochilas, 11 km a Paine Grande</span><span lang="en">Back, packs on, 11 km to Paine Grande</span></li>
+        <li><span class="t">~14:30</span>Paine Grande</li>
+        <li><span class="t">16:45</span><span lang="es">En el muelle (check-in cierra)</span><span lang="en">At the pier (check-in closes)</span></li>
+        <li><span class="t">17:00</span><span lang="es">Catamarán → Pudeto 17:30</span><span lang="en">Catamaran → Pudeto 17:30</span></li>
+        <li><span class="t">17:40</span>Bus Sur → Natales 20:30</li>
+      </ul></div>
+    </div>
+    <div class="note go" lang="es"><b>Bus tarde o nubes el 2 dic:</b> subid al amanecer del 3 (salida 3 am). CONAF abre los senderos a las 06:00: preguntad en Erratic Rock el 1 dic. Británico tapado: mirador Francés de abajo.</div>
+    <div class="note go" lang="en"><b>Late bus or clouds on Dec 2:</b> go at dawn on Dec 3 (3 am start). CONAF opens trails at 06:00: ask at Erratic Rock on Dec 1. Británico clouded: lower Francés mirador.</div>
+    <div class="note" lang="es"><b>Paso John Gardner, no:</b> solo antihorario. Desde Grey, los 3 puentes: el 1.º a ~2,5–3 km, mejor vista al final del 2.º (~10 km i/v).</div>
+    <div class="note" lang="en"><b>Paso John Gardner, no:</b> anti-clockwise only. From Grey, the 3 bridges: 1st ~2.5–3 km out, best view at the end of the 2nd (~10 km RT).</div>
+
+    <h2 id="map"><span lang="es">🧭 Mapa y GPX</span><span lang="en">🧭 Map &amp; GPX</span></h2>
+    <p class="lead" lang="es">Cada día tal como lo andáis. Total 87,4 km.</p><p class="lead" lang="en">Each day as you will walk it. Total 87.4 km.</p>
+    <div class="gpxview" data-groups="w"></div>
+    <div class="chips"><span class="chip warn"><span lang="es">📵 mapa offline: bajadlo en casa</span><span lang="en">📵 offline map: download at home</span></span><span class="chip">📱 Gaia · OsmAnd · Organic Maps</span><span class="chip"><span lang="es">⌚ Suunto: una ruta por día</span><span lang="en">⌚ Suunto: one route per day</span></span></div>
+
+    <h3 id="natales" class="section-label" style="margin-top:28px"><span lang="es">🏘️ Paseos desde Natales (30 nov–1 dic, 7 dic)</span><span lang="en">🏘️ Walks from Natales (Nov 30–Dec 1, Dec 7)</span></h3>
+    <div class="tiles">
+      <div class="tile"><div class="i">⛰️</div><div><b>Cerro Dorotea</b><p><span lang="es">2–3 h i/v desde la Ruta 9. Terreno privado, entrada, taxi</span><span lang="en">2–3 h RT from Ruta 9. Private land, entry fee, taxi</span></p></div></div>
+      <div class="tile"><div class="i">🏃</div><div><b>Costanera</b><p><span lang="es">Trote suave del 7 dic</span><span lang="en">Easy run on Dec 7</span></p></div></div>
+      <div class="tile"><div class="i">🦥</div><div><b>Cueva del Milodón</b><p><span lang="es">A 24 km, taxi o tour, entrada de pago</span><span lang="en">24 km out, taxi or tour, paid entry</span></p></div></div>
+    </div>
+    <div class="gpxview" data-groups="natales"></div>
+
+    <h2 id="transport"><span lang="es">🚌 Buses y barco · €125.92 los dos</span><span lang="en">🚌 Buses &amp; boat · €125.92 for two</span></h2>
+    <table>
+      <thead><tr><th><span lang="es">Tramo</span><span lang="en">Leg</span></th><th><span lang="es">Cuándo</span><span lang="en">When</span></th><th>pp</th><th><span lang="es">Billetes</span><span lang="en">Tickets</span></th></tr></thead>
+      <tbody>
+        <tr><td>🚌 Natales → Laguna Amarga</td><td><b><span lang="es">2 dic 07:00</span><span lang="en">Dec 2 07:00</span></b> → 09:00</td><td>$21</td><td>••• · <span lang="es">G: ••• asiento 28 · L: ••• asiento 29</span><span lang="en">G: ••• seat 28 · L: ••• seat 29</span></td></tr>
+        <tr><td>🚐 Shuttle → welcome center</td><td><span lang="es">espera al bus</span><span lang="en">meets the bus</span></td><td>~$4</td><td><span class="chip warn"><span lang="es">efectivo, allí</span><span lang="en">cash, on the spot</span></span></td></tr>
+        <tr><td><span lang="es">⛴️ Catamarán Paine Grande → Pudeto</span><span lang="en">⛴️ Catamaran Paine Grande → Pudeto</span></td><td><b><span lang="es">6 dic 17:00</span><span lang="en">Dec 6 17:00</span></b> → 17:30</td><td><span lang="es">USD 31 + 11 cambio</span><span lang="en">USD 31 + 11 change</span></td><td><span lang="es">••• · Hielos Patagónicos · solo esa salida</span><span lang="en">••• · Hielos Patagónicos · that sailing only</span></td></tr>
+        <tr><td>🚌 Pudeto → Natales</td><td><b><span lang="es">6 dic 17:40</span><span lang="en">Dec 6 17:40</span></b> → 20:30</td><td>CLP 18.000</td><td>••• · <span lang="es">G: ••• asiento 11 · L: ••• asiento 12</span><span lang="en">G: ••• seat 11 · L: ••• seat 12</span></td></tr>
+      </tbody>
+    </table>
+    <div class="chips"><span class="chip warn"><span lang="es">⚠️ el bus de 12:00 llega tarde a Base Torres</span><span lang="en">⚠️ the 12:00 bus is too late for Base Torres</span></span><span class="chip info"><span lang="es">barcos 09:20 · 11:20 · 17:00 · 18:40</span><span lang="en">boats 09:20 · 11:20 · 17:00 · 18:40</span></span></div>
+    <div class="tiles">
+      <div class="tile"><div class="i">✏️</div><div><b><span lang="es">Cambiar el bus del 2 dic</span><span lang="en">Changing the Dec 2 bus</span></b><p><span lang="es">En persona en Bus Sur, billete impreso, el 1 dic en horario de oficina. Máx. 3; sin reembolso después</span><span lang="en">In person at Bus Sur, printed ticket, Dec 1 office hours. Max 3; no refund after</span></p></div></div>
+      <div class="tile"><div class="i">🎒</div><div><b><span lang="es">Equipaje en el barco</span><span lang="en">Boat baggage</span></b><p><span lang="es">1 bulto pp (60 L, 10 kg, 55×40×20). Extra ~USD 5–10. Mochila de día enganchada</span><span lang="en">1 piece each (60 L, 10 kg, 55×40×20). Extra ~USD 5–10. Clip the daypack on</span></p></div></div>
+      <div class="tile"><div class="i">🔁</div><div><b><span lang="es">Enlace en Pudeto, 10 min</span><span lang="en">Pudeto link, 10 min</span></b><p><span lang="es">Parada a 5 min a pie: id directos. Los buses esperan a los barcos</span><span lang="en">Stop is a 5-min walk: go straight there. Buses wait for the boats</span></p></div></div>
+      <div class="tile"><div class="i">🕗</div><div><b><span lang="es">¿Perdéis el de 17:40?</span><span lang="en">Missed the 17:40?</span></b><p><span lang="es">Pudeto 19:15 · 19:30 · 19:35, CLP 18.000. Un bus espera al barco de 18:40</span><span lang="en">Pudeto 19:15 · 19:30 · 19:35, CLP 18,000. A bus waits for the 18:40 boat</span></p></div></div>
+    </div>
+    <div class="note" lang="es"><b>Si el viento cancela el barco:</b> cambio gratis (reservas@catamaranpehoe.com), nada más: noche sin reservar en Paine Grande y avisad al hostal de Natales. Retraso de más de 24 h: <a href="logistics.html#seguro">Revolut Metal</a>, hasta €200/noche el grupo, máx. 5. Guardad recibos y el aviso escrito.</div>
+    <div class="note" lang="en"><b>If wind cancels the boat:</b> free re-booking (reservas@catamaranpehoe.com), nothing more: an unbooked night at Paine Grande, and tell the Natales hostel. Delay over 24 h: <a href="logistics.html#seguro">Revolut Metal</a>, up to €200/night for the group, max 5. Keep receipts and the written notice.</div>
+    <table>
+      <thead><tr><th><span lang="es">Anular</span><span lang="en">Cancel</span></th><th><span lang="es">Reembolso</span><span lang="en">Refund</span></th></tr></thead>
+      <tbody>
+        <tr><td><span lang="es">⛺ Campings ($340 + $116)</span><span lang="en">⛺ Camps ($340 + $116)</span></td><td><span class="chip warn"><span lang="es">ninguno, fechas fijas</span><span lang="en">none, dates locked</span></span></td></tr>
+        <tr><td>🎫 CONAF</td><td><span class="chip warn"><span lang="es">ninguno</span><span lang="en">none</span></span></td></tr>
+        <tr><td><span lang="es">🚌 Bus 2 dic</span><span lang="en">🚌 Dec 2 bus</span></td><td><span lang="es">Por Booking Patagonia (no Bus Sur), retienen hasta 15%</span><span lang="en">Via Booking Patagonia (not Bus Sur), up to 15% kept</span></td></tr>
+        <tr><td><span lang="es">🚌 Bus 6 dic</span><span lang="en">🚌 Dec 6 bus</span></td><td><span lang="es">Solo online en <a href="https://www.recorrido.cl">recorrido.cl</a> hasta 4 h antes, 15% retenido · ayuda@recorrido.cl</span><span lang="en">Online only at <a href="https://www.recorrido.cl">recorrido.cl</a> up to 4 h before, 15% kept · ayuda@recorrido.cl</span></td></tr>
+        <tr><td><span lang="es">⛴️ Catamarán</span><span lang="en">⛴️ Catamaran</span></td><td><span lang="es">≥72 h: USD 26 de 31; después nada. Cambio de hora USD 5/billete hasta 72 h</span><span lang="en">≥72 h: USD 26 of 31; after that nothing. Time change USD 5/ticket up to 72 h</span></td></tr>
+      </tbody>
+    </table>
+    <p class="lead"><a href="https://bookingpatagonia.travel/mi-reserva">Booking Patagonia</a> · OC ••• · ••• · tickets@bookingpatagonia.travel (••• / •••) · +56 22 231 9777</p>
+
+    <h2 id="gear"><span lang="es">🎒 Equipo y comida</span><span lang="en">🎒 Gear &amp; food</span></h2>
+    <div class="chips"><span class="chip ok"><span lang="es">nada que alquilar</span><span lang="en">nothing to rent</span></span><span class="chip">⚖️ 11–12 kg pp</span><span class="chip"><span lang="es">bastones, frontal, impermeable, capas</span><span lang="en">poles, headlamp, hardshell, layers</span></span><a class="lnk" href="packing.html">🔗 <span lang="es">Equipaje</span><span lang="en">Packing</span></a><span class="chip info"><span lang="es">💧 1 L, sin filtro</span><span lang="en">💧 1 L, no filter</span></span><span class="chip info"><span lang="es">Erratic Rock 1 dic 15:00</span><span lang="en">Erratic Rock Dec 1 15:00</span></span></div>
+    <div class="tiles">
+      <div class="tile"><div class="i">⛺</div><div><b><span lang="es">Tienda propia</span><span lang="en">Own tent</span></b><p>Central · Paine Grande · Grey</p></div></div>
+      <div class="tile"><div class="i">🛏️</div><div><b><span lang="es">Cada uno</span><span lang="en">Each</span></b><p><span lang="es">Saco 0 °C + esterilla Naturehike R5.8</span><span lang="en">0 °C bag + Naturehike R5.8 mat</span></p></div></div>
+      <div class="tile"><div class="i">🔥</div><div><b>Forclaz Trek 500 + Toaks</b><p><span lang="es">El gas, en Natales: no vuela</span><span lang="en">Gas in Natales: it cannot fly</span></p></div></div>
+    </div>
+    <div class="note" lang="es"><b>Cocinad solo en la zona señalizada de cada camping</b>, nunca junto a la tienda ni en Chileno. Pena: presidio menor + 11–50 UTM.</div>
+    <div class="note" lang="en"><b>Cook only in each camp's marked cooking area</b>, never by the tent or at Chileno. Penalty: presidio menor + 11–50 UTM.</div>
+    <div class="tiles">
+      <div class="tile"><div class="i">🍽️</div><div><b><span lang="es">5 almuerzos, 4 cenas, 3 desayunos</span><span lang="en">5 lunches, 4 dinners, 3 breakfasts</span></b><p><span lang="es">600–700 g pp/día. Almuerzos fríos (días 1–4)</span><span lang="en">600–700 g pp/day. Cold lunches (days 1–4)</span></p></div></div>
+      <div class="tile"><div class="i">♨️</div><div><b><span lang="es">Agua caliente</span><span lang="en">Hot water</span></b><p><span lang="es">Refugios de Paine Grande y Grey; Central y Francés no</span><span lang="en">Paine Grande and Grey refugios; not Central or Francés</span></p></div></div>
+      <div class="tile"><div class="i">🛂</div><div><b>SAG · •••</b><p><span lang="es">Sin cerdo; pollo o ternera industrial sí. Sin fruta, verdura, carne fresca, lácteos, miel ni frutos secos crudos. Declarad. Carne acabada antes del 8 dic</span><span lang="en">No pork; industrial chicken or beef OK. No fruit, veg, fresh meat, dairy, honey or raw nuts. Declare. Finish meat before Dec 8</span></p><a class="lnk" href="packing.html#food">🔗 <span lang="es">Plan de comida</span><span lang="en">Food plan</span></a></div></div>
+      <div class="tile"><div class="i">🛒</div><div><b><span lang="es">Compra en Natales</span><span lang="en">Shop in Natales</span></b><p><span lang="es">Unimarc o Don Bosco · Itahue Frutos Secos · RentalNatales (gas, diario)</span><span lang="en">Unimarc or Don Bosco · Itahue Frutos Secos · RentalNatales (gas, daily)</span></p></div></div>
+      <div class="tile"><div class="i">⛽</div><div><b><span lang="es">Gas de respaldo</span><span lang="en">Backup gas</span></b><p><span lang="es">Minimarkets de Paine Grande y Grey, cajas de intercambio. Dejad el vuestro el 6 dic</span><span lang="en">Paine Grande and Grey shops, share boxes. Leave yours on Dec 6</span></p></div></div>
+      <div class="tile"><div class="i">🍺</div><div><b>Refugios (CLP)</b><p><span lang="es">Hamburguesa 15.000 · pizza 17.000 · cerveza 6.000. Se agota por la tarde</span><span lang="en">Burger 15,000 · pizza 17,000 · beer 6,000. Sells out by evening</span></p></div></div>
+    </div>
+
+    <h2 id="weather"><span lang="es">🌬️ Tiempo y horas de corte</span><span lang="en">🌬️ Weather &amp; cut-offs</span></h2>
+    <div class="chips"><span class="chip info">Windguru</span><span class="chip"><span lang="es">senderos 06:00</span><span lang="en">trails 06:00</span></span><span class="chip">🌅 05:39</span><span class="chip">🌇 21:48</span><span class="chip warn"><span lang="es">🚫 fuera del sendero o dron = expulsión</span><span lang="en">🚫 off-trail or drone = expulsion</span></span></div>
+    <table>
+      <thead><tr><th><span lang="es">Tramo</span><span lang="en">Section</span></th><th><span lang="es">Pasar antes de</span><span lang="en">Pass by</span></th></tr></thead>
+      <tbody>
+        <tr><td><span lang="es">Chileno → guardería Torres</span><span lang="en">Chileno → Torres ranger station</span></td><td><b>14:00</b></td></tr>
+        <tr><td><span lang="es">Guardería → Base Torres</span><span lang="en">Ranger station → Base Torres</span></td><td><b>15:00</b></td></tr>
+        <tr><td><span lang="es">Mirador Base Torres cierra</span><span lang="en">Base Torres lookout closes</span></td><td><b>16:00</b></td></tr>
+        <tr><td>Italiano → Británico</td><td><b>16:00</b></td></tr>
+        <tr><td>Grey → Paine Grande</td><td><b>16:00</b></td></tr>
+      </tbody>
+    </table>
+    <p class="lead" lang="es">Horas del mapa CONAF 2023–24: confirmadlas en la charla del 1 dic.</p><p class="lead" lang="en">CONAF 2023–24 map times: confirm at the Dec 1 seminar.</p>
+
+    <h2 id="cost"><span lang="es">💵 Coste pp · todo pagado salvo shuttle y comida</span><span lang="en">💵 Cost pp · all paid except shuttle and food</span></h2>
+    <table>
+      <tbody>
+        <tr><td><span lang="es">Campings + desayuno + comisiones</span><span lang="en">Camps + breakfast + fees</span></td><td>$270</td></tr>
+        <tr><td><span lang="es">Entrada al parque</span><span lang="en">Park pass</span></td><td>~$52</td></tr>
+        <tr><td><span lang="es">Catamarán + cambio</span><span lang="en">Catamaran + change fee</span></td><td>$36.50</td></tr>
+        <tr><td>Bus Natales → Laguna Amarga</td><td>$21</td></tr>
+        <tr><td>Bus Pudeto → Natales</td><td>€16.69 (~$19)</td></tr>
+        <tr><td><span lang="es">Shuttle (efectivo)</span><span lang="en">Shuttle (cash)</span></td><td>~$4</td></tr>
+        <tr><td><span lang="es">Comida + gas</span><span lang="en">Food + gas</span></td><td>~$55</td></tr>
+        <tr><td><b>Total</b></td><td><b>~$457</b></td></tr>
+      </tbody>
+    </table>
+
+    <footer><span lang="es">Ver</span><span lang="en">See</span> <a href="huemul.html">Huemul</a> · <a href="packing.html"><span lang="es">Equipaje</span><span lang="en">Packing</span></a> · <a href="logistics.html"><span lang="es">Logística</span><span lang="en">Logistics</span></a> · <a href="todo.html"><span lang="es">Pendientes</span><span lang="en">To-do</span></a></footer>
+  </div>
+</body>
+</html>

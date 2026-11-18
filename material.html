@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-es="Material · Itinerario 1B" data-en="Kit check · Itinerary 1B">Kit check · Itinerary 1B</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="i18n.js"></script>
+</head>
+<body>
+  <nav class="topnav"><div class="inner">
+    <span class="brand">🏔️ Patagonia 2026</span>
+    <a href="index.html"><span lang="es">Inicio</span><span lang="en">Hub</span></a>
+    <a href="calendar.html"><span lang="es">Calendario</span><span lang="en">Calendar</span></a>
+    <a href="wtrek.html"><span lang="es">Circuito W</span><span lang="en">W Trek</span></a>
+    <a href="huemul.html">Huemul</a>
+    <a href="buenos-aires.html">Buenos Aires</a>
+    <a href="logistics.html"><span lang="es">Logística</span><span lang="en">Logistics</span></a>
+    <a href="gear.html"><span lang="es">Equipo</span><span lang="en">Gear</span></a>
+    <a href="packing.html"><span lang="es">Equipaje</span><span lang="en">Packing</span></a>
+    <a href="material.html" class="active"><span lang="es">Material</span><span lang="en">Kit check</span></a>
+    <a href="todo.html"><span lang="es">Pendientes</span><span lang="en">To-do</span></a>
+    <a href="costes.html"><span lang="es">Costes</span><span lang="en">Costs</span></a>
+    <a href="dinos.html"><span lang="es">Dinosaurios</span><span lang="en">Dinosaurs</span></a>
+    <a href="ver.html"><span lang="es">Para ver</span><span lang="en">Watch</span></a>
+    <a href="leer.html"><span lang="es">Para leer</span><span lang="en">Read</span></a>
+  </div></nav>
+  <div class="page">
+    <style>.todo>span:not(.who){flex:1}.todo .who{white-space:nowrap;margin-top:3px}.todo small{display:block;font-size:12.5px;color:var(--gray-500);margin-top:2px}</style>
+    <a class="back" href="packing.html"><span lang="es">← Equipaje</span><span lang="en">← Packing</span></a>
+    <h1 lang="es">Material</h1>
+    <h1 lang="en">Kit check</h1>
+    <p class="subtitle" lang="es">Marcado = lo tenéis. Sin marcar = lista para Barrabes.</p>
+    <p class="subtitle" lang="en">Ticked = owned. Unticked = the Barrabes list.</p>
+    <div class="chips" style="margin:-24px 0 24px"><span class="chip">★ <span lang="es">imprescindible</span><span lang="en">must-have</span></span><span class="chip">×2 <span lang="es">uno cada uno</span><span lang="en">one each</span></span><span class="chip info"><span lang="es">compartido</span><span lang="en">shared</span></span><span class="chip">G / L = Guillermo / Laura</span></div>
+
+    <nav class="toc" id="toc"><span class="lbl"><span lang="es">ir a</span><span lang="en">jump to</span></span></nav>
+
+    <div class="progress-wrap">
+      <div class="progress-txt" id="ptxt">0 / 0</div>
+      <div class="progress-bar"><div class="progress-fill" id="pfill"></div></div>
+      <div style="margin-top:12px"><button class="reset" id="reset"><span lang="es">Reiniciar</span><span lang="en">Reset</span></button></div>
+    </div>
+
+    <div id="lists"></div>
+
+    <footer><a href="packing.html"><span lang="es">Equipaje</span><span lang="en">Packing</span></a> · <a href="gear.html"><span lang="es">Equipo</span><span lang="en">Gear</span></a> · <a href="todo.html"><span lang="es">Pendientes</span><span lang="en">To-do</span></a></footer>
+  </div>
+
+  <script>
+  function T(es,en){return '<span lang="es">'+es+'</span><span lang="en">'+en+'</span>';}
+  // [text, who: "x2" | "shared" | other label, owned: starts ticked]
+  // Ticks are stored by position (group-item), so items keep their order and count.
+  var X2=T("×2","×2"), SH=T("compartido","shared");
+  var GROUPS = [
+    {title:T("👕 Ropa","👕 Clothing"), items:[
+      [T("★ Chaqueta impermeable con capucha · G y L: Mammut Crater Light HS","★ Hooded waterproof hardshell · G and L: Mammut Crater Light HS"),X2,1],
+      [T("Poncho Forclaz MT500 60L con mangas, sobre chaqueta y mochila<small>Cordón a la cintura · guardado en las tirolesas</small>","Forclaz MT500 60L sleeved poncho, over jacket and pack<small>Waist cord · stowed on the tyroleans</small>"),X2,1],
+      [T("★ Pantalón de lluvia con cremallera al tobillo · G: Decathlon ✓ · L: ?","★ Rain pants with ankle zips · G: Decathlon ✓ · L: ?"),X2],
+      [T("★ Plumífero · G: Simond con capucha","★ Down puffy · G: Simond hooded"),X2,1],
+      [T("Pantalón softshell · G: Simond MT500","Softshell pants · G: Simond MT500"),X2,1],
+      [T("Camiseta corta sintética (merino opcional)","Synthetic short-sleeve tee (merino optional)"),X2,1],
+      [T("Camiseta manga larga, merino o sintética · G: merino ✓","Long-sleeve top, merino or synthetic · G: merino ✓"),X2],
+      [T("★ Merino para dormir, camiseta + malla · G: camiseta ✓, falta malla","★ Merino sleep set, top + leggings · G: top ✓, leggings needed"),X2],
+      [T("Gorro con cordón al mentón","Warm hat with chin cord"),X2,1],
+      [T("Buff","Buff"),X2,1],
+      [T("Gorra de sol con cordón","Sun cap with cord"),X2,1],
+      [T("Guantes finos","Liner gloves"),X2,1],
+      [T("Guantes o manoplas impermeables","Waterproof gloves or mitts"),X2,1],
+      [T("Calcetines de andar ×2 pares · G: Lurbel Tierra Toe Four","Walking socks ×2 pairs · G: Lurbel Tierra Toe Four"),X2,1],
+      [T("Calcetines de merino para dormir ×1 · G: Lurbel Five","Merino sleep socks ×1 · G: Lurbel Five"),X2,1],
+      [T("Calcetines impermeables: descartados (Tomir GTX)","Waterproof socks: skipped (Tomir GTX)"),"—",1],
+      [T("★ Gafas de sol cat. 3 envolventes (o fotocromáticas 2–4) · G: Julbo Fury Reactiv 1–3 ✓ (82,83 €) · L: ?","★ Wraparound category 3 sunglasses (or photochromic 2–4) · G: Julbo Fury Reactiv 1–3 ✓ (€82.83) · L: ?"),X2],
+      [T("Ropa interior sintética ×3","Synthetic underwear ×3"),X2,1],
+      [T("Polar Salomon Essential Lightwarm FZ, bajo la Mammut","Salomon Essential Lightwarm FZ fleece, under the Mammut"),"G",1],
+      [T("Gafas graduadas de repuesto en funda rígida + cordón para ambas","Spare prescription glasses in a hard case + cord for both pairs"),"G"]
+    ]},
+    {title:T("👟 Calzado","👟 Footwear"), items:[
+      [T("NNormal Tomir 2.0 Gore-Tex + Cadí","NNormal Tomir 2.0 Gore-Tex + Cadí"),"G",1],
+      [T("Polainas cortas Forclaz MT500","Forclaz MT500 short gaiters"),"G",1],
+      [T("Sandalias Decathlon MT500 barefoot","Decathlon MT500 barefoot sandals"),"G",1],
+      [T("Zapatillas de trail","Trail shoes"),"L",1],
+      [T("Polainas cortas","Short gaiters"),"L"],
+      [T("Sandalias ligeras o Crocs","Light sandals or Crocs"),"L"]
+    ]},
+    {title:T("😴 Dormir","😴 Sleep"), items:[
+      [T("Tienda para 2","2-person tent"),SH,1],
+      [T("Saco de 0 °C","0 °C sleeping bag"),X2,1],
+      [T("Esterilla Naturehike Tuye R5.8","Naturehike Tuye R5.8 mat"),X2,1],
+      [T("Tapones para los oídos","Earplugs"),X2],
+      [T("Opcional: sábana de seda, si sois frioleros","Optional: silk liner, if you sleep cold"),X2]
+    ]},
+    {title:T("🎒 Mochila","🎒 Pack"), items:[
+      [T("Mochila de 55–65 L","55–65 L pack"),X2,1],
+      [T("Mochila plegable de 25 L","Packable 25 L daypack"),SH,1],
+      [T("Bolsa de basura gruesa como forro (mejor que funda)","Heavy trash bag as liner (beats a rain cover)"),X2],
+      [T("6–7 bolsas estancas: saco, ropa de dormir, ropa, comida","6–7 dry bags: sleeping bag, sleep clothes, clothes, food"),X2,1],
+      [T("Correas para la tienda por fuera","Straps for the tent outside the pack"),SH,1]
+    ]},
+    {title:T("🔥 Cocina y agua","🔥 Cook &amp; water"), items:[
+      [T("Hornillo Forclaz Trek 500 + olla Toaks 750 ml","Forclaz Trek 500 stove + Toaks 750 ml pot"),SH,1],
+      [T("★ Paravientos plegable (aparcado, ~10–20 €)<small>Sin él: cocinar tras una roca o la tienda</small>","★ Folding windscreen (parked, ~€10–20)<small>Without it: cook behind a rock or the tent</small>"),SH],
+      [T("Mechero de repuesto + cerillas","Spare lighter + matches"),SH,1],
+      [T("★ Filtro HydraPak Flux+ 1,5 L (44 €)<small>De noche, dentro del saco: que no se congele</small>","★ HydraPak Flux+ 1.5 L filter (€44)<small>At night inside the sleeping bag: must not freeze</small>"),SH,1],
+      [T("Cuchara larga Sea to Summit Frontier · L: la suya","Long Sea to Summit Frontier spoon · L: her own"),X2,1],
+      [T("Nalgene 1 L boca estrecha, también bolsa de agua caliente","1 L narrow-mouth Nalgene, also a hot-water bottle"),X2,1],
+      [T("Bidón blando: no hace falta (Nalgene)","Soft flask: not needed (Nalgene)"),T("1","1"),1]
+    ]},
+    {title:T("🧭 Seguridad","🧭 Safety &amp; nav"), items:[
+      [T("★ Bastones · G: Forclaz MT900 plegables · L: los suyos","★ Poles · G: folding Forclaz MT900 · L: her own"),X2,1],
+      [T("★ Frontal · G y L tienen<small>Recargable: con la batería · a pilas: llevar repuesto</small>","★ Headlamp · G and L own one<small>Rechargeable: power bank · AAA: carry spares</small>"),X2,1],
+      [T("Botiquín","First-aid kit"),SH],
+      [T("Kit de ampollas: Compeed + Leukotape","Blister kit: Compeed + Leukotape"),SH,1],
+      [T("Manta térmica","Space blanket"),X2,1],
+      [T("Silbato","Whistle"),X2,1],
+      [T("Brújula: Guillermo cree que tiene una, buscarla","Compass: Guillermo thinks he has one, find it"),SH],
+      [T("Kit de reparación: parches ✓ + 1–2 m de cinta americana en un bastón + aguja e hilo","Repair kit: mat patches ✓ + 1–2 m duct tape round a pole + needle and thread"),SH],
+      [T("Mapa Zagier &amp; Urruty: en Calafate o El Chaltén","Zagier &amp; Urruty map: buy in Calafate or El Chaltén"),T("allí","there")]
+    ]},
+    {title:T("🧗 Tirolesas del Huemul","🧗 Huemul tyroleans"), items:[
+      [T("Arnés ultraligero de Alberto, uno para los dos","Alberto's ultralight harness, one for both"),SH,1],
+      [T("Mosquetones y cintas","Carabiners and slings"),X2,1],
+      [T("Guantes para el cable","Cable gloves"),X2,1],
+      [T("Mosquetón de acero (Alberto) + de aluminio + cinta 150 cm","Steel locker (Alberto's) + alu locker + 150 cm sling"),SH,1]
+    ]},
+    {title:T("🤝 Prestado (Alberto)","🤝 Borrowed (Alberto)"), items:[
+      [T("Garmin inReach: no lo presta; vamos sin él","Garmin inReach: not lent; going without"),SH,1],
+      [T("★ Polea Petzl Tandem Speed, apta para cable","★ Petzl Tandem Speed pulley, cable-rated"),SH,1],
+      [T("Mosquetón de seguro de acero","Steel locking carabiner"),SH,1],
+      [T("Cordino 35 m (obligatorio APN): 20 m Alberto + 15 m Decathlon<small>Mismo grosor, empalme doble pescador</small>","35 m cord (APN-mandatory): 20 m Alberto + 15 m Decathlon<small>Same diameter, double fisherman's join</small>"),SH,1],
+      [T("Microspikes, por si acaso (o alquilar en Chaltén si hay nieve)","Microspikes, just in case (or rent in Chaltén if snow)"),X2],
+      [T("Tirolesa probada cruzando un río","Tyrolean tested on a river crossing"),SH,1]
+    ]},
+    {title:T("🔋 Energía y aseo","🔋 Power &amp; body"), items:[
+      [T("Baterías Anker Zolo 20K (G) + 10K (L)<small>Solo en cabina, sin usar en vuelo · de noche en el saco</small>","Anker Zolo 20K (G) + 10K (L) power banks<small>Cabin only, not used in flight · in the sleeping bag at night</small>"),SH,1],
+      [T("Baterías de cámara de repuesto","Spare camera batteries"),SH],
+      [T("Crema SPF 50 + labial con filtro","SPF 50 sunscreen + SPF lip balm"),SH,1],
+      [T("Toalla pequeña de secado rápido","Small quick-dry towel"),X2],
+      [T("Palita (sin baño en los campamentos 2 y 3 del Huemul)","Trowel (no toilets at Huemul camps 2 and 3)"),SH,1],
+      [T("Botes de viaje de 30–50 ml","30–50 ml travel bottles"),SH],
+      [T("Cargador USB-C GaN 65 W (entra directo en Chile)","65 W USB-C GaN charger (plugs straight in in Chile)"),SH,1],
+      [T("2 adaptadores tipo I para Argentina","2 type I adapters for Argentina"),SH,1],
+      [T("Cables: USB-C a USB-C cada uno + reloj y frontales","Cables: one USB-C to USB-C each + watch and headlamp"),X2]
+    ]},
+    {title:T("🚫 No comprar en Madrid","🚫 Not in Madrid"), items:[
+      [T("Gas: un cartucho en Natales y otro en Chaltén (no vuela)","Gas: one canister in Natales, one in Chaltén (cannot fly)"),T("allí","there")],
+      [T("Cordino: resuelto (Alberto + Decathlon)","Cord: sorted (Alberto + Decathlon)"),T("allí","there"),1],
+      [T("Microspikes: solo si la charla del 9 dic dice nieve; alquilar allí","Microspikes: only if the Dec 9 briefing says snow; rent there"),T("allí","there")]
+    ]}
+  ];
+  var KEY="patagonia1b_material_v1";
+  var state={};
+  try{ state=JSON.parse(localStorage.getItem(KEY)||"{}"); }catch(e){}
+  var lists=document.getElementById('lists');
+  var toc=document.getElementById('toc');
+  var total=0;
+
+  GROUPS.forEach(function(g,gi){
+    var box=document.createElement('div'); box.className='todo-group'; box.id='g'+gi;
+    var h=document.createElement('h3'); h.innerHTML=g.title; box.appendChild(h);
+    g.items.forEach(function(it,ii){
+      total++;
+      var id=gi+'-'+ii;
+      // Known-owned items start ticked; an explicit untick in this browser wins
+      if(state[id]===undefined && it[2]) state[id]=true;
+      var row=document.createElement('label'); row.className='todo'; row.htmlFor='c'+id;
+      row.innerHTML='<input type="checkbox" id="c'+id+'" data-id="'+id+'" '+(state[id]?'checked':'')+'><span>'+it[0]+'</span><span class="who">'+it[1]+'</span>';
+      if(state[id]) row.classList.add('done');
+      box.appendChild(row);
+    });
+    lists.appendChild(box);
+    var a=document.createElement('a'); a.href='#g'+gi; a.innerHTML=g.title; toc.appendChild(a);
+  });
+
+  function save(){ try{ localStorage.setItem(KEY,JSON.stringify(state)); }catch(e){} }
+  function refresh(){
+    var done=Object.values(state).filter(Boolean).length;
+    document.getElementById('ptxt').innerHTML=done+' / '+total+' '+T('lo tenemos','owned')+' · '+(total-done)+' '+T('por comprar','to buy');
+    document.getElementById('pfill').style.width=(total?Math.round(done/total*100):0)+'%';
+  }
+
+  lists.addEventListener('change',function(e){
+    if(e.target.type!=='checkbox')return;
+    state[e.target.dataset.id]=e.target.checked;
+    e.target.closest('.todo').classList.toggle('done',e.target.checked);
+    save(); refresh();
+  });
+
+  document.getElementById('reset').onclick=function(){
+    if(!confirm(document.documentElement.lang==='en'?'Clear all checkboxes?':'¿Desmarcar todas las casillas?'))return;
+    try{ localStorage.removeItem(KEY); }catch(e){}
+    location.reload();
+  };
+
+  save(); refresh();
+  </script>
+</body>
+</html>

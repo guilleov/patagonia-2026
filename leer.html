@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-es="Para leer · Patagonia 2026" data-en="Reading list · Patagonia 2026">Para leer · Patagonia 2026</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="i18n.js"></script>
+  <style>
+    .tile.m{border-color:var(--clay);}
+    .chips .chip{white-space:normal;}
+    .tile .chips{margin:4px 0 0;}
+  </style>
+</head>
+<body>
+  <nav class="topnav"><div class="inner">
+    <span class="brand">🏔️ Patagonia 2026</span>
+    <a href="index.html"><span lang="es">Inicio</span><span lang="en">Hub</span></a>
+    <a href="calendar.html"><span lang="es">Calendario</span><span lang="en">Calendar</span></a>
+    <a href="wtrek.html"><span lang="es">Circuito W</span><span lang="en">W Trek</span></a>
+    <a href="huemul.html">Huemul</a>
+    <a href="buenos-aires.html">Buenos Aires</a>
+    <a href="logistics.html"><span lang="es">Logística</span><span lang="en">Logistics</span></a>
+    <a href="gear.html"><span lang="es">Equipo</span><span lang="en">Gear</span></a>
+    <a href="packing.html"><span lang="es">Equipaje</span><span lang="en">Packing</span></a>
+    <a href="material.html"><span lang="es">Material</span><span lang="en">Kit check</span></a>
+    <a href="todo.html"><span lang="es">Pendientes</span><span lang="en">To-do</span></a>
+    <a href="costes.html"><span lang="es">Costes</span><span lang="en">Costs</span></a>
+    <a href="dinos.html"><span lang="es">Dinosaurios</span><span lang="en">Dinosaurs</span></a>
+    <a href="ver.html"><span lang="es">Para ver</span><span lang="en">Watch</span></a>
+    <a href="leer.html" class="active"><span lang="es">Para leer</span><span lang="en">Read</span></a>
+  </div></nav>
+  <div class="page">
+    <a class="back" href="index.html"><span lang="es">← Inicio del viaje</span><span lang="en">← Trip hub</span></a>
+    <h1 lang="es">Para leer</h1><h1 lang="en">Reading list</h1>
+    <p class="subtitle" lang="es">Precios Kindle de Amazon.es (13 nov 2026): comprobadlos antes de comprar. Más en <a href="ver.html">Para ver</a>.</p>
+    <p class="subtitle" lang="en">Kindle prices from Amazon.es (Nov 13, 2026): check before buying. More on <a href="ver.html">Watch list</a>.</p>
+    <div class="note" lang="es">⚠️ <b>Sin cobertura en el W ni en el Huemul:</b> descargad todo antes del 25 nov o mandadlo al Kindle.</div>
+    <div class="note" lang="en">⚠️ <b>No signal on the W or the Huemul:</b> download everything before Nov 25 or send it to the Kindle.</div>
+
+    <div class="toc" id="toc"></div>
+    <div id="list"></div>
+
+    <h2 id="descartados"><span lang="es">✗ Descartados</span><span lang="en">✗ Ruled out</span></h2>
+    <div class="chips" id="no"></div>
+
+    <footer><span lang="es">Itinerario 1B</span><span lang="en">Itinerary 1B</span> · <a href="index.html"><span lang="es">Inicio</span><span lang="en">Hub</span></a> · <a href="calendar.html"><span lang="es">Calendario</span><span lang="en">Calendar</span></a> · <a href="ver.html"><span lang="es">Para ver</span><span lang="en">Watch</span></a></footer>
+  </div>
+
+<script>
+// p: m = top pick, s = recommended, t = if time · f: free · a bare AZ+"…" link is labelled Amazon.es
+var AZ = "https://www.amazon.es/dp/", AAJ = "https://publications.americanalpineclub.org/articles/", AJ = "https://www.alpinejournal.org.uk/Contents/";
+var S = [
+ {id:"top", es:"⭐ Los tres, en orden", en:"⭐ The three, in order", les:"Unas 20 h en total.", len:"About 20 h in total.", items:[
+  {p:"m",t:"1 · Los suicidas del fin del mundo — Leila Guerriero",m:"2005, reed. Anagrama 2026 · ~215 págs · ~5 h",w:"Kindle ~10,44 €",l:[AZ+"B0G4NMB32R"],es:"Antes de volar: la Patagonia de hoy.",en:"Before you fly: today's Patagonia."},
+  {p:"m",t:"2 · Tierra de hombres — Antoine de Saint-Exupéry",m:"1939 · ~150 págs · 4–5 h",w:"Kindle ~6 € (Berenice)",l:[AZ+"B01N4T6ZYC"],es:"Avión del 25 nov: el viento patagónico.",en:"Nov 25 flight: Patagonian wind."},
+  {p:"m",t:"3 · The Tower — Kelly Cordes",m:"2014 · ~400 págs · 10–12 h",w:"Kindle EN 8,73 € · ES solo papel (Desnivel)",l:[["La Torre (Desnivel)","https://www.libreriadesnivel.com/libros/la-torre/9788498293913/"],["Completing the Puzzle","https://pataclimb.com/knowledge/puzzle.html"]],es:"Noches del W: la historia del Cerro Torre.",en:"W evenings: the Cerro Torre story."}
+ ]},
+ {id:"vispera", es:"🌙 La víspera de cada sitio (gratis)", en:"🌙 The night before each place (free)", items:[
+  {p:"m",t:"28 nov · El estado y el futuro del Perito Moreno",m:"2025 · artículo científico",w:"PDF",f:1,l:[["PDF","https://elib.dlr.de/218638/1/s43247-025-02515-7.pdf"]],es:"El frente baja cada vez más rápido.",en:"The front is dropping ever faster."},
+  {p:"s",t:"30 nov · Darwin, El viaje del Beagle, cap. IX «Santa Cruz»",m:"1834 · ~30 min",w:"ES / EN",f:1,l:[["Español","https://es.wikisource.org/wiki/P%C3%A1gina:Charles_Darwin_-_Diario_del_viaje_de_un_naturalista_alrededor_del_mundo_-_Tomo_I.djvu/277"],["English","https://www-archiv.fdm.uni-hamburg.de/b-online/d36_beag/chapter9.htm"]],es:"Para el bus: Darwin remonta el Santa Cruz.",en:"For the bus: Darwin up the Santa Cruz."},
+  {p:"m",t:"1 dic · Bonington, Torre Central 1963 + Pritchard, cara este 1992",m:"~35 min",w:"Alpine Journal · AAJ",f:1,l:[["Bonington",AJ+"Contents_1963_files/AJ%201963%20179-187%20Bonington%20The%20Central%20Tower%20of%20Paine.pdf"],["Pritchard",AAJ+"12199310200/Torre-Central-del-Paine-El-Regalo-de-Mwoma"]],es:"Antes de Base Torres.",en:"Before Base Torres."},
+  {p:"m",t:"8 dic · Tompkins, Fitz Roy 1968 + Honnold, travesía del Fitz",m:"~25 min",w:"AAJ",f:1,l:[["Tompkins",AAJ+"12196926300/Fitz-Roy-1968"],["Honnold",AAJ+"13201212775"]],es:"Antes de Laguna de los Tres.",en:"Before Laguna de los Tres."},
+  {p:"m",t:"9 dic · Shipton, travesía del Campo de Hielo 1960–61",m:"~20 min",w:"Alpine Journal 1962",f:1,l:[["PDF",AJ+"Contents_1962_files/AJ%201962%20250-258%20Shipton%20Patagonia.pdf"]],es:"Antes del Huemul: trineos por el hielo.",en:"Before the Huemul: sledging the ice."},
+  {p:"s",t:"Antes de Laguna Torre · Salvaterra, El Arca de los Vientos",m:"2006 · ~15 min",w:"Alpine Journal",f:1,l:[["PDF",AJ+"Contents_2006_files/AJ%202006%2099-108%20Salvaterra%20C%20Torre.pdf"]],es:"Sube la línea de Maestri y no halla nada.",en:"Climbs Maestri's line, finds nothing."},
+  {p:"s",t:"Por qué sopla así · Crouch + Pietron",m:"~15 min",w:"pataclimb · AAJ",f:1,l:[["Crouch","https://pataclimb.com/knowledge/crouchweather.html"],["Pietron",AAJ+"13201214794"]],es:"Ventanas de buen tiempo y Windguru.",en:"Weather windows and Windguru."},
+  {p:"t",t:"Para corredores · La Vuelta al Hielo, FKTs",m:"~10 min",w:"pataclimb",f:1,l:[["pataclimb","https://pataclimb.com/knowledge/vuelta_en.html"]],es:"Récords alrededor del macizo.",en:"Records around the massif."}
+ ]},
+ {id:"patagonia", es:"🐑 Más Patagonia", en:"🐑 More Patagonia", items:[
+  {p:"s",t:"En la Patagonia — Bruce Chatwin",m:"1977 · ~240 págs · 6–7 h",w:"Kindle ~6,64 €",l:[AZ+"B00J6O9Z7K"],es:"El clásico. Parte es inventada.",en:"The classic. Some is invented."},
+  {p:"s",t:"Menéndez, rey de la Patagonia — José Luis Alonso Marchante",m:"2014 · ~330 págs · ~8 h",w:"Kindle ~10–12 €",l:[AZ+"B00MJ7ECPG"],es:"Ovejas y exterminio selk'nam.",en:"Sheep and the Selk'nam extermination."},
+  {p:"t",t:"La tierra del fuego — Sylvia Iparraguirre",m:"1998 · ~290 págs · ~7 h",w:"Kindle ~6,64 €",l:[AZ+"B0083JCC38"],es:"Novela sobre Jemmy Button.",en:"A novel about Jemmy Button."},
+  {p:"t",t:"La Patagonia rebelde — Osvaldo Bayer",m:"~400–470 págs",w:"Solo papel",l:[[bi("Película","Film"),"ver.html#patagonia"]],es:"Sin Kindle: mejor la película.",en:"No Kindle: see the film."},
+  {p:"t",t:"Across Patagonia — Lady Florence Dixie",m:"1880",w:"Gutenberg",f:1,l:[["Gutenberg","https://www.gutenberg.org/ebooks/42666"]],es:"A caballo hasta el Paine, 1879.",en:"On horseback to Paine, 1879."},
+  {p:"t",t:"Against the Wall — Simon Yates",m:"1997 · 192 págs",w:"Kindle EN (Amazon UK)",l:[["Amazon UK","https://www.amazon.co.uk/dp/B003U6Z5X8"]],es:"La cara este de la Torre Central.",en:"The Central Tower's east face."},
+  {p:"t",t:"Chile protege a los pumas (National Geographic)",m:"2018 · ~12 min",w:"puede tener muro de pago",l:[["NatGeo","https://www.nationalgeographic.com/magazine/article/chile-policy-pumas-patagonia-fuels-conflict-ranchers"]],es:"Pumas del Paine contra ganaderos.",en:"Paine pumas versus ranchers."}
+ ]},
+ {id:"argentina", es:"🇦🇷 Argentina y Buenos Aires", en:"🇦🇷 Argentina and Buenos Aires", les:"25–28 nov y 17–19 dic. ¿Un cuarto libro? Santa Evita.", len:"Nov 25–28 and Dec 17–19. A fourth book? Santa Evita.", items:[
+  {p:"s",t:"Santa Evita — Tomás Eloy Martínez",m:"1995 · ~400 págs · 10–11 h",w:"Kindle ~8,54 €",l:[AZ+"B0B5FMJFK9"],es:"El cadáver de Evita. Antes de Recoleta.",en:"Evita's corpse. Before Recoleta."},
+  {p:"s",t:"La llamada — Leila Guerriero",m:"2024 · ~430 págs · ~12 h",w:"Kindle ~12,34 €",l:[AZ+"B0CQKNP62W"],es:"Una superviviente de la ESMA.",en:"An ESMA survivor."},
+  {p:"s",t:"Las cosas que perdimos en el fuego — Mariana Enriquez",m:"2016 · 12 cuentos · 20–30 min c/u",w:"Kindle ~10,44 €",l:[AZ+"B01B22DOCK"],es:"Terror real. «El chico sucio», antes de San Telmo.",en:"Real-life horror. \"El chico sucio\" before San Telmo."},
+  {p:"s",t:"Aguafuertes porteñas — Roberto Arlt",m:"1928–33 · columnas de 3–5 min",w:"Gratis online · Kindle ~5,75 €",f:1,l:[["Cervantes Virtual","https://www.cervantesvirtual.com/nd/ark:/59851/bmchb115"],["Kindle",AZ+"B00CH8J360"]],es:"Tres o cuatro columnas por noche.",en:"Three or four columns a night."},
+  {p:"s",t:"Carta abierta a la Junta Militar (Walsh) + prólogo de Nunca más",m:"1977 · 1984 · ~20 min",w:"Gratis",f:1,l:[["Walsh","https://www.tiempoar.com.ar/ta_article/rodolfo-walsh-el-texto-completo-de-la-carta-abierta-de-un-escritor-a-la-junta-militar/"],["Nunca más","https://www.derechoshumanos.net/lesahumanidad/informes/argentina/informe-de-la-CONADEP-Nunca-mas.htm"]],es:"Para entender la Plaza de Mayo.",en:"To understand Plaza de Mayo."},
+  {p:"s",t:"Milei, hoy",m:"2024–26 · ~75 min",w:"The New Yorker (muro) · BA Herald · Phenomenal World",l:[["Anderson","https://www.lanacion.com.ar/politica/el-critico-perfil-de-javier-milei-que-escribio-jon-lee-anderson-para-the-new-yorker-nid02122024/"],["Pozzo 2026","https://buenosairesherald.com/economics/mileis-economy-in-2026-between-macroeconomic-consolidation-and-politics"],["D'Alessandro","https://phenomenalworld.org/analysis/the-chainsaw-and-the-miracle-2/"]],es:"Perfil, economía de 2026 y crítica.",en:"Profile, 2026 economy, critique."},
+  {p:"s",t:"Cómo pagar en Argentina (práctico)",m:"2026 · ~15 min",w:"Map and Camera · Wise",f:1,l:[["Map and Camera","https://mapandcamera.com/money-in-argentina/"],["Wise","https://wise.com/ar/blog/como-pagar-en-argentina-siendo-extranjero"]],es:"Tarjeta en pesos, nunca en euros.",en:"Card in pesos, never euros."},
+  {p:"t",t:"El Eternauta (cómic) — Oesterheld y Solano López",m:"1957–59 · 377 págs",w:"Kindle ~19,94 €",l:[AZ+"B0BP9XQX3G"],es:"La nevada que mata BA. Se lee rápido.",en:"The snow that kills BA. Quick read."},
+  {p:"t",t:"Una historia sencilla — Leila Guerriero",m:"2013 · ~150 págs",w:"Kindle ~10,44 €",l:[AZ+"B00GMQB0R8"],es:"Un bailarín de malambo.",en:"A malambo dancer."},
+  {p:"t",t:"Comida y fútbol en pequeño",m:"~15 min",w:"Substack",f:1,l:[["Pick Up the Fork","https://pickupthefork.substack.com/p/why-do-you-live-here"],["Messi is a hound","https://briancanever.substack.com/p/messi-is-a-hound"]],es:"Comida porteña y Messi.",en:"BA food and Messi."},
+  {p:"t",t:"El Aleph — Borges (solo una muestra)",m:"1949 · ~1 h",w:"Kindle ~5,22 €",l:[AZ+"B07SSHG2J1"],es:"Solo «El Sur», «El Aleph» y «La muerte y la brújula».",en:"Just \"El Sur\", \"El Aleph\" and \"La muerte y la brújula\"."}
+ ]}
+];
+// Ruled out: [title, why (es), why (en), optional link]
+var NO = [
+ ["Garibotti, «A Mountain Unveiled» (2004)","superado por The Tower","overtaken by The Tower",AAJ+"12200413800"],
+ ["Moreno, Viaje a la Patagonia austral","450+ págs.; solo el Lago Argentino","450+ pages; just Lago Argentino","https://catalogobibliotecas.buenosaires.gob.ar/media/PDF/40-01841_D.pdf"],
+ ["Nunca más","basta el prólogo","the prologue is enough"],
+ ["The Push (Caldwell), Terray","poca Patagonia","little Patagonia"],
+ ["Theroux, Sepúlveda, Giardinelli, Lucas Bridges, Musters","fuera de ruta o flojos","off route or weak"],
+ [bi("Los náufragos del Wager","The Wager")+" (Grann)","costa chilena","Chilean coast"]
+];
+var P = {m:["warn","★ Prioridad","★ Priority"], s:["","Recomendado","Recommended"], t:["","Si hay tiempo","If time"]};
+function bi(es, en){ return '<span lang="es">'+es+'</span><span lang="en">'+en+'</span>'; }
+function chip(c, x){ return '<span class="chip '+c+'">'+x+'</span>'; }
+function a(x){ return '<a class="lnk" href="'+x[1]+'"'+(/^http/.test(x[1]) ? ' target="_blank" rel="noopener"' : '')+'>'+x[0]+'</a>'; }
+// Type icon from the data: book or article.
+function icon(i){ return /Kindle|papel|Gutenberg/.test(i.w) ? '📖' : '📄'; }
+document.getElementById('toc').innerHTML = S.map(function(s){ return '<a href="#'+s.id+'">'+bi(s.es, s.en)+'</a>'; }).join('');
+document.getElementById('list').innerHTML = S.map(function(s){
+  return '<h2 id="'+s.id+'">'+bi(s.es, s.en)+'</h2>'+(s.les ? '<p class="lead">'+bi(s.les, s.len)+'</p>' : '')+'<div class="tiles">'+
+    s.items.map(function(i){
+      var p = P[i.p], c = [chip(p[0], bi(p[1], p[2]))];
+      if (i.f) c.push(chip('ok', bi('gratis', 'free')));
+      i.m.split(' · ').forEach(function(x){ c.push(chip('', x)); });
+      i.w.split(' · ').forEach(function(x){ c.push(chip('info', x)); });
+      return '<div class="tile '+i.p+'"><div class="i">'+icon(i)+'</div><div><b>'+i.t+'</b>'+
+        '<div class="chips">'+c.join('')+'</div><p>'+bi(i.es, i.en)+'</p>'+
+        i.l.map(function(x){ return a(typeof x == 'string' ? ['Amazon.es', x] : x); }).join('')+'</div></div>';
+    }).join('')+'</div>';
+}).join('');
+document.getElementById('no').innerHTML = NO.map(function(x){
+  return chip('warn', '<b>'+x[0]+'</b>: '+bi(x[1], x[2])+(x[3] ? ' '+a(['↗', x[3]]) : ''));
+}).join('');
+</script>
+</body>
+</html>

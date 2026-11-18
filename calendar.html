@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-es="Calendario · Itinerario 1B" data-en="Calendar · Itinerary 1B">Calendar · Itinerary 1B</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="i18n.js"></script>
+  <style>
+    .page.wide{max-width:1280px;}
+    .legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:12.5px;margin:0 0 18px;align-items:center;}
+    .legend span{display:inline-flex;align-items:center;gap:6px;}
+    .sw{width:12px;height:12px;border-radius:3px;display:inline-block;}
+    .r-ba{--r:var(--blue);} .r-cal{--r:var(--clay);} .r-tdp{--r:var(--teal);} .r-cht{--r:var(--olive);}
+    .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:30px;}
+    .wd{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-500);padding:0 4px;}
+    .day{background:var(--white);border:1.5px solid var(--gray-300);border-top:5px solid var(--r,var(--gray-300));border-radius:10px;padding:7px 8px 8px;min-height:150px;display:flex;flex-direction:column;gap:4px;font-size:11.5px;line-height:1.35;}
+    .day.off{background:transparent;border-style:dashed;border-top-width:1.5px;min-height:0;opacity:.55;}
+    .day.trek{background:color-mix(in srgb,var(--r) 9%,var(--white));}
+    .dn{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--mono);font-size:10.5px;color:var(--gray-500);}
+    .dn b{font-size:15px;color:var(--slate);font-family:var(--serif);font-weight:600;}
+    .ttl{font-weight:600;color:var(--slate);font-size:12.5px;}
+    .it{display:flex;gap:4px;}
+    .it .ic{flex:0 0 auto;}
+    .it.need{color:#8A3B1E;font-weight:600;}
+    .it.need::after{content:"to book";font-family:var(--mono);font-size:9px;text-transform:uppercase;background:#F3E0D6;border-radius:4px;padding:1px 4px;margin-left:auto;align-self:flex-start;white-space:nowrap;}
+    html[lang="es"] .it.need::after{content:"por reservar";}
+    .it.ok .tx::after{content:" ✓";color:var(--olive);font-weight:700;}
+    .slp{margin-top:auto;padding-top:4px;border-top:1px dashed var(--gray-300);color:var(--gray-500);font-size:10.5px;}
+    #open li,#miss li{margin:0 0 6px 18px;font-size:14px;}
+    .tk{font-size:10.5px;display:flex;flex-direction:column;gap:1px;}
+    .tk a{color:var(--olive);}
+    .tk-miss{color:#8A3B1E;font-weight:600;}
+    @media(max-width:760px){
+      .cal{grid-template-columns:1fr;}
+      .wd,.day.off{display:none;}
+      .day{min-height:0;}
+    }
+    @media print{.day{min-height:120px;} .page.wide{max-width:none;}}
+  </style>
+</head>
+<body>
+  <nav class="topnav"><div class="inner">
+    <span class="brand">🏔️ Patagonia 2026</span>
+    <a href="index.html"><span lang="es">Inicio</span><span lang="en">Hub</span></a>
+    <a href="calendar.html" class="active"><span lang="es">Calendario</span><span lang="en">Calendar</span></a>
+    <a href="wtrek.html"><span lang="es">Circuito W</span><span lang="en">W Trek</span></a>
+    <a href="huemul.html">Huemul</a>
+    <a href="buenos-aires.html">Buenos Aires</a>
+    <a href="logistics.html"><span lang="es">Logística</span><span lang="en">Logistics</span></a>
+    <a href="gear.html"><span lang="es">Equipo</span><span lang="en">Gear</span></a>
+    <a href="packing.html"><span lang="es">Equipaje</span><span lang="en">Packing</span></a>
+    <a href="material.html"><span lang="es">Material</span><span lang="en">Kit check</span></a>
+    <a href="todo.html"><span lang="es">Pendientes</span><span lang="en">To-do</span></a>
+    <a href="costes.html"><span lang="es">Costes</span><span lang="en">Costs</span></a>
+    <a href="dinos.html"><span lang="es">Dinosaurios</span><span lang="en">Dinosaurs</span></a>
+    <a href="ver.html"><span lang="es">Para ver</span><span lang="en">Watch</span></a>
+    <a href="leer.html"><span lang="es">Para leer</span><span lang="en">Read</span></a>
+  </div></nav>
+  <div class="page wide">
+    <a class="back" href="index.html"><span lang="es">← Inicio del viaje</span><span lang="en">← Trip hub</span></a>
+    <div class="eyebrow"><span lang="es">Itinerario 1B · 25 nov – 20 dic</span><span lang="en">Itinerary 1B · Nov 25 – Dec 20</span></div>
+    <h1 lang="es">Calendario</h1><h1 lang="en">Calendar</h1>
+    <p class="subtitle" lang="es">✓ = reservado o pagado · detalle en <a href="index.html">Inicio</a>, billetes en <a href="logistics.html">Logística</a></p><p class="subtitle" lang="en">✓ = booked or paid · details on the <a href="index.html">Hub</a>, tickets on <a href="logistics.html">Logistics</a></p>
+
+    <div class="legend">
+      <span><i class="sw" style="background:var(--blue)"></i>Buenos Aires</span>
+      <span><i class="sw" style="background:var(--clay)"></i>El Calafate</span>
+      <span><i class="sw" style="background:var(--teal)"></i>Chile · Natales + <span lang="es">Circuito W</span><span lang="en">W Trek</span></span>
+      <span><i class="sw" style="background:var(--olive)"></i>El Chaltén + Huemul</span>
+      <span><span lang="es">Sombreado = día de trekking</span><span lang="en">Tinted = trek day</span></span>
+    </div>
+
+    <div class="cal" id="cal"></div>
+
+    <h2 lang="es">⚠️ Por reservar</h2><h2 lang="en">⚠️ Still to book</h2>
+    <ul id="open"></ul>
+
+    <h2 lang="es">📄 Billetes sin guardar</h2><h2 lang="en">📄 Tickets not saved</h2>
+    <ul id="miss"></ul>
+
+  </div>
+
+<script src="tickets.js"></script>
+<script>
+// Compact copy of the itinerary for the grid view. The Hub's DAYS array stays the
+// detailed source, so a change to a day there needs the matching line here too.
+// [date, region, title, [[icon, text, status]], sleep, trek?]   status: ok | need | ""
+// Texts are HTML: T(es,en) pairs, or plain strings for proper nouns, so they are not escaped.
+function T(es,en){ return '<span lang="es">'+es+'</span><span lang="en">'+en+'</span>'; }
+var D = [
+  ["2026-11-25","ba",T("Vuelo a BA","Fly to BA"),[["✈️","IB0105 MAD 08:45 → EZE 17:25","ok"],["🚕","EZE → Palermo, Uber/Cabify",""]],"Play Hostel Arcos ✓"],
+  ["2026-11-26","ba",T("Día en BA","BA day"),[["🥩",T("Palermo, Recoleta, primer asado","Palermo, Recoleta, first asado"),""],["📱","SIM / eSIM",""],["🌆",T('<a href="buenos-aires.html">Ideas para BA</a>','<a href="buenos-aires.html">BA ideas</a>'),""]],"Play Hostel Arcos ✓"],
+  ["2026-11-27","ba",T("BA + preparar el trekking","BA + trek prep"),[["🖨️",T("Imprimir bonos y billetes (catamarán ~26 nov), trote suave","Print vouchers and tickets (catamaran ~Nov 26), easy jog"),""],["🥩",T("Cena en una parrilla","Parrilla dinner"),""]],"Play Hostel Arcos ✓"],
+  ["2026-11-28","cal",T("Vuelo al sur","Fly south"),[["🎒",T("Mañana: rehacer mochilas","Morning: repack"),""],["🚕","Hotel → EZE ~13:30",""],["✈️","JA3213 EZE 16:30 → FTE 19:46","ok"],["🚐","FTE → Calafate Hostel","need"]],"Calafate Hostel ✓"],
+  ["2026-11-29","cal","Perito Moreno Big Ice",[["🧗",T("Big Ice, recogida 07:00","Big Ice, pickup 07:00"),"ok"],["🎫",T("Flexipass, entrada 1/3","Flexipass entry 1/3"),"ok"]],"Calafate Hostel ✓"],
+  ["2026-11-30","tdp",T("Entrada en Chile","Into Chile"),[["🚌","Marga 08:00 → Natales 14:00","ok"],["🛂",T("Frontera: guardad la tarjeta PDI","Border: keep the PDI card"),""]],"Hostal Turpial ✓"],
+  ["2026-12-01","tdp",T("Preparativos en Natales","Natales prep"),[["🎒",T("Charla de Erratic Rock 15:00","Erratic Rock 15:00 seminar"),""],["🛒",T("Comida para el W + gas","W food + gas"),""],["💵",T("Pesos chilenos (shuttle en efectivo)","Chilean pesos (cash shuttle)"),""]],"Hostal Turpial ✓"],
+  ["2026-12-02","tdp","W1 · Base Torres",[["🚌","Bus Sur 07:00 → Laguna Amarga","ok"],["💵",T("Shuttle a Central, ~$4 en efectivo","Shuttle to Central, ~$4 cash"),""],["🥾",T("Base Torres, control antes de ~13:00","Base Torres, checkpoint by ~13:00"),""],["🎫",T("Entrada al parque TdP","TdP park pass"),"ok"]],"Camp Central ✓",1],
+  ["2026-12-03","tdp",T("W2 · a Francés","W2 · to Francés"),[["🥾",T("13–16 km bajo los Cuernos","13–16 km under the Cuernos"),""]],"Camp Francés ✓",1],
+  ["2026-12-04","tdp","W3 · Valle del Francés",[["🥾",T("20 km, mochilas en Italiano","20 km, packs at Italiano"),""]],"Camp Paine Grande ✓",1],
+  ["2026-12-05","tdp","W4 · Glaciar Grey",[["🍳",T("Desayuno en Paine Grande","Paine Grande breakfast"),"ok"],["🥾",T("11 km hasta Grey","11 km to Grey"),""]],"Camp Grey ✓",1],
+  ["2026-12-06","tdp",T("W5 · salida","W5 · exit"),[["🥾",T("Grey → puentes → Paine Grande, 19–21 km","Grey → bridges → Paine Grande, 19–21 km"),""],["⛴️",T("Catamarán 17:00 (muelle 16:45) → Pudeto 17:30","Catamaran 17:00 (pier 16:45) → Pudeto 17:30"),"ok"],["🚌","Bus Sur 17:40 → Natales 20:30","ok"]],"Hostal Turpial ✓",1],
+  ["2026-12-07","tdp",T("Descanso en Natales","Natales rest"),[["🧺",T("Colada, secar la tienda, rehacer mochilas","Laundry, dry tent, repack"),""]],"Hostal Turpial ✓"],
+  ["2026-12-08","cht",T("A El Chaltén","To El Chaltén"),[["🚌","Bus Sur 07:30 → Calafate ~13:05, terminal 06:45","ok"],["🚌","Chaltén Travel 15:00 → 17:40","ok"]],"Lo de Trivi ✓"],
+  ["2026-12-09","cht","Laguna de los Tres",[["💵",T("Pesos argentinos (Chaltén + taxi)","Argentine pesos (Chaltén + taxi)"),""],["🥾",T("20–25 km, salida al amanecer","20–25 km, sunrise start"),""],["🎫",T("Flexipass, entrada 2/3","Flexipass entry 2/3"),"ok"],["📋",T("Permiso del Huemul + charla (¿microspikes?)","Huemul permit + briefing (microspikes?)"),""],["🛒","Gas",""]],"Lo de Trivi ✓"],
+  ["2026-12-10","cht","Huemul 1 · Laguna Toro",[["🎫",T("Flexipass, entrada 3/3","Flexipass entry 3/3"),"ok"],["🥾","~16 km",""]],"⛺ Laguna Toro",1],
+  ["2026-12-11","cht","Huemul 2 · Paso del Viento",[["🪢",T("Tirolesa n.º 1, ~11 km","Tyrolean #1, ~11 km"),""],["🌬️",T("Seguir o no, según el viento","Go/no-go on wind"),""]],"⛺ Paso del Viento",1],
+  ["2026-12-12","cht","Huemul 3 · Paso Huemul",[["⬇️",T("~14 km, bajada por pedrera hasta el Lago Viedma","~14 km, scree descent to Lago Viedma"),""]],"⛺ Bahía de los Témpanos",1],
+  ["2026-12-13","cht",T("Huemul 4 · salida","Huemul 4 · exit"),[["🪢",T("Tirolesa n.º 2, ~25 km (~17 con taxi)","Tyrolean #2, ~25 km (~17 with taxi)"),""],["🚕",T("Taxi desde Estancia La Quinta","Taxi from Estancia La Quinta"),"need"],["📧",T("Email a APN en menos de 48 h","Email APN within 48 h"),""]],"Lo de Trivi ✓",1],
+  ["2026-12-14","cht",T("Día colchón / descanso","Buffer / rest"),[["😌",T("Margen si el tiempo retrasa Huemul","Slack if weather delays Huemul"),""]],"Lo de Trivi ✓"],
+  ["2026-12-15","cht",T("Día colchón / Paso del Cuadrado","Buffer / Paso del Cuadrado"),[["🥾",T("Solo si despejado: 11–14 h, salida antes de 05:00","Only if clear: 11–14 h, out by 05:00"),""]],"Lo de Trivi ✓"],
+  ["2026-12-16","cal",T("Vuelta a Calafate","Back to Calafate"),[["🚌","Chaltén Travel 11:30 → Calafate 14:10","ok"],["🦕",T('Opción: <a href="dinos.html">Bosque Petrificado La Leona</a> en vez del bus','Option: <a href="dinos.html">La Leona Petrified Forest</a> instead of the bus'),""]],"Hostel Buenos Aires ✓"],
+  ["2026-12-17","ba",T("Vuelo a BA","Fly to BA"),[["🚕","Hotel → FTE 06:15","need"],["✈️","JA3212 FTE 08:27 → EZE 11:27","ok"],["🌆",T('<a href="buenos-aires.html">Ideas para BA</a>','<a href="buenos-aires.html">BA ideas</a>'),""]],"Play Hostel Arcos ✓"],
+  ["2026-12-18","ba","BA",[["🥩",T("Bodegón de despedida","Farewell bodegón"),""]],"Play Hostel Arcos ✓"],
+  ["2026-12-19","ba",T("Último día en BA, vuelta a casa","Last BA day, fly home"),[["🧳",T("Maletas en el hostel tras el check-out","Bags at the hostel after check-out"),""],["🚕","Palermo → EZE ~19:00",""],["✈️",T("IB0108 EZE 22:45 → MAD 14:30 20 dic","IB0108 EZE 22:45 → MAD 14:30 Dec 20"),"ok"]],T("✈️ en el avión","✈️ on the plane")]
+];
+
+var byDate = {}; D.forEach(function(d){ byDate[d[0]] = d; });
+var cal = document.getElementById('cal');
+[["Lun","Mon"],["Mar","Tue"],["Mié","Wed"],["Jue","Thu"],["Vie","Fri"],["Sáb","Sat"],["Dom","Sun"]].forEach(function(w){ cal.insertAdjacentHTML('beforeend','<div class="wd">'+T(w[0],w[1])+'</div>'); });
+
+var open = [], miss = [];
+function dname(dt,opt){
+  opt.timeZone = 'UTC';
+  var es = dt.toLocaleDateString('es-ES',opt).replace('.','');
+  return [es.charAt(0).toUpperCase()+es.slice(1), dt.toLocaleDateString('en-GB',opt)];
+}
+// Monday Nov 23 to Sunday Dec 20: four full weeks around the trip.
+for (var t = Date.UTC(2026,10,23); t <= Date.UTC(2026,11,20); t += 864e5){
+  var dt = new Date(t), key = dt.toISOString().slice(0,10), n = dt.getUTCDate();
+  var wd = dname(dt,{weekday:'short'}), mo = dname(dt,{month:'short'});
+  var moH = T(mo[0],mo[1]), dnH = T(wd[0]+' '+mo[0],wd[1]+' '+mo[1]);
+  var lbl = '<b>'+T(wd[0]+' '+n+' '+mo[0],wd[1]+' '+n+' '+mo[1])+'</b>';
+  var d = byDate[key];
+  if (!d){ cal.insertAdjacentHTML('beforeend','<div class="day off"><div class="dn"><b>'+n+'</b>'+moH+'</div></div>'); continue; }
+  var html = '<div class="day r-'+d[1]+(d[5]?' trek':'')+'"><div class="dn"><b>'+n+'</b>'+dnH+'</div><div class="ttl">'+d[2]+'</div>';
+  d[3].forEach(function(i){
+    html += '<div class="it '+i[2]+'"><span class="ic">'+i[0]+'</span><span class="tx">'+i[1]+'</span></div>';
+    if (i[2]==='need') open.push(lbl+': '+i[1]);
+  });
+  var tk = TICKETS[key] || [];
+  if (tk.length) html += '<div class="tk">'+tk.map(ticketHtml).join('')+'</div>';
+  tk.forEach(function(x){ if(!x[1]) miss.push(lbl+': '+x[0]); });
+  cal.insertAdjacentHTML('beforeend', html+'<div class="slp">🛏️ '+d[4]+'</div></div>');
+}
+document.getElementById('miss').innerHTML = miss.map(function(x){ return '<li>'+x+'</li>'; }).join('');
+document.getElementById('open').innerHTML = open.map(function(x){ return '<li>'+x+'</li>'; }).join('');
+</script>
+</body>
+</html>

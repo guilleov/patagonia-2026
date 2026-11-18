@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-es="Para ver · Patagonia 2026" data-en="Watch list · Patagonia 2026">Para ver · Patagonia 2026</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="i18n.js"></script>
+  <style>
+    .tile.m{border-color:var(--clay);}
+    .chips .chip{white-space:normal;}
+    .tile .chips{margin:4px 0 0;}
+  </style>
+</head>
+<body>
+  <nav class="topnav"><div class="inner">
+    <span class="brand">🏔️ Patagonia 2026</span>
+    <a href="index.html"><span lang="es">Inicio</span><span lang="en">Hub</span></a>
+    <a href="calendar.html"><span lang="es">Calendario</span><span lang="en">Calendar</span></a>
+    <a href="wtrek.html"><span lang="es">Circuito W</span><span lang="en">W Trek</span></a>
+    <a href="huemul.html">Huemul</a>
+    <a href="buenos-aires.html">Buenos Aires</a>
+    <a href="logistics.html"><span lang="es">Logística</span><span lang="en">Logistics</span></a>
+    <a href="gear.html"><span lang="es">Equipo</span><span lang="en">Gear</span></a>
+    <a href="packing.html"><span lang="es">Equipaje</span><span lang="en">Packing</span></a>
+    <a href="material.html"><span lang="es">Material</span><span lang="en">Kit check</span></a>
+    <a href="todo.html"><span lang="es">Pendientes</span><span lang="en">To-do</span></a>
+    <a href="costes.html"><span lang="es">Costes</span><span lang="en">Costs</span></a>
+    <a href="dinos.html"><span lang="es">Dinosaurios</span><span lang="en">Dinosaurs</span></a>
+    <a href="ver.html" class="active"><span lang="es">Para ver</span><span lang="en">Watch</span></a>
+    <a href="leer.html"><span lang="es">Para leer</span><span lang="en">Read</span></a>
+  </div></nav>
+  <div class="page">
+    <a class="back" href="index.html"><span lang="es">← Inicio del viaje</span><span lang="en">← Trip hub</span></a>
+    <h1 lang="es">Para ver</h1><h1 lang="en">Watch list</h1>
+    <p class="subtitle" lang="es">Por tramo del viaje. Disponible en España según JustWatch (12 nov 2026).</p>
+    <p class="subtitle" lang="en">By trip leg. Available in Spain per JustWatch (Nov 12, 2026).</p>
+    <div class="note go" lang="es">✈️ <b>Avión del 25 nov:</b> descargad antes en Filmin, Netflix, Prime o Disney+. YouTube solo con Premium.</div>
+    <div class="note go" lang="en">✈️ <b>Nov 25 flight:</b> download beforehand on Filmin, Netflix, Prime or Disney+. YouTube only with Premium.</div>
+
+    <div class="toc" id="toc"></div>
+    <div id="list"></div>
+
+    <h2 id="descartados"><span lang="es">✗ No disponibles en España</span><span lang="en">✗ Not available in Spain</span></h2>
+    <div class="chips" id="no"></div>
+    <p class="lead" lang="es">Sin documental en España: Darwin y el Beagle, incendios del Paine, Garibotti, travesía de Shipton (solo su libro <i>Land of Tempest</i>). «No oficial» = subida de terceros, puede desaparecer.</p>
+    <p class="lead" lang="en">No documentary in Spain: Darwin and the Beagle, Paine fires, Garibotti, Shipton's crossing (only his book <i>Land of Tempest</i>). "Unofficial" = third-party upload, may vanish.</p>
+
+    <footer><span lang="es">Itinerario 1B</span><span lang="en">Itinerary 1B</span> · <a href="index.html"><span lang="es">Inicio</span><span lang="en">Hub</span></a> · <a href="calendar.html"><span lang="es">Calendario</span><span lang="en">Calendar</span></a> · <a href="dinos.html"><span lang="es">Dinosaurios</span><span lang="en">Dinosaurs</span></a></footer>
+  </div>
+
+<script>
+// p: m = must, s = should, t = if time · f: free · u: unofficial upload · a bare JW+"…" link is labelled JustWatch
+var YT = "https://www.youtube.com/watch?v=", JW = "https://www.justwatch.com/es/";
+var S = [
+ {id:"argentina", es:"🇦🇷 Entender Argentina", en:"🇦🇷 Understanding Argentina", les:"Antes de volar.", len:"Before you fly.", items:[
+  {p:"m",t:"La historia argentina en 14 min + Por qué el peronismo es tan poderoso",m:"2020 · 2019 · 22 min",w:"YouTube",f:1,l:[["Memorias de Pez",YT+"zhLBGsHw9fQ"],["BBC Mundo",YT+"_f9miyzXsHk"]],es:"Resumen exprés y la clave del peronismo.",en:"Express recap and the key to Peronism."},
+  {p:"m",t:"Argentina, 1985",m:"2022 · 2h20",w:"Prime Video",l:[JW+"pelicula/argentina-1985",["Alegato real, 8 min",YT+"i18FQPnsyPc"]],es:"Juicio a las juntas: la dictadura.",en:"The juntas on trial: the dictatorship."},
+  {p:"m",t:"Economía con Milei: dos explicaciones cortas",m:"oct 2026 · mar 2025 · 27 min",w:"YouTube",f:1,l:[["Memorias de Tiburón",YT+"OxWgy8MOSGs"],["BBC Mundo",YT+"rmSi_l5sQpk"]],es:"Ya no es barata; sin cepo desde abril de 2025.",en:"No longer cheap; no currency controls since April 2025."},
+  {p:"m",t:"La odisea de los giles",m:"2019 · 1h56",w:"Netflix, Prime, Movistar+, RTVE Play",l:[JW+"pelicula/la-odisea-de-los-giles"],es:"Un golpe para recuperar el corralito.",en:"A heist to win back corralito savings."},
+  {p:"s",t:"Historias Innecesarias: Crisis 2001",m:"2025 · 1h46",w:"YouTube",f:1,l:[["YouTube",YT+"RSvZXltcUfc"]],es:"2001: por qué desconfían de los bancos.",en:"2001: why they distrust banks."},
+  {p:"s",t:"Ver la historia (Felipe Pigna), 2 episodios",m:"2015 · ~55 min/ep",w:"Canal Encuentro · YouTube",f:1,l:[["Perón y Evita",YT+"g4pZIU3eLos"],["Dictadura",YT+"curDr8ezXM4"]],es:"Perón y Evita, y la dictadura.",en:"Perón and Evita, and the dictatorship."},
+  {p:"t",t:"El juicio",m:"2023 · 2h57",w:"Filmin",l:[["Filmin","https://www.filmin.es/pelicula/el-juicio"]],es:"Solo grabación real del juicio, sin narrador.",en:"Only real trial tape, no narrator."},
+  {p:"t",t:"Santa Evita",m:"2022 · 7 × 43 min",w:"Disney+",l:[JW+"serie/santa-evita"],es:"El cadáver de Evita. Ep. 1 antes de Recoleta.",en:"Evita's corpse. Ep. 1 before Recoleta."},
+  {p:"t",t:"Malvinas a 40 años de la guerra (Infobae)",m:"2022 · 42 min",w:"YouTube",f:1,l:[["YouTube",YT+"n8e9SexkmHM"]],es:"La guerra de 1982, en corto.",en:"The 1982 war, short."}
+ ]},
+ {id:"ba", es:"🌆 Buenos Aires", en:"🌆 Buenos Aires", les:"25–28 nov y 17–19 dic.", len:"Nov 25–28 and Dec 17–19.", items:[
+  {p:"m",t:"El Eternauta",m:"2025 · 6 × 54 min",w:"Netflix",l:[JW+"serie/el-eternauta"],es:"Nevada tóxica; su silueta está en los murales.",en:"Toxic snow; his silhouette is on the murals."},
+  {p:"m",t:"Nueve reinas",m:"2000 · 1h54",w:"Netflix, Prime, Movistar+",l:[JW+"pelicula/nine-queens"],es:"Dos timadores, un día: la viveza criolla.",en:"Two con men, one day: porteño hustle."},
+  {p:"m",t:"Anthony Bourdain, Parts Unknown: Buenos Aires",m:"2016 · 41 min",w:"YouTube (Banijay oficial)",f:1,l:[["YouTube",YT+"jJWge_sfZdo"]],es:"Asado, fútbol y diván. En inglés.",en:"Asado, football and the analyst's couch."},
+  {p:"s",t:"Medianeras",m:"2011 · 1h34",w:"Filmin, Movistar+, FlixOlé",l:[JW+"pelicula/medianeras"],es:"La arquitectura caótica de BA.",en:"BA's chaotic architecture."},
+  {p:"s",t:"El secreto de sus ojos",m:"2009 · 2h09",w:"Netflix, Movistar+, Max, RTVE Play",l:[JW+"pelicula/el-secreto-de-sus-ojos"],es:"El Óscar: un crimen de los 70.",en:"Oscar winner: a 1970s murder."},
+  {p:"s",t:"Relatos salvajes",m:"2014 · 2h02",w:"Filmin, RTVE Play",l:[JW+"pelicula/relatos-salvajes"],es:"Seis estallidos de gente normal.",en:"Six ordinary people snapping."},
+  {p:"s",t:"División Palermo",m:"2023–25 · 2 temp. · ~26 min",w:"Netflix",l:[JW+"serie/division-palermo"],es:"Sátira en Palermo, vuestro barrio.",en:"Satire set in Palermo, your area."},
+  {p:"t",t:"Homo Argentum",m:"2025 · 1h50",w:"Movistar+ o alquiler",l:[JW+"pelicula/homo-argentum"],es:"Francella en 16 arquetipos argentinos.",en:"Francella as 16 Argentine archetypes."},
+  {p:"s",t:"Muchachos, la película de la gente",m:"2023 · 1h48",w:"Prime Video + canal AMC",l:[JW+"pelicula/muchachos-la-pelicula-de-la-gente"],es:"Qatar 2022 y el fútbol como religión.",en:"Qatar 2022 and football as religion."},
+  {p:"s",t:"Diego Maradona (Asif Kapadia)",m:"2019 · 2h10",w:"Prime, Movistar+, Filmin, Rakuten",l:[JW+"pelicula/diego-maradona"],es:"Nápoles, México 86 y el culto de La Boca.",en:"Napoli, Mexico 86 and the La Boca cult."},
+  {p:"s",t:"Street Food Latinoamérica: Buenos Aires + Don Julio por dentro",m:"2020 · 34 min + 15 min",w:"Netflix + YouTube",l:[JW+"serie/street-food-latinoamerica",["Don Julio",YT+"ri2GbqhlwQY"]],es:"Choripán, fugazzeta y Don Julio.",en:"Choripán, fugazzeta and Don Julio."},
+  {p:"s",t:"Chef's Table T1E3: Francis Mallmann",m:"2015 · ~50 min",w:"Netflix",l:[JW+"serie/chefs-table"],es:"El asado como filosofía.",en:"Asado as philosophy."},
+  {p:"t",t:"Somebody Feed Phil T2E3 · Todo sobre el asado",m:"2018 · 2016",w:"Netflix · alquiler",l:[["Phil",JW+"serie/somebody-feed-phil"],["Todo sobre el asado",JW+"pelicula/todo-sobre-el-asado"]],es:"Phil ligero y el falso documental del asado.",en:"Light Phil and the asado mockumentary."},
+  {p:"s",t:"Tango (Carlos Saura)",m:"1998 · 1h55",w:"Movistar+, FlixOlé",l:[JW+"pelicula/tango"],es:"Tango, dictadura y la cámara de Storaro.",en:"Tango, dictatorship and Storaro's camera."},
+  {p:"s",t:"Dos patrias: inmigrantes gallegos",m:"27 min",w:"Canal Encuentro · YouTube",f:1,l:[["YouTube",YT+"CeGg19LUkyI"]],es:"Por qué todo español es «gallego» (sin revisar).",en:"Why Spaniards are \"gallegos\" (unreviewed)."}
+ ]},
+ {id:"patagonia", es:"🐑 Patagonia", en:"🐑 Patagonia", les:"El Calafate (28–29 nov) y los buses.", len:"El Calafate (Nov 28–29) and the buses.", items:[
+  {p:"m",t:"La Patagonia rebelde",m:"1974 · 1h43",w:"Movistar+, FlixOlé, 2,99 € Amazon",l:[JW+"pelicula/la-patagonia-rebelde"],es:"Huelgas fusiladas de 1920–21 y La Anita.",en:"The 1920–21 strikes, executions and La Anita."},
+  {p:"m",t:"Historias mínimas (Carlos Sorín)",m:"2002 · 1h32",w:"Filmin",l:[JW+"pelicula/intimate-stories"],es:"Tres viajes por la estepa. Para el bus.",en:"Three steppe journeys. For the bus."},
+  {p:"s",t:"Awka Liwen (Rebelde amanecer)",m:"2010 · 1h21",w:"YouTube oficial",f:1,l:[["YouTube",YT+"B8IVTxZzwRg"]],es:"Bayer: el Estado nació quitando tierras.",en:"Bayer: a state built on taken land."},
+  {p:"s",t:"Los dinosaurios del camino",m:"15 min + 4 min",w:"YouTube",f:1,l:[["Patagotitan",YT+"v5oMzo06x14"],["Maip",YT+"XC4O4k-mVGE"]],es:"Patagotitan, y Maip, hallado en La Anita.",en:"Patagotitan, and Maip, found at La Anita."},
+  {p:"t",t:"Francisco P. Moreno, el Perito en límites",m:"2019 · 40 min",w:"YouTube",f:1,l:[["YouTube",YT+"vYzymT1GvaM"]],es:"El hombre detrás del nombre del glaciar.",en:"The man behind the glacier's name."},
+  {p:"t",t:"Bombón: El perro (Sorín)",m:"2004 · 1h37",w:"Filmin",l:[JW+"pelicula/bombon-el-perro"],es:"Un parado, un dogo y la ruta.",en:"A jobless man, a dogo and the road."},
+  {p:"t",t:"Miss Carbón",m:"2025 · 1h34",w:"Movistar+, Filmin",l:[JW+"pelicula/miss-carbon-2025"],es:"La primera minera de Río Turbio, mujer trans.",en:"Río Turbio's first woman miner, a trans woman."}
+ ]},
+ {id:"chile", es:"🇨🇱 Chile y Magallanes", en:"🇨🇱 Chile and Magallanes", les:"Puerto Natales (30 nov–1 dic y 7 dic).", len:"Puerto Natales (Nov 30–Dec 1 and Dec 7).", items:[
+  {p:"m",t:"Los colonos",m:"2023 · 1h37",w:"Filmin",l:[JW+"pelicula/los-colonos"],es:"La cacería selk'nam tras las estancias.",en:"The Selk'nam hunt behind the estancias."},
+  {p:"m",t:"El botón de nácar (Patricio Guzmán)",m:"2015 · 1h22",w:"Filmin",l:[JW+"pelicula/el-boton-de-nacar"],es:"Jemmy Button, Pinochet y los kawésqar.",en:"Jemmy Button, Pinochet and the Kawésqar."},
+  {p:"m",t:"Nomad: In the Footsteps of Bruce Chatwin (Herzog)",m:"2019 · 1h29",w:"Filmin",l:[JW+"pelicula/nomad-in-the-footsteps-of-bruce-chatwin"],es:"Herzog sobre Chatwin y la Cueva del Milodón.",en:"Herzog on Chatwin and the Milodón cave."},
+  {p:"s",t:"Blanco en blanco",m:"2019 · 1h40",w:"Filmin, Prime",l:[JW+"pelicula/blanco-en-blanco"],es:"Un fotógrafo y la matanza selk'nam.",en:"A photographer and the Selk'nam killings."},
+  {p:"s",t:"Ko Aswál – Voces de un reencuentro",m:"2024 · 46 min",w:"YouTube (Fundación Pueblo Kawésqar)",f:1,l:[["YouTube",YT+"_k-HAmAiUJA"]],es:"Los kawésqar y el «zoológico humano» de Zúrich.",en:"The Kawésqar and Zurich's \"human zoo\"."},
+  {p:"s",t:"No (Pablo Larraín)",m:"2012 · 1h58",w:"Movistar+, Filmin",l:[JW+"pelicula/no"],es:"El «No» que tumbó a Pinochet.",en:"The \"No\" that beat Pinochet."}
+ ]},
+ {id:"paine", es:"🗼 Torres del Paine (2–6 dic)", en:"🗼 Torres del Paine (Dec 2–6)", items:[
+  {p:"m",t:"The Towers of Paine: 1st ascent of the Central Tower",m:"1963 · 26 min",w:"YouTube",u:1,l:[["YouTube",YT+"UBSKm6YTgMI"]],es:"La primera a la Torre Central.",en:"First ascent of the Central Tower."},
+  {p:"m",t:"Riders on the Storm (Reel Rock 19)",m:"2025 · 28 min",w:"Reel Rock (pack RR19, 20 $) · clip gratis 8,5 min",l:[["Reel Rock","https://watch.reelrocktour.com/products/reel-rock-19"],["Clip",YT+"okjSWiGmHD0"]],es:"Primera libre de la cara este, 2024.",en:"2024 first free ascent, east face."},
+  {p:"s",t:"Pumas: Siete mundos, un planeta «Sudamérica» + Dynasties II",m:"2019 · ~60 min + clips",w:"RTVE Play · YouTube (BBC Earth)",f:1,l:[["RTVE Play","https://www.rtve.es/play/videos/siete-mundos-un-planeta/"],["Clip",YT+"dQAsVEHG2rs"]],es:"Una puma cazando guanacos. RTVE sin confirmar.",en:"A puma hunting guanacos. RTVE unconfirmed."},
+  {p:"s",t:"Jeff Pelletier: fastpacking O + W",m:"2023 · 66 min",w:"YouTube",f:1,l:[["YouTube",YT+"Fmjdmu5J2q8"]],es:"El W corriendo, en sentido contrario.",en:"The W at a run, the other way round."},
+  {p:"t",t:"Remember the Summit (tráiler)",m:"2026 · 3 min",w:"YouTube",f:1,l:[["YouTube",YT+"-Dk7SPkvFRg"]],es:"Bonington, con 91 años, vuelve al Paine.",en:"Bonington, 91, returns to Paine."},
+  {p:"t",t:"Conociendo al huemul de Torres del Paine",m:"2012 · 41 min",w:"YouTube",f:1,l:[["YouTube",YT+"5dxKBM75gjQ"]],es:"Diez años con el ciervo huemul.",en:"Ten years with the huemul deer."},
+  {p:"t",t:"Ultrafiord 112k (Valentí Sanjuan)",m:"2017 · 50 min",w:"YouTube",f:1,l:[["YouTube",YT+"ZbOr7QOG7XQ"]],es:"112 km por los fiordos de Natales.",en:"112 km through the Natales fjords."}
+ ]},
+ {id:"chalten", es:"⛰️ El Chaltén (8–15 dic)", en:"⛰️ El Chaltén (Dec 8–15)", items:[
+  {p:"m",t:"Mountain of Storms",m:"1968 · 52 min · subt. ES",w:"YouTube (Patagonia oficial)",f:1,l:[["YouTube",YT+"YxM2cOvq6s8"]],es:"El viaje que creó Patagonia y The North Face.",en:"The trip behind Patagonia and The North Face."},
+  {p:"m",t:"A Line Across the Sky (Reel Rock 10)",m:"2015 · 40 min",w:"Reel Rock 7,99 $ · corte gratis 7 min",l:[["Reel Rock","https://watch.reelrocktour.com/products/a-line-across-the-sky-rental"],["Corte",YT+"ZOScetWwEwc"]],es:"La travesía del Fitz, que veréis el 9 dic.",en:"The Fitz Traverse you'll see on Dec 9."},
+  {p:"m",t:"Cerro Torre: A Snowball's Chance in Hell",m:"2013 · 1h38 · EN/DE",w:"Apple TV · ¿Red Bull TV?",l:[["Apple TV","https://tv.apple.com/es/movie/umc.cmc.4btnmml7olu99wojo2bjb2gx3"]],es:"Lama, el Compresor y la polémica.",en:"Lama, the Compressor and the row."},
+  {p:"s",t:"Mythos Cerro Torre (Reinhold Messner)",m:"2019 · 80 min · alemán",w:"YouTube",u:1,l:[["Completo",YT+"HTt82Z8xbPE"],["Extracto 16 min",YT+"si2kosUqlhw"]],es:"¿Hicieron cumbre Maestri y Egger en 1959?",en:"Did Maestri and Egger summit in 1959?"},
+  {p:"s",t:"Al filo de lo imposible: Cerro Torre",m:"1990 · 60 min",w:"YouTube (no está en RTVE Play)",u:1,l:[["YouTube",YT+"PdixR0_fKIk"]],es:"Temporal bajo el Torre (sin confirmar).",en:"Storms under the Torre (unconfirmed)."},
+  {p:"t",t:"Brette (Reel Rock)",m:"10 min",w:"Reel Rock Unlimited (suscripción)",l:[["Reel Rock","https://watch.reelrocktour.com/all-films/videos/brette"]],es:"Brette Harrington, solo integral en Patagonia.",en:"Brette Harrington's Patagonian free solo."},
+  {p:"s",t:"Behind the Climb: Haley & Karow, arista sureste del Torre",m:"2026 · 21 min",w:"YouTube (Patagonia)",f:1,l:[["YouTube","https://youtu.be/IbF66nB-JY8"]],es:"La escalera de Maestri, hoy un clásico.",en:"Maestri's bolt ladder, now a classic."},
+  {p:"s",t:"The Alpinist (El alpinista)",m:"2021 · 1h32",w:"Alquiler: Amazon, Apple, Rakuten",l:[JW+"pelicula/the-alpinist"],es:"Leclerc, en solitario a la Torre Egger.",en:"Leclerc, solo on Torre Egger."},
+  {p:"s",t:"Wild Life",m:"2023 · 1h33",w:"Disney+",l:[JW+"pelicula/wild-life-2023"],es:"Los Tompkins y sus parques nacionales.",en:"The Tompkins and their national parks."},
+  {p:"s",t:"El hombre que ideó El Chaltén + Teniente Merino",m:"2020 · 2025 · 24 + 24 min",w:"YouTube",f:1,l:[["El Chaltén",YT+"CWhf2rLAc9c"],["Teniente Merino",YT+"Jh30eujdOGo"]],es:"Por qué existe el pueblo, en dos versiones.",en:"Why the town exists, two versions."},
+  {p:"s",t:"Comisión de Auxilio de El Chaltén (Microdosis de Montaña)",m:"sep 2026 · 56 min",w:"YouTube",f:1,l:[["YouTube",YT+"l8F-OsiHT1M"]],es:"Los rescatistas voluntarios del pueblo.",en:"The town's volunteer rescuers."},
+  {p:"t",t:"180° South",m:"2010 · 1h25",w:"Plex",f:1,l:[JW+"pelicula/180deg-south"],es:"El viaje de 1968, repetido por mar.",en:"The 1968 trip, redone by sea."},
+  {p:"t",t:"Proyecto Parque Patagonia",m:"2020 · 1h17",w:"Sin confirmar (Cine.Ar Play)",l:[["Reseña","https://bichosdecampo.com/estrenan-una-pelicula-que-retrata-la-silenciosa-puja-entre-filantropos-millonarios-y-productores-tradicionales-en-el-extremo-sur-del-pais/"]],es:"Ganaderos que no venden a los Tompkins.",en:"Ranchers who won't sell to the Tompkins."},
+  {p:"t",t:"Más Torre y Fitz",m:"varios",w:"YouTube",l:[["Grito de piedra",YT+"WqHRrF8Tm9A"],["Cerro Torre Cumbre",YT+"ZP_r3S8-RGI"],["Wide Boyz",YT+"ehCHyeMlxB4"],["Royal Flush",YT+"zp1jduBMDYc"],["Climb & Fly",YT+"VbvIkHkP3gA"]],es:"Royal Flush está en español.",en:"Royal Flush is in Spanish."}
+ ]},
+ {id:"huemul", es:"🧊 Huemul (10–13 dic)", en:"🧊 Huemul (Dec 10–13)", items:[
+  {p:"m",t:"Patagonia TV: Vuelta al Cerro Huemul",m:"dic 2024 · 44 min",w:"YouTube",f:1,l:[["YouTube",YT+"vwhOq_9jqzU"]],es:"Vuestras fechas: 4 días, 66 km.",en:"Your time of year: 4 days, 66 km."},
+  {p:"m",t:"Once A Stranger: cómo cruzar las tirolesas",m:"2024 · 3 min",w:"YouTube",f:1,l:[["YouTube",YT+"1RbucJ-ncm0"]],es:"Arnés, 2 mosquetones de seguro, ~35 m de cuerda.",en:"Harness, 2 locking carabiners, ~35 m cord."},
+  {p:"s",t:"Sara Dhooma: Huemul días 2 y 3",m:"2020 · 2 × 11 min",w:"YouTube",f:1,l:[["Día 2",YT+"c_tx6_hqNqg"],["Día 3",YT+"0bMcfkKnEhE"]],es:"Glaciar Túnel y el viento de Paso Huemul.",en:"Glaciar Túnel and Paso Huemul's wind."},
+  {p:"s",t:"DW: Investigación climática al límite",m:"2024 · 26 min · ES/EN",w:"YouTube (DW)",f:1,l:[["Español",YT+"CUGy3TzyM9c"],["English",YT+"rep17G0tVLU"]],es:"Cuánto hielo pierde la Patagonia.",en:"How much ice Patagonia is losing."},
+  {p:"s",t:"Expedición Transpatagónica 1998–99",m:"55 min",w:"YouTube",f:1,l:[["YouTube",YT+"Wz91dHb6VUU"]],es:"98 días por el Hielo Sur.",en:"98 days across the Southern Ice Field."},
+  {p:"t",t:"Kathryn Jones: guía completa del Huemul",m:"2022 · 43 min",w:"YouTube",f:1,l:[["YouTube",YT+"fD8tE5xZq84"]],es:"Completa, con mapas y campamentos.",en:"Full route, maps and campsites."},
+  {p:"t",t:"Desafío Extremo: travesía del Hielo Sur",m:"2011",w:"Mediaset Infinity (sin confirmar)",l:[["Mediaset","https://www.mediasetinfinity.es/programas-tv/desafio-extremo/temporada-4/episodios/"]],es:"Calleja cruza el Hielo Sur.",en:"Calleja crosses the ice field."},
+  {p:"t",t:"Al filo de lo imposible: El campo de hielo Norte",m:"28 min",w:"RTVE Play",f:1,l:[["RTVE Play","https://www.rtve.es/play/videos/al-filo-de-lo-imposible/filo-imposible-campo-hielo-norte-hielo-ii/1692621/"]],es:"El Hielo Norte, no vuestra ruta.",en:"The Northern Ice Field, not your route."}
+ ]}
+];
+var P = {m:["warn","★ Imprescindible","★ Must"], s:["","Recomendado","Should"], t:["","Si hay tiempo","If time"]};
+function bi(es, en){ return '<span lang="es">'+es+'</span><span lang="en">'+en+'</span>'; }
+function chip(c, x){ return '<span class="chip '+c+'">'+x+'</span>'; }
+// Type icon from the data: free YouTube video, series, or film.
+function icon(i){ return /YouTube/.test(i.w) ? '▶️' : /×|temp\./.test(i.m) ? '📺' : '🎬'; }
+document.getElementById('toc').innerHTML = S.map(function(s){ return '<a href="#'+s.id+'">'+bi(s.es, s.en)+'</a>'; }).join('');
+document.getElementById('list').innerHTML = S.map(function(s){
+  return '<h2 id="'+s.id+'">'+bi(s.es, s.en)+'</h2>'+(s.les ? '<p class="lead">'+bi(s.les, s.len)+'</p>' : '')+'<div class="tiles">'+
+    s.items.map(function(i){
+      var p = P[i.p], c = [chip(p[0], bi(p[1], p[2]))];
+      if (i.f) c.push(chip('ok', bi('gratis', 'free')));
+      if (i.u) c.push(chip('', bi('no oficial', 'unofficial')));
+      i.m.split(' · ').forEach(function(x){ c.push(chip('', x)); });
+      i.w.split(' · ').forEach(function(x){ c.push(chip('info', x)); });
+      return '<div class="tile '+i.p+'"><div class="i">'+icon(i)+'</div><div><b>'+i.t+'</b>'+
+        '<div class="chips">'+c.join('')+'</div><p>'+bi(i.es, i.en)+'</p>'+
+        i.l.map(function(x){
+          if (typeof x == 'string') x = ['JustWatch', x];
+          return '<a class="lnk" href="'+x[1]+'" target="_blank" rel="noopener">▶ '+x[0]+'</a>';
+        }).join('')+'</div></div>';
+    }).join('')+'</div>';
+}).join('');
+document.getElementById('no').innerHTML = ["La historia oficial","Crónica de una fuga","Garage Olimpo","Iluminados por el fuego","Memoria del saqueo","Café de los maestros","Okupas","Los simuladores","Algo habrán hecho","Dynasties II: Puma",bi("Attenborough y el dinosaurio gigante","Attenborough and the Giant Dinosaur"),"Jauja","Pumas: Legends of the Ice Mountains"].map(function(t){ return chip('warn', t); }).join('');
+</script>
+</body>
+</html>

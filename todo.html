@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-es="Pendientes · Itinerario 1B" data-en="To-do · Itinerary 1B">To-do · Itinerary 1B</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="i18n.js"></script>
+</head>
+<body>
+  <nav class="topnav"><div class="inner">
+    <span class="brand">🏔️ Patagonia 2026</span>
+    <a href="index.html"><span lang="es">Inicio</span><span lang="en">Hub</span></a>
+    <a href="calendar.html"><span lang="es">Calendario</span><span lang="en">Calendar</span></a>
+    <a href="wtrek.html"><span lang="es">Circuito W</span><span lang="en">W Trek</span></a>
+    <a href="huemul.html">Huemul</a>
+    <a href="buenos-aires.html">Buenos Aires</a>
+    <a href="logistics.html"><span lang="es">Logística</span><span lang="en">Logistics</span></a>
+    <a href="gear.html"><span lang="es">Equipo</span><span lang="en">Gear</span></a>
+    <a href="packing.html"><span lang="es">Equipaje</span><span lang="en">Packing</span></a>
+    <a href="material.html"><span lang="es">Material</span><span lang="en">Kit check</span></a>
+    <a href="todo.html" class="active"><span lang="es">Pendientes</span><span lang="en">To-do</span></a>
+    <a href="costes.html"><span lang="es">Costes</span><span lang="en">Costs</span></a>
+    <a href="dinos.html"><span lang="es">Dinosaurios</span><span lang="en">Dinosaurs</span></a>
+    <a href="ver.html"><span lang="es">Para ver</span><span lang="en">Watch</span></a>
+    <a href="leer.html"><span lang="es">Para leer</span><span lang="en">Read</span></a>
+  </div></nav>
+  <div class="page">
+    <style>.todo>span:not(.who){flex:1}.todo .who{white-space:nowrap;margin-top:3px}.todo small{display:block;font-size:12.5px;color:var(--gray-500);margin-top:2px}</style>
+    <a class="back" href="index.html"><span lang="es">← Inicio del viaje</span><span lang="en">← Trip hub</span></a>
+    <h1 lang="es">Pendientes</h1>
+    <h1 lang="en">To-do</h1>
+    <p class="subtitle" lang="es">Por fecha · A/B = quién se encarga (<a href="logistics.html#money">reparto</a>) · se guarda en este navegador</p>
+    <p class="subtitle" lang="en">By date · A/B = owner (<a href="logistics.html#money">split</a>) · saved in this browser</p>
+
+    <nav class="toc" id="toc"><span class="lbl"><span lang="es">ir a</span><span lang="en">jump to</span></span></nav>
+
+    <div class="progress-wrap">
+      <div class="progress-txt" id="ptxt">0 / 0 <span lang="es">hechas</span><span lang="en">done</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="pfill"></div></div>
+      <div style="margin-top:12px"><button class="reset" id="reset"><span lang="es">Reiniciar todo</span><span lang="en">Reset all</span></button></div>
+    </div>
+
+    <div id="lists"></div>
+
+    <footer><a href="logistics.html"><span lang="es">Logística</span><span lang="en">Logistics</span></a> · <a href="packing.html"><span lang="es">Equipaje</span><span lang="en">Packing</span></a> · <a href="material.html"><span lang="es">Material</span><span lang="en">Kit check</span></a></footer>
+  </div>
+
+  <script>
+  function T(es,en){return '<span lang="es">'+es+'</span><span lang="en">'+en+'</span>';}
+  // Ticks are stored by position (group-item), so items keep their order and count.
+  var GROUPS = [
+    {title:T("📋 Trámites","📋 Admin"), when:T("lo primero","do first"), items:[
+      [T("PENDIENTE (más adelante): <b>Plus Ultra €536.03</b><small>AESA ••• presentada 18 nov solo por el reembolso de €1,696.99 · ticket Plus Ultra •••</small>","STILL DO (later): <b>Plus Ultra €536.03</b><small>AESA ••• filed 18 Nov for the €1,696.99 refund only · Plus Ultra ticket •••</small>"),"A"],
+      [T("PENDIENTE: <b>certificado Revolut Metal</b> en PDF en los DOS móviles<small>Laura: bajar el suyo · activar en las dos apps · XCover Assist +44 23 8144 9963 · sin seguro extra (decidido)</small>","STILL DO: <b>Revolut Metal certificate</b> PDF on BOTH phones<small>Laura: download hers · switch on in both apps · XCover Assist +44 23 8144 9963 · no extra cover (decided)</small>"),"both"],
+      [T("Pasaportes válidos 6+ meses tras dic 2026","Passports valid 6+ months past Dec 2026"),"both"],
+      [T("PENDIENTE: asientos y check-in online, 24 nov<small>Iberia ••• · IB0105 25 nov 08:45 · 23 + 10 kg cada uno</small>","STILL DO: seats and online check-in, Nov 24<small>Iberia ••• · IB0105 Nov 25 08:45 · 23 + 10 kg each</small>"),"A"],
+      [T("PENDIENTE: Play Hostel Arcos guarda maletas el 19 dic hasta ~19:00","STILL DO: Play Hostel Arcos keeps bags Dec 19 until ~19:00"),"A"],
+      [T("PENDIENTE: Drive «Patagonia» completo y offline en los dos móviles<small>Falta: seguro de Laura, pasaportes, alojamientos, catamarán</small>","STILL DO: 'Patagonia' Drive folder complete and offline on both phones<small>Missing: Laura's insurance, passports, accommodation, catamaran</small>"),"A"],
+      [T("Configurar Splitwise","Set up Splitwise"),"B"],
+      [T("Alojamiento siempre con Revolut Metal, nunca efectivo<small>Lo exige el seguro · guardar recibos · −21% IVA en Argentina</small>","Accommodation always on Revolut Metal, never cash<small>Insurance requires it · keep receipts · −21% IVA in Argentina</small>"),"both"],
+      [T("HECHO ✓ Transporte pagado con Revolut Metal","DONE ✓ Transport paid with Revolut Metal"),"both"],
+      [T("HECHO ✓ Dinero recuperado (TdP 89,93 EUR, bus €36.32)","DONE ✓ Money recovered (TdP 89,93 EUR, bus €36.32)"),"A"],
+      [T("DECIDIDO ✓ Huemul 10–13 dic; 14–15 dic de colchón","DECIDED ✓ Huemul Dec 10–13; Dec 14–15 as buffer"),"both"]
+    ]},
+    {title:T("🎫 Reservado","🎫 Booked"), when:T("refs en <a href=\"logistics.html\">Logística</a>","refs on <a href=\"logistics.html\">Logistics</a>"), items:[
+      [T("<b>27 nov en BA: imprimir</b> y rehacer maletas<small>Bonos W ••• · Bus Sur 2, 6 y 8 dic · catamarán · PDF</small>","<b>Nov 27 in BA: print</b>, then repack<small>W vouchers ••• · Bus Sur Dec 2, 6, 8 · catamaran · PDF</small>"),"A"],
+      [T("~26 nov: billete del catamarán (•••) en •••<small>Si el 27 no llega: «Cambio Ticket Catamarán» · imprimir como tarde en Natales, 1 dic</small>","~Nov 26: catamaran ticket (•••) at •••<small>None by Nov 27: 'Cambio Ticket Catamarán' · print by Natales, Dec 1</small>"),"A"],
+      [T("Antes del 30 nov: pre-check-in online Las Torres (•••)<small>Enlace en la pág. 3 del PDF •••</small>","By Nov 30: Las Torres online pre-check-in (•••)<small>Link on page 3 of the ••• PDF</small>"),"A"],
+      [T("HECHO ✓ Transporte del parque ••• (2 y 6 dic)","DONE ✓ Park transport ••• (Dec 2 and 6)"),"A"],
+      [T("HECHO ✓ Entrada TdP •••, 2 dic","DONE ✓ TdP park pass •••, Dec 2"),"A"],
+      [T("HECHO ✓ Big Ice 29 nov, recogida 07:00 en Calafate Hostel","DONE ✓ Big Ice Nov 29, pickup 07:00 at Calafate Hostel"),"B"],
+      [T("HECHO ✓ FlexiPass x3: 29 nov, 9 dic, 10 dic","DONE ✓ FlexiPass x3: Nov 29, Dec 9, Dec 10"),"B"],
+      [T("HECHO ✓ 30 nov Marga Calafate 08:00 → Natales 14:00","DONE ✓ Nov 30 Marga Calafate 08:00 → Natales 14:00"),"A"],
+      [T("HECHO ✓ 8 dic Bus Sur Natales 07:30 → Calafate ~13:05<small>Rodoviario 06:45 · cambios hasta el 5 dic 07:30</small>","DONE ✓ Dec 8 Bus Sur Natales 07:30 → Calafate ~13:05<small>Rodoviario by 06:45 · changes until Dec 5 07:30</small>"),"A"],
+      [T("HECHO ✓ 8 dic Chaltén Travel 15:00 (TERMINAL) → Chaltén 17:40<small>Plan B: Marga 16:30</small>","DONE ✓ Dec 8 Chaltén Travel 15:00 (TERMINAL) → Chaltén 17:40<small>Plan B: Marga 16:30</small>"),"A"],
+      [T("HECHO ✓ 16 dic Chaltén Travel 11:30 → Calafate 14:10","DONE ✓ Dec 16 Chaltén Travel 11:30 → Calafate 14:10"),"A"]
+    ]},
+    {title:T("🛒 Comprar","🛒 Buy"), when:T("antes de volar","before you fly"), items:[
+      [T("HECHO ✓ Zapatillas: Guillermo ✓ · Laura, YA<small>Tomir 2.0 GTX (8 mm) + Cadí (6 mm) · sin drop cero (Aquiles) · media talla más</small>","DONE ✓ Shoes: Guillermo ✓ · Laura, NOW<small>Tomir 2.0 GTX (8 mm) + Cadí (6 mm) · no zero drop (Achilles) · half a size up</small>"),"both"],
+      [T("HECHO ✓ 2 esterillas Naturehike Tuye R5.8","DONE ✓ 2 Naturehike Tuye R5.8 mats"),"both"],
+      [T("HECHO ✓ Comidas liofilizadas<small>Sin cerdo por Chile · bolsas selladas · declarar en cada frontera</small>","DONE ✓ Freeze-dried meals<small>No pork through Chile · sealed bags · declare at every border</small>"),"both"],
+      [T("PENDIENTE: preguntar a fronteras@senasa.gob.ar por pollo/ternera liofilizados<small>Riesgo de decomiso en EZE y al volver de Chile · llevar impresa la respuesta SAG (•••)</small>","STILL DO: ask fronteras@senasa.gob.ar about freeze-dried chicken/beef<small>Confiscation risk at EZE and back from Chile · carry the printed SAG reply (•••)</small>"),"A"],
+      [T("eSIMs de AR y CL (sin inReach, decidido)","AR and CL eSIMs (no inReach, decided)"),"both"],
+      [T("HECHO ✓ Olla Toaks probada en el Trek 500","DONE ✓ Toaks pot tested on the Trek 500"),"A"],
+      [T("OPCIONAL: dejar comidas del Huemul y kit de tirolesa en Calafate Hostel<small>30 nov–8 dic · recoger el 8 dic, 13:05–15:00</small>","OPTIONAL: leave Huemul meals and tyrolean kit at Calafate Hostel<small>Nov 30–Dec 8 · collect Dec 8, 13:05–15:00</small>"),"A"],
+      [T("Saco sábana de seda (€25), solo si eres friolero","Silk bag liner (€25), only if you sleep cold"),"both"],
+      [T("HECHO ✓ 2 adaptadores tipo I, cargador GaN 65 W, 2 baterías Anker","DONE ✓ 2 type I adapters, 65 W GaN charger, 2 Anker power banks"),"both"],
+      [T("HECHO ✓ Forum Sport: polar Salomon, Nalgene 1 L, cuchara","DONE ✓ Forum Sport: Salomon fleece, 1 L Nalgene, spoon"),"both"],
+      [T("Ropa que falta, Guillermo: malla larga de merino para dormir","Clothing still to buy, Guillermo: merino sleep leggings"),"both"],
+      [T("HECHO ✓ Gafas Julbo Fury Reactiv. PENDIENTE: cordón","DONE ✓ Julbo Fury Reactiv sunglasses. TO DO: retainer cord"),"both"],
+      [T("HECHO ✓ Segunda cuchara de mango largo","DONE ✓ Second long-handled spoon"),"both"]
+    ]},
+    {title:T("🏋️ Entreno","🏋️ Training"), when:T("descarga desde el 16 nov","taper from Nov 16"), items:[
+      [T("Ensayo general con noche fuera, mochila a 14.5–15 kg","Overnight dress rehearsal, pack at 14.5–15 kg"),"both"],
+      [T("Finde 7–8 nov (Guillermo): 2 h con 14.5–15 kg, cinturón al 70–80%","Weekend Nov 7–8 (Guillermo): 2 h at 14.5–15 kg, hipbelt 70–80%"),"both"],
+      [T("Cada semana: ruta con carga desde 8 kg / 8–10 km<small>+1 kg O +2 km por semana, nunca las dos</small>","Each week: loaded hike from 8 kg / 8–10 km<small>+1 kg OR +2 km a week, never both</small>"),"both"],
+      [T("Cada semana: descenso largo con carga, 800–1200 m","Each week: long loaded descent, 800–1200 m"),"both"],
+      [T("Cada 3 semanas: finde con carga, sáb ~5 h + dom ~3 h","Every 3rd week: loaded weekend, Sat ~5 h + Sun ~3 h"),"both"],
+      [T("Fuerza 2 × 30 min/semana<small>Bajadas excéntricas, sentadilla dividida, subidas al escalón, gemelos, paseo con peso a un lado</small>","Strength 2 × 30 min/week<small>Eccentric step-downs, split squats, step-ups, calf raises, suitcase carries</small>"),"both"],
+      [T("HECHO ✓ Tirolesa ensayada en la escuela","DONE ✓ Tyrolean rehearsed at the crag"),"both"],
+      [T("Descarga 16–25 nov: mitad de volumen, nada nuevo","Nov 16–25 taper: half the volume, nothing new"),"both"]
+    ]},
+    {title:T("📅 Semanas previas","📅 Weeks ahead"), when:T("oct–nov","Oct–Nov"), items:[
+      [T("HECHO ✓ APN: Huemul abierto, tirolesas operativas<small>Sin fuego, bajar la basura · equipo obligatorio: arnés, mosquetones acero + alu, polea, 35 m de cordino</small>","DONE ✓ APN: Huemul open, tyroleans working<small>No fires, pack out rubbish · required kit: harness, steel + alu carabiners, pulley, 35 m cord</small>"),"A"],
+      [T("HECHO ✓ Polea Petzl Tandem Speed de Alberto","DONE ✓ Alberto's Petzl Tandem Speed pulley"),"B"],
+      [T("Turpial (2–6 dic) y Lo de Trivi (10–13 dic): guardar petates + hora de llegada","Turpial (Dec 2–6) and Lo de Trivi (Dec 10–13): keep duffels + arrival time"),"A"],
+      [T("Traslados: hotel → FTE 17 dic 06:15 y FTE 28 nov 19:46<small>Llegada vía Calafate Hostel (−20%) · EZE en Uber o Cabify</small>","Transfers: hotel → FTE Dec 17 06:15 and FTE Nov 28 19:46<small>Arrival via Calafate Hostel (−20%) · EZE by Uber or Cabify</small>"),"A"],
+      [T("GPX (html/gpx/) en Gaia/OsmAnd y el Suunto + mapas offline<small>En Chaltén: día 3 del Huemul frente a Wikiloc</small>","GPX (html/gpx/) into Gaia/OsmAnd and the Suunto + offline maps<small>In Chaltén: Huemul day 3 against Wikiloc</small>"),"both"],
+      [T("IMPRESCINDIBLE: itinerario a un contacto de emergencia<small>«Sin noticias antes de X, llama a APN»</small>","ESSENTIAL: itinerary to an emergency contact<small>'No news by X, call APN'</small>"),"A"],
+      [T("Efectivo: CLP en Natales, ARS para Chaltén, algo de USD<small>CLP: shuttle Laguna Amarga (~$4 pp, solo efectivo) · ARS: taxi de salida del Huemul</small>","Cash: CLP in Natales, ARS for Chaltén, some USD<small>CLP: Laguna Amarga shuttle (~$4 pp, cash only) · ARS: Huemul exit taxi</small>"),"both"],
+      [T("Bus: Chaltén Travel 15 kg gratis, Bus Sur 30 kg en 2 bultos","Bus: Chaltén Travel 15 kg free, Bus Sur 30 kg in 2 pieces"),"both"],
+      [T("HECHO ✓ Material de Alberto: arnés, polea, mosquetón, 20 m de cordino","DONE ✓ Alberto's kit: harness, pulley, carabiner, 20 m cord"),"both"],
+      [T("HECHO ✓ 15 m de cordino Decathlon, empalme doble pescador","DONE ✓ 15 m Decathlon cord, double fisherman's join"),"both"],
+      [T("Apuntar en Logística los descuentos de alojamientos","Note accommodation discounts on Logistics"),"both"],
+      [T("<a href=\"buenos-aires.html\">BA</a>: clase de cocina 27 nov, kayak Tigre 18 dic<small>Cascanueces (Colón, 17/18 dic): sale ~3 dic, comprar el 7 en Natales</small>","<a href=\"buenos-aires.html\">BA</a>: cooking class Nov 27, Tigre kayak Dec 18<small>Nutcracker (Colón, Dec 17/18): on sale ~Dec 3, buy Dec 7 in Natales</small>"),"both"]
+    ]},
+    {title:T("🎒 Equipaje","🎒 Pack"), when:T("lista en <a href=\"packing.html\">Equipaje</a>","list on <a href=\"packing.html\">Packing</a>"), items:[
+      [T("Kit de tirolesa compartido + guantes cada uno (sin casco)","Shared tyrolean kit + gloves each (no helmet)"),"both"],
+      [T("Chaqueta + cubrepantalón, plumífero, merino, calzado","Hardshell + rain pants, puffy, merino, shoes"),"both"],
+      [T("Bastones (facturados), frontal, gafas de sol, ampollas","Poles (checked), headlamp, sunglasses, blister kit"),"both"],
+      [T("Cámara + baterías, power bank, cables (trípode al petate)","Camera + batteries, power bank, cables (tripod in duffel)"),"both"],
+      [T("JetSMART: solo bajo el asiento<small>Ahí: power bank, pilas de litio · facturado: bastones, varillas, navaja, hornillo · gas: nunca</small>","JetSMART: under-seat item only<small>There: power bank, lithium cells · checked: poles, tent poles, knife, stove · gas: never</small>"),"both"],
+      [T("PDFs offline en LOS DOS móviles, sobre todo el FlexiPass","Offline PDFs on BOTH phones, above all the FlexiPass"),"both"],
+      [T("Avisar a bancos y Revolut, sacar algo de USD","Notify banks and Revolut, draw some USD"),"both"],
+      [T("Pasaportes + bonos W impresos; guardar la tarjeta PDI<small>PDI: −19% IVA y necesaria para salir de Chile</small>","Passports + printed W vouchers; keep the PDI card<small>PDI: −19% IVA, needed to exit Chile</small>"),"both"],
+      [T("Probar el reparto de peso de las mochilas","Dry-run the pack weight split"),"both"]
+    ]},
+    {title:T("🛬 Al llegar","🛬 On arrival"), when:T("ya en destino","in country"), items:[
+      [T("BA: SIM de Claro o activar la eSIM","BA: Claro SIM or activate the eSIM"),"both"],
+      [T("Fronteras: nada fresco, carne, queso ni miel; declarar liofilizados<small>Cerro Castillo 30 nov · salida de Chile 8 dic</small>","Borders: no fresh food, meat, cheese or honey; declare freeze-dried<small>Cerro Castillo Nov 30 · leaving Chile Dec 8</small>"),"both"],
+      [T("Natales 1 dic: Erratic Rock 15:00, comida del W, gas","Natales Dec 1: Erratic Rock 15:00, W food, gas"),"both"],
+      [T("8 dic, terminal de Calafate: snacks del Huemul","Dec 8, Calafate terminal: Huemul snacks"),"both"],
+      [T("Antes del 10 dic: registro online del Huemul (los dos)<small>9 dic: Centro de Visitantes 09–17 h · microspikes solo si hay nieve</small>","Before Dec 10: online Huemul registration (both)<small>Dec 9: visitor center 09–17 · microspikes only if snow</small>"),"both"],
+      [T("El Chaltén: gas, mapa Zagier &amp; Urruty, revisar el montaje","El Chaltén: gas, Zagier &amp; Urruty map, rig check"),"B"],
+      [T("Taxi de salida del Huemul (día 4, Estancia La Quinta)","Huemul exit taxi (day 4, Estancia La Quinta)"),"A"],
+      [T("Windguru «Paso del Viento» a diario","Windguru 'Paso del Viento' daily"),"both"],
+      [T("Tras el Huemul: email a icepnlgzn@apn.gob.ar (opcional)","After Huemul: email icepnlgzn@apn.gob.ar (optional)"),"both"]
+    ]}
+  ];
+  var KEY="patagonia1b_todo_v8";
+  var state={};
+  try{ state=JSON.parse(localStorage.getItem(KEY)||"{}"); }catch(e){}
+  var lists=document.getElementById('lists');
+  var toc=document.getElementById('toc');
+  var total=0;
+
+  GROUPS.forEach(function(g,gi){
+    var box=document.createElement('div'); box.className='todo-group'; box.id='g'+gi;
+    var h=document.createElement('h3'); h.innerHTML=g.title+(g.when?' <span class="when">· '+g.when+'</span>':''); box.appendChild(h);
+    g.items.forEach(function(it,ii){
+      total++;
+      var id=gi+'-'+ii;
+      // Items written as done start ticked; an explicit untick in this browser wins
+      if(state[id]===undefined && /^<span lang="es">(HECHO|DECIDIDO) ✓/.test(it[0])) state[id]=true;
+      var row=document.createElement('label'); row.className='todo'; row.htmlFor='c'+id;
+      var checked=state[id]?'checked':'';
+      row.innerHTML='<input type="checkbox" id="c'+id+'" data-id="'+id+'" '+checked+'><span>'+it[0]+'</span><span class="who">'+(it[1]==='both'?T('ambos','both'):it[1])+'</span>';
+      if(state[id]) row.classList.add('done');
+      box.appendChild(row);
+    });
+    lists.appendChild(box);
+    var a=document.createElement('a'); a.href='#g'+gi; a.innerHTML=g.title; toc.appendChild(a);
+  });
+
+  function refresh(){
+    var done=Object.values(state).filter(Boolean).length;
+    document.getElementById('ptxt').innerHTML=done+' / '+total+' '+T('hechas','done');
+    document.getElementById('pfill').style.width=(total?Math.round(done/total*100):0)+'%';
+  }
+
+  lists.addEventListener('change',function(e){
+    if(e.target.type!=='checkbox')return;
+    var id=e.target.dataset.id;
+    state[id]=e.target.checked;
+    e.target.closest('.todo').classList.toggle('done',e.target.checked);
+    try{ localStorage.setItem(KEY,JSON.stringify(state)); }catch(err){}
+    refresh();
+  });
+
+  document.getElementById('reset').onclick=function(){
+    if(!confirm(document.documentElement.lang==='en'?'Clear all checkboxes?':'¿Desmarcar todas las casillas?'))return;
+    localStorage.removeItem(KEY);
+    location.reload();
+  };
+
+  refresh();
+  </script>
+</body>
+</html>
