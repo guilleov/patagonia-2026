@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-es="Tracks · Patagonia 2026" data-en="Tracks · Patagonia 2026">Tracks · Patagonia 2026</title>
+  <title data-es="Rutas y tracks · Patagonia 2026" data-en="Routes &amp; tracks · Patagonia 2026">Routes &amp; tracks · Patagonia 2026</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="i18n.js"></script>
@@ -24,32 +24,210 @@
     <a href="packing.html"><span lang="es">Equipaje</span><span lang="en">Packing</span></a>
     <a href="material.html"><span lang="es">Material</span><span lang="en">Kit check</span></a>
     <a href="maleta.html"><span lang="es">Maleta</span><span lang="en">Suitcase</span></a>
-    <a href="tracks.html" class="active"><span lang="es">Tracks</span><span lang="en">Tracks</span></a>
+    <a href="tracks.html" class="active"><span lang="es">Rutas</span><span lang="en">Routes</span></a>
     <a href="todo.html"><span lang="es">Pendientes</span><span lang="en">To-do</span></a>
     <a href="costes.html"><span lang="es">Costes</span><span lang="en">Costs</span></a>
     <a href="dinos.html"><span lang="es">Dinosaurios</span><span lang="en">Dinosaurs</span></a>
     <a href="ver.html"><span lang="es">Para ver</span><span lang="en">Watch</span></a>
     <a href="leer.html"><span lang="es">Para leer</span><span lang="en">Read</span></a>
   </div></nav>
-  <div class="page">
+  <div class="page tk-page">
+    <style>
+      .tk-page h1{margin-bottom:6px}
+      .tk-tabs{display:flex;gap:6px;overflow-x:auto;margin:0 0 18px;padding:2px 0 6px;scrollbar-width:none}
+      .tk-tabs::-webkit-scrollbar{display:none}
+      .tk-tab{flex:0 0 auto;font-family:var(--sans);font-size:13.5px;border:1.5px solid var(--gray-300);background:var(--white);color:var(--gray-700);border-radius:999px;padding:7px 14px;cursor:pointer;white-space:nowrap}
+      .tk-tab small{font-family:var(--mono);font-size:11px;color:var(--gray-500);margin-left:4px}
+      .tk-tab[aria-selected="true"]{background:var(--slate);border-color:var(--slate);color:var(--white)}
+      .tk-tab[aria-selected="true"] small{color:#C9C7BE}
+      .tk-wrap{display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:22px;align-items:start}
+      .tk-side{position:sticky;top:calc(var(--navh,60px) + 12px)}
+      .tk-map{height:calc(100vh - var(--navh,60px) - 40px);max-height:680px;min-height:360px;border:1.5px solid var(--gray-300);border-radius:12px;z-index:0}
+      .tk-group{font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-500);margin:20px 2px 8px}
+      .tk-group:first-child{margin-top:0}
+      .tk-card{background:var(--white);border:1.5px solid var(--gray-300);border-radius:12px;margin-bottom:8px;scroll-margin-top:calc(var(--navh,60px) + 12px);transition:border-color .12s}
+      .tk-card:hover{border-color:var(--gray-500)}
+      .tk-card.open{border-color:var(--clay);box-shadow:0 0 0 3px #F6E3D9}
+      .tk-head{display:flex;gap:11px;align-items:flex-start;width:100%;text-align:left;font:inherit;color:inherit;background:none;border:0;padding:11px 12px;cursor:pointer;border-radius:12px}
+      .tk-badge{flex:0 0 auto;min-width:34px;height:30px;padding:0 6px;border-radius:8px;display:grid;place-items:center;font-family:var(--mono);font-size:12px;font-weight:700}
+      .b-day{background:#FBF0EA;color:#8A3B1E}.b-full{background:var(--slate);color:var(--white)}.b-planb{background:#EFEBF6;color:#4E437A}
+      .b-hike{background:#EEF2E8;color:#46522F}.b-run{background:#E3F1EF;color:#1F5F58}
+      .tk-head .n{display:block;font-family:var(--serif);font-size:16px;line-height:1.25;color:var(--slate)}
+      .tk-head .w{display:block;font-size:12px;color:var(--gray-500);margin-top:2px}
+      .tk-head .s{display:block;font-family:var(--mono);font-size:11.5px;color:var(--gray-700);margin-top:3px}
+      .tk-body{padding:0 14px 14px}
+      .tk-desc{font-size:14px;line-height:1.55;color:var(--gray-700);margin:2px 0 12px}
+      .tk-via{display:flex;flex-wrap:wrap;align-items:center;gap:5px 2px;font-size:12.5px;margin-bottom:14px}
+      .tk-lbl{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-500);margin:0 0 6px;width:100%}
+      .tk-via .stop{background:var(--gray-150);color:var(--gray-700);border-radius:999px;padding:2px 9px}
+      .tk-via .arr{color:var(--gray-500);padding:0 2px}
+      .tk-ver{display:grid;grid-template-columns:minmax(0,1fr) 82px;gap:6px;margin-top:6px}
+      .tk-tog{min-width:0;min-height:34px;display:flex;align-items:center;gap:9px;font:inherit;font-size:13px;text-align:left;background:var(--white);border:1.5px solid var(--gray-300);border-radius:9px;padding:7px 10px;cursor:pointer;color:var(--gray-500)}
+      .tk-tog .sw{flex:0 0 auto;width:20px;height:0;border-top:4px dotted var(--c);opacity:.45}
+      .tk-tog .vk{margin-left:auto;font-family:var(--mono);font-size:11px;white-space:nowrap}
+      .tk-tog[aria-pressed="true"]{color:var(--slate);border-color:var(--gray-500)}
+      .tk-tog[aria-pressed="true"] .sw{border-top-style:solid;opacity:1}
+      .tk-tog.is-lead .sw{border-top-width:6px}
+      .tk-dl{display:grid;place-items:center;line-height:1;font-family:var(--mono);font-size:11px;text-decoration:none;color:var(--gray-700);border:1.5px solid var(--gray-300);border-radius:9px;padding:0 9px;white-space:nowrap}
+      .tk-dl:hover{border-color:var(--slate);color:var(--slate)}
+      .tk-dl.none{visibility:hidden}
+      .tk-stats{font-family:var(--mono);font-size:12px;color:var(--gray-700);margin:12px 0 6px}
+      .tk-stats b{color:var(--slate)}
+      .tk-help{font-size:12px;color:var(--gray-500);line-height:1.5;margin:14px 2px 0}
+      .tk-tip{font-family:var(--sans);font-size:12px}
+      @media(max-width:860px){
+        .tk-wrap{grid-template-columns:1fr;gap:12px}
+        .tk-side{order:-1;top:var(--navh,60px);z-index:5;background:var(--ivory);padding:6px 0;margin:0 -2px}
+        .tk-map{height:34vh;min-height:220px;max-height:none}
+        .tk-card{scroll-margin-top:calc(var(--navh,60px) + 34vh + 24px)}
+      }
+      @media print{.tk-side,.tk-tabs,.gv-prof{display:none}.tk-wrap{display:block}}
+    </style>
     <a class="back" href="index.html"><span lang="es">← Inicio del viaje</span><span lang="en">← Trip hub</span></a>
-    <h1 lang="es">Todos los tracks</h1>
-    <h1 lang="en">All tracks</h1>
-    <p class="subtitle"><span lang="es">Cada GPX del viaje en el mapa. <b>OSM</b> = dibujado sobre senderos (descargable) · <b>Wikiloc</b> = grabación real (↗ abre su página) · <b>RUN</b> = para correr.</span><span lang="en">Every GPX of the trip on the map. <b>OSM</b> = drawn on trails (downloadable) · <b>Wikiloc</b> = real recording (↗ opens its page) · <b>RUN</b> = for running.</span></p>
-    <nav class="toc"><span class="lbl"><span lang="es">ir a</span><span lang="en">jump to</span></span><a href="#huemul">Huemul</a><a href="#w">W</a><a href="#chalten">El Chaltén</a><a href="#natales">Natales</a><a href="#calafate">El Calafate</a><a href="#ba">Buenos Aires</a></nav>
-    <h2 id="huemul"><span lang="es">🏔️ Huemul</span><span lang="en">🏔️ Huemul</span></h2>
-    <div class="gpxview" data-groups="x-huemul" data-no-all="1"></div>
-    <h2 id="w"><span lang="es">⛺ Circuito W</span><span lang="en">⛺ W Trek</span></h2>
-    <div class="gpxview" data-groups="x-w" data-no-all="1"></div>
-    <h2 id="chalten"><span lang="es">🥾 El Chaltén</span><span lang="en">🥾 El Chaltén</span></h2>
-    <div class="gpxview" data-groups="x-chalten" data-no-all="1"></div>
-    <h2 id="natales"><span lang="es">🌊 Puerto Natales</span><span lang="en">🌊 Puerto Natales</span></h2>
-    <div class="gpxview" data-groups="x-natales" data-no-all="1"></div>
-    <h2 id="calafate"><span lang="es">🧊 El Calafate</span><span lang="en">🧊 El Calafate</span></h2>
-    <div class="gpxview" data-groups="x-calafate" data-no-all="1"></div>
-    <h2 id="ba"><span lang="es">🏙️ Buenos Aires</span><span lang="en">🏙️ Buenos Aires</span></h2>
-    <div class="gpxview" data-groups="x-ba" data-no-all="1"></div>
-    <footer><a href="huemul.html">Huemul</a> · <a href="wtrek.html"><span lang="es">Circuito W</span><span lang="en">W Trek</span></a></footer>
+    <h1 lang="es">Rutas y tracks</h1>
+    <h1 lang="en">Routes &amp; tracks</h1>
+    <p class="subtitle"><span lang="es">Cada ruta del viaje: qué día toca, por dónde pasa y cómo es. Tocad una para verla en el mapa.</span><span lang="en">Every route of the trip: which day, where it goes and what it is like. Tap one to see it on the map.</span></p>
+    <div class="tk-tabs" role="tablist" id="tabs"></div>
+    <div class="tk-wrap">
+      <div class="tk-list" id="list"></div>
+      <div class="tk-side" id="side"><div class="tk-map" id="map"></div></div>
+    </div>
+    <footer><a href="huemul.html">Huemul</a> · <a href="wtrek.html"><span lang="es">Circuito W</span><span lang="en">W Trek</span></a> · <a href="calendar.html"><span lang="es">Calendario</span><span lang="en">Calendar</span></a></footer>
   </div>
+  <script>
+  (function(){
+    // Data: gpx/alltracks.js (built by gpx/make_alltracks.py). One entry per route; each
+    // route has versions (planned OSM line, Wikiloc recordings) drawn in their own colour.
+    function T(x){ return Array.isArray(x) ? '<span lang="es">'+x[0]+'</span><span lang="en">'+x[1]+'</span>' : x; }
+    function num(n){ return T([n.toLocaleString('es-ES'), n.toLocaleString('en-GB')]); }
+    var KIND = {plan:'#D97757', split:'#2F8E83'}, REC = ['#4A7FB5', '#7A6CA8', '#788C5D'];
+    var CAT = function(b){ return /^[DW]\d$/.test(b) ? 'day' : /^\dD$/.test(b) ? 'full' : b === 'B' ? 'planb' : b === '🏃' ? 'run' : 'hike'; };
+    function colors(r){ var k = 0; return r.v.map(function(v){ return v.kind === 'rec' ? REC[k++ % REC.length] : KIND[v.kind]; }); }
+    function kmText(v){
+      return v.oneway ? T([v.km.toFixed(1)+' km ida (~'+Math.round(v.km*2)+' i/v)', v.km.toFixed(1)+' km one way (~'+Math.round(v.km*2)+' return)'])
+                      : v.km.toFixed(1)+' km';
+    }
+    function kmShort(v){ return v.km.toFixed(1) + ' km' + (v.oneway ? T([' ida', ' one way']) : ''); }
+    function pts(v){ return v.pts.map(function(p){ return [p[0], p[1]]; }); }
+
+    // The site nav is sticky and wraps to several rows on a phone: the map sticks below it.
+    var nav = document.querySelector('.topnav');
+    function navh(){ document.documentElement.style.setProperty('--navh', (nav ? nav.offsetHeight : 0) + 'px'); }
+    navh(); addEventListener('resize', navh);
+
+    var map = L.map('map', {scrollWheelZoom:false});
+    var topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {maxZoom:17,
+      attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, SRTM · <a href="https://opentopomap.org">OpenTopoMap</a> (CC-BY-SA)'}).addTo(map);
+    var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom:19,
+      attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'});
+    L.control.layers({'Topo': topo, 'OSM': osm}).addTo(map);
+    var ctx = L.layerGroup().addTo(map), sel = L.layerGroup().addTo(map);
+    var hover = L.circleMarker([0,0], {radius:7, color:'#141413', weight:2, fillColor:'#D97757', fillOpacity:1});
+
+    var area, route, on, lines = {}, CTX = {color:'#1F2937', weight:3, opacity:.5};
+    var byId = {}; AREAS.forEach(function(a){ byId[a.id] = a; });
+    var routesOf = function(a){ return [].concat.apply([], a.groups.map(function(g){ return g.routes; })); };
+    var list = document.getElementById('list');
+
+    var tabs = document.getElementById('tabs');
+    AREAS.forEach(function(a){
+      var b = document.createElement('button');
+      b.className = 'tk-tab'; b.setAttribute('role', 'tab'); b.dataset.a = a.id;
+      b.innerHTML = a.icon + ' ' + T(a.label.length > 1 ? a.label : [a.label[0], a.label[0]]) + '<small>' + routesOf(a).length + '</small>';
+      b.onclick = function(){ showArea(a.id); };
+      tabs.appendChild(b);
+    });
+
+    function showArea(id, rid){
+      area = byId[id] || AREAS[0];
+      [].forEach.call(tabs.children, function(b){ b.setAttribute('aria-selected', b.dataset.a === area.id); });
+      ctx.clearLayers(); lines = {};
+      var html = '';
+      area.groups.forEach(function(g){
+        html += '<div class="tk-group">' + T(g.name) + '</div>';
+        g.routes.forEach(function(r){
+          var v = r.v[0];
+          html += '<div class="tk-card" id="r-' + r.id + '"><button class="tk-head" aria-expanded="false" data-r="' + r.id + '">'
+            + '<span class="tk-badge b-' + CAT(r.badge) + '">' + r.badge + '</span>'
+            + '<span><span class="n">' + T(r.name) + '</span><span class="w">' + T(r.when) + '</span>'
+            + '<span class="s">' + kmText(v) + ' · +' + num(v.up) + ' m</span></span></button><div class="tk-body" hidden></div></div>';
+          lines[r.id] = L.polyline(pts(v), CTX)
+            .bindTooltip(T(r.name), {sticky:true, className:'tk-tip'})
+            .on('click', function(){ select(r.id, true); })
+            .on('mouseover', function(){ if (r !== route) this.setStyle({opacity:.95, weight:4}); })
+            .on('mouseout', function(){ if (r !== route) this.setStyle(CTX); })
+            .addTo(ctx);
+        });
+      });
+      list.innerHTML = html + '<p class="tk-help">' + T([
+        '<b>Línea planificada</b>: dibujada sobre los senderos de OpenStreetMap, la que usa la web (descargable). <b>Grabado</b>: el GPS real de alguien en Wikiloc (↗ abre su página). <b>Cortado por días</b>: una grabación partida en nuestras etapas. En gris, las demás rutas de la zona: tocad una para abrirla.',
+        '<b>Planned line</b>: drawn on OpenStreetMap trails, the one the site uses (downloadable). <b>Recorded</b>: someone\'s real GPS on Wikiloc (↗ opens its page). <b>Cut to our days</b>: a recording split into our stages. In grey, the other routes in the area: tap one to open it.']) + '</p>';
+      [].forEach.call(list.querySelectorAll('.tk-head'), function(b){ b.onclick = function(){ select(b.dataset.r, true); }; });
+      var ok = routesOf(area).some(function(r){ return r.id === rid; });
+      select(ok ? rid : routesOf(area)[0].id, false);
+    }
+
+    function select(rid, scroll){
+      route = routesOf(area).filter(function(r){ return r.id === rid; })[0];
+      on = route.v.map(function(_, i){ return i === 0; });
+      [].forEach.call(list.querySelectorAll('.tk-card'), function(c){
+        var open = c.id === 'r-' + rid;
+        c.classList.toggle('open', open);
+        c.querySelector('.tk-head').setAttribute('aria-expanded', open);
+        var body = c.querySelector('.tk-body'); body.hidden = !open; if (!open) body.innerHTML = '';
+      });
+      Object.keys(lines).forEach(function(k){ lines[k].setStyle(k === rid ? {opacity:0} : CTX); });
+      draw(true);
+      if (scroll) document.getElementById('r-' + rid).scrollIntoView({behavior:'smooth', block:'start'});
+      history.replaceState(null, '', '#' + area.id + '/' + rid);
+    }
+
+    function draw(fit){
+      sel.clearLayers(); map.removeLayer(hover);
+      var cs = colors(route), lead = on.indexOf(true);
+      on.forEach(function(isOn, i){
+        if (isOn && i !== lead) L.polyline(pts(route.v[i]), {color:cs[i], weight:4, opacity:.95, dashArray:'1 8', lineCap:'round'}).addTo(sel);
+      });
+      if (lead >= 0){
+        var v = route.v[lead], ll = pts(v);
+        L.polyline(ll, {color:'#FFF', weight:9, opacity:.85}).addTo(sel);
+        var line = L.polyline(ll, {color:cs[lead], weight:5, opacity:1}).addTo(sel);
+        v.wpts.forEach(function(w){
+          L.circleMarker([w[0], w[1]], {radius:4, color:'#141413', weight:1.5, fillColor:'#FFF', fillOpacity:1}).bindTooltip(w[2]).addTo(sel);
+        });
+        L.circleMarker(ll[0], {radius:7, color:'#FFF', weight:2, fillColor:'#141413', fillOpacity:1}).bindTooltip(T(['Salida', 'Start'])).addTo(sel);
+        if (map.distance(ll[0], ll[ll.length-1]) > 80)
+          L.circleMarker(ll[ll.length-1], {radius:7, color:'#141413', weight:2.5, fillColor:'#FFF', fillOpacity:1}).bindTooltip(T(['Llegada', 'Finish'])).addTo(sel);
+        if (fit) map.fitBounds(line.getBounds(), {padding:[28,28]});
+      }
+      body(cs, lead);
+    }
+
+    function body(cs, lead){
+      var r = route, v = r.v[Math.max(lead, 0)];
+      var h = '<p class="tk-desc">' + T(r.desc) + '</p>';
+      if (r.via.length) h += '<div class="tk-via"><span class="tk-lbl">' + T(['Pasa por', 'Passes']) + '</span>'
+        + r.via.map(function(s){ return '<span class="stop">' + T(s) + '</span>'; }).join('<span class="arr">→</span>') + '</div>';
+      h += '<span class="tk-lbl">' + T(['Versiones · tocad para verlas', 'Versions · tap to show']) + '</span>';
+      r.v.forEach(function(x, i){
+        var link = x.file ? '<a class="tk-dl" href="gpx/' + x.file + '" download title="GPX">GPX ↓</a>'
+                 : x.url ? '<a class="tk-dl" href="' + x.url + '" target="_blank" rel="noopener">Wikiloc ↗</a>'
+                 : '<span class="tk-dl none">GPX</span>';
+        h += '<div class="tk-ver"><button class="tk-tog' + (i === lead ? ' is-lead' : '') + '" aria-pressed="' + on[i] + '" data-i="' + i + '" style="--c:' + cs[i] + '">'
+          + '<span class="sw"></span><span>' + T(x.label) + '</span><span class="vk">' + kmShort(x) + '</span></button>' + link + '</div>';
+      });
+      if (lead >= 0) h += '<div class="tk-stats"><b>' + kmText(v) + '</b> · +' + num(v.up) + ' m · −' + num(v.down) + ' m · '
+        + T(['máx.', 'max']) + ' ' + num(v.max) + ' m · <span style="color:' + cs[lead] + '">' + T(v.label) + '</span></div><div class="gv-prof"></div>';
+      var el = document.querySelector('#r-' + r.id + ' .tk-body'); el.innerHTML = h;
+      [].forEach.call(el.querySelectorAll('.tk-tog'), function(b){
+        b.onclick = function(){ on[+b.dataset.i] = !on[+b.dataset.i]; draw(false); };
+      });
+      if (lead >= 0) GV_PROFILE(el.querySelector('.gv-prof'), v.pts, function(p){ hover.setLatLng([p[0], p[1]]).addTo(map); });
+    }
+
+    var hash = decodeURIComponent(location.hash.slice(1)).split('/');
+    showArea(hash[0], hash[1]);
+  })();
+  </script>
 </body>
 </html>

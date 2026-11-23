@@ -14,7 +14,8 @@
   }
 
   function profile(el, pts, onHover){
-    var d = cum(pts), W = 1000, H = 150, P = 28;
+    // Drawing width = real width, so the labels are not stretched in narrow boxes
+    var d = cum(pts), W = Math.max(280, Math.round(el.clientWidth - 16) || 1000), H = 150, P = 28;
     var eles = pts.map(function(p){ return p[2]; });
     var lo = Math.min.apply(null, eles), hi = Math.max.apply(null, eles), span = Math.max(hi - lo, 50);
     var x = function(v){ return P + v / d[d.length-1] * (W - P - 8); };
@@ -95,17 +96,13 @@
     if (main.length > 1) mk('all', L_('Todo', 'All days'));
     days.forEach(function(t, i){ mk(String(i), t.title.split(' · ')[0]); });
 
-    var dl = main.length > 1 && !el.dataset.noAll ? ['<a href="gpx/' + groups[0] + '_all-days.gpx" download>' + L_('todos los días', 'all days') + '</a>'] : [];
-    // ponytail: tracks.html entries carry url (Wikiloc page) or file:null (no public copy)
-    days.forEach(function(t){
-      var n = t.title.split(' · ')[0];
-      if (t.url) dl.push('<a href="' + t.url + '" target="_blank" rel="noopener">' + n + ' ↗</a>');
-      else if (t.file) dl.push('<a href="gpx/' + t.file + '" download>' + n + '</a>');
-    });
+    var dl = main.length > 1 ? ['<a href="gpx/' + groups[0] + '_all-days.gpx" download>' + L_('todos los días', 'all days') + '</a>'] : [];
+    days.forEach(function(t){ dl.push('<a href="gpx/' + t.file + '" download>' + t.title.split(' · ')[0] + '</a>'); });
     el.querySelector('.gv-dl').innerHTML = '⬇️ GPX: ' + dl.join(' · ');
     show(main.length > 1 ? 'all' : 0);
   }
 
+  window.GV_PROFILE = profile;  // reused by tracks.html
   document.addEventListener('DOMContentLoaded', function(){
     [].forEach.call(document.querySelectorAll('.gpxview'), build);
   });
