@@ -95,8 +95,13 @@
     if (main.length > 1) mk('all', L_('Todo', 'All days'));
     days.forEach(function(t, i){ mk(String(i), t.title.split(' · ')[0]); });
 
-    var dl = main.length > 1 ? ['<a href="gpx/' + groups[0] + '_all-days.gpx" download>' + L_('todos los días', 'all days') + '</a>'] : [];
-    days.forEach(function(t){ dl.push('<a href="gpx/' + t.file + '" download>' + t.title.split(' · ')[0] + '</a>'); });
+    var dl = main.length > 1 && !el.dataset.noAll ? ['<a href="gpx/' + groups[0] + '_all-days.gpx" download>' + L_('todos los días', 'all days') + '</a>'] : [];
+    // ponytail: tracks.html entries carry url (Wikiloc page) or file:null (no public copy)
+    days.forEach(function(t){
+      var n = t.title.split(' · ')[0];
+      if (t.url) dl.push('<a href="' + t.url + '" target="_blank" rel="noopener">' + n + ' ↗</a>');
+      else if (t.file) dl.push('<a href="gpx/' + t.file + '" download>' + n + '</a>');
+    });
     el.querySelector('.gv-dl').innerHTML = '⬇️ GPX: ' + dl.join(' · ');
     show(main.length > 1 ? 'all' : 0);
   }

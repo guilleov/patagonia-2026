@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="BRouter via OSM, ODbL" xmlns="http://www.topografix.com/GPX/1/1">
+ <metadata><name>Costanera · Natales waterfront, out and back</name><copyright author="OpenStreetMap contributors"><license>https://opendatacommons.org/licenses/odbl/</license></copyright></metadata>
+ <wpt lat="-51.72404" lon="-72.51096"><name>Muelle Antiguo, Natales waterfront</name></wpt>
+ <wpt lat="-51.70793" lon="-72.51061"><name>Vista Panorámica</name></wpt>
+ <trk><name>Costanera · Natales waterfront, out and back</name><trkseg>
+  <trkpt lat="-51.724131" lon="-72.510771"><ele>5.5</ele></trkpt>
+  <trkpt lat="-51.723739" lon="-72.51029"><ele>5.5</ele></trkpt>
+  <trkpt lat="-51.723479" lon="-72.509995"><ele>5.5</ele></trkpt>
+  <trkpt lat="-51.722106" lon="-72.508599"><ele>4.5</ele></trkpt>
+  <trkpt lat="-51.72198" lon="-72.508467"><ele>4.75</ele></trkpt>
+  <trkpt lat="-51.721783" lon="-72.508261"><ele>5.0</ele></trkpt>
+  <trkpt lat="-51.721682" lon="-72.508214"><ele>5.0</ele></trkpt>
+  <trkpt lat="-51.721505" lon="-72.508097"><ele>5.0</ele></trkpt>
+  <trkpt lat="-51.721366" lon="-72.507782"><ele>5.5</ele></trkpt>
+  <trkpt lat="-51.721303" lon="-72.50768"><ele>5.75</ele></trkpt>
+  <trkpt lat="-51.721233" lon="-72.507616"><ele>6.0</ele></trkpt>
+  <trkpt lat="-51.721183" lon="-72.507599"><ele>6.25</ele></trkpt>
+  <trkpt lat="-51.721188" lon="-72.507517"><ele>6.5</ele></trkpt>
+  <trkpt lat="-51.721179" lon="-72.507471"><ele>6.5</ele></trkpt>
+  <trkpt lat="-51.721157" lon="-72.507411"><ele>7.0</ele></trkpt>
+  <trkpt lat="-51.721133" lon="-72.507373"><ele>7.0</ele></trkpt>
+  <trkpt lat="-51.721095" lon="-72.507338"><ele>7.25</ele></trkpt>
+  <trkpt lat="-51.721023" lon="-72.507292"><ele>7.75</ele></trkpt>
+  <trkpt lat="-51.720982" lon="-72.507279"><ele>8.0</ele></trkpt>
+  <trkpt lat="-51.720908" lon="-72.507285"><ele>8.0</ele></trkpt>
+  <trkpt lat="-51.720878" lon="-72.507297"><ele>8.0</ele></trkpt>
+  <trkpt lat="-51.720589" lon="-72.507215"><ele>7.75</ele></trkpt>
+  <trkpt lat="-51.720041" lon="-72.506948"><ele>7.25</ele></trkpt>
+  <trkpt lat="-51.719908" lon="-72.506909"><ele>7.0</ele></trkpt>
+  <trkpt lat="-51.719136" lon="-72.506517"><ele>5.5</ele></trkpt>
+  <trkpt lat="-51.717974" lon="-72.505871"><ele>4.25</ele></trkpt>
+  <trkpt lat="-51.716844" lon="-72.505211"><ele>5.75</ele></trkpt>
+  <trkpt lat="-51.716482" lon="-72.505018"><ele>6.5</ele></trkpt>
+  <trkpt lat="-51.716333" lon="-72.504806"><ele>7.75</ele></trkpt>
+  <trkpt lat="-51.716191" lon="-72.504694"><ele>8.25</ele></trkpt>
+  <trkpt lat="-51.716013" lon="-72.504592"><ele>8.5</ele></trkpt>
+  <trkpt lat="-51.715648" lon="-72.504474"><ele>9.0</ele></trkpt>
+  <trkpt lat="-51.71547" lon="-72.504476"><ele>9.0</ele></trkpt>
+  <trkpt lat="-51.715264" lon="-72.50457"><ele>8.5</ele></trkpt>
+  <trkpt lat="-51.71511" lon="-72.504667"><ele>7.75</ele></trkpt>
+  <trkpt lat="-51.715201" lon="-72.505015"><ele>5.75</ele></trkpt>
+  <trkpt lat="-51.71506" lon="-72.505104"><ele>5.5</ele></trkpt>
+  <trkpt lat="-51.71493" lon="-72.505206"><ele>5.5</ele></trkpt>
+  <trkpt lat="-51.714804" lon="-72.505324"><ele>5.75</ele></trkpt>
+  <trkpt lat="-51.714666" lon="-72.505479"><ele>6.0</ele></trkpt>
+  <trkpt lat="-51.714328" lon="-72.505933"><ele>5.75</ele></trkpt>
+  <trkpt lat="-51.713901" lon="-72.506567"><ele>6.0</ele></trkpt>
+  <trkpt lat="-51.713413" lon="-72.507258"><ele>6.5</ele></trkpt>
+  <trkpt lat="-51.71326" lon="-72.507467"><ele>6.5</ele></trkpt>
+  <trkpt lat="-51.713114" lon="-72.507647"><ele>6.75</ele></trkpt>
+  <trkpt lat="-51.712936" lon="-72.507842"><ele>7.0</ele></trkpt>
+  <trkpt lat="-51.712761" lon="-72.508019"><ele>7.25</ele></trkpt>
+  <trkpt lat="-51.712608" lon="-72.508159"><ele>7.25</ele></trkpt>
+  <trkpt lat="-51.712447" lon="-72.508298"><ele>7.25</ele></trkpt>
+  <trkpt lat="-51.712268" lon="-72.508427"><ele>7.5</ele></trkpt>
+  <trkpt lat="-51.711899" lon="-72.508655"><ele>8.0</ele></trkpt>
+  <trkpt lat="-51.711686" lon="-72.50876"><ele>8.25</ele></trkpt>
+  <trkpt lat="-51.711311" lon="-72.508927"><ele>8.75</ele></trkpt>
+  <trkpt lat="-51.711364" lon="-72.509275"><ele>6.25</ele></trkpt>
+  <trkpt lat="-51.711239" lon="-72.509331"><ele>6.25</ele></trkpt>
+  <trkpt lat="-51.71067" lon="-72.509485"><ele>6.75</ele></trkpt>
+  <trkpt lat="-51.710609" lon="-72.509462"><ele>7.0</ele></trkpt>
+  <trkpt lat="-51.710566" lon="-72.509402"><ele>7.5</ele></trkpt>
+  <trkpt lat="-51.710539" lon="-72.50926"><ele>8.5</ele></trkpt>
+  <trkpt lat="-51.710448" lon="-72.509296"><ele>8.5</ele></trkpt>
+  <trkpt lat="-51.709193" lon="-72.509841"><ele>6.75</ele></trkpt>
+  <trkpt lat="-51.708546" lon="-72.510109"><ele>6.75</ele></trkpt>
+  <trkpt lat="-51.708086" lon="-72.510273"><ele>6.75</ele></trkpt>
+  <trkpt lat="-51.707989" lon="-72.510613"><ele>5.0</ele></trkpt>
+</trkseg></trk>
+</gpx>
